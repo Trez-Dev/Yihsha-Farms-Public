@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+}
+
+
+.about-us{
+    padding-top: 10rem;
+    height: 50vh;
+    background-image: url(../../assets/images/website-bg.svg);
+    text-align: center;
+    font-size: 3rem;
+}
+
+.description-container{
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    gap: 5rem;
+}
+
+.description-island{
+    display: flex;
+    position: absolute;
+    width: 60%;
+    margin-top: -20rem;
+    gap: 2rem;
+    padding: 2rem 5rem;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 5px 8px #1818184d;
+}
+
+.description{
+    padding: 1rem;
+    width: 50%;
+    border: 1px solid #fe5d26;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.description p{
+    margin: 1rem;
+}
+
+.description-container img{
+    width: 50%;
+}

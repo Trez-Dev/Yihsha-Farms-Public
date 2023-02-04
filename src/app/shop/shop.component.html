@@ -1,0 +1,43 @@
+<div class="background-container">
+    <div class="background">
+        <div class="search">
+            <div class="search-bar">
+                <input placeholder="Search...">
+                <button><i class='fa fa-angle-double-right' style='font-size:24px'></i></button>
+            </div>
+        </div>
+        <div class="shop">
+            <p>Home / shop</p>
+            <h1>Shop</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dignissim, velit et luctus interdum, est quam scelerisque tellus, eget luctus mi diam vitae erat. Praesent porttitor lacus vitae dictum posuere. Suspendisse elementum metus ac dolor tincidunt, eu imperdiet nisi dictum.</p>
+            <div class="items-showing">
+                <p>Showing 1-9 of 12 results</p>
+                <select name="sorting" id="sorting">
+                    <option value="0">Default Sorting</option>
+                    <option value="1">Sort by popularity</option>
+                    <option value="2">Sort by average rating</option>
+                    <option value="3">Sort by latest</option>
+                    <option value="4">Sort by price: low to high</option>
+                    <option value="5">Sort by price: high to low</option>
+                </select>
+            </div>
+            <div class="shoping-items">
+                <div class="gallery-item" *ngFor="let product of products">
+                    <a href=""><div class="image"><img [src]="product.image"></div></a>
+                    <p>{{ product.type }}</p>
+                    <a href=""><h1>{{ product.name }}</h1></a>
+                    <div class="stars">
+                    <p *ngFor="let n of starNum(product.star);"><i class='fas fa-star' style='font-size:12px; color: #fe5d26;'></i></p>
+                    <p *ngFor="let n of starNum(5-product.star);"><i class='fas fa-star' style='font-size:12px'></i></p>
+                    </div>
+                    <h2>{{ product.price }}</h2>
+                </div>
+            </div>
+            <div class="navs">
+                <button>1</button>
+                <button>2</button>
+                <button><i class='fa fa-angle-right' style='font-size:20px'></i></button>
+            </div>
+        </div>
+    </div>
+</div>

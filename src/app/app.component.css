@@ -1,0 +1,167 @@
+/* Header CSS */
+
+nav{
+    height: 5rem;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0px 5px 8px #faedca4d;
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    z-index:1;
+}
+
+.on{
+    color: #fe5d26;
+}
+
+.off{
+    color: black;
+}
+
+
+.left-nav-side ul, .right-nav-side ul{
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.left-nav-side a, .right-nav-side a{
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    transition: 0.2s ease-in;
+}
+
+
+.left-nav-side a:hover{
+    color: #fe5d26;
+}
+
+.right-nav-side a:hover{
+    color: #fe5d26;
+}
+
+
+.left-nav-side{
+    display: flex;
+}
+
+.left-nav-side li{
+    display: inline-flex;
+    margin-right: 2rem;
+}
+
+.left-nav-side img{
+ height: 100%;
+ margin-right: 2rem;
+}
+
+.right-nav-side{
+    display: flex;
+    margin-right: 2rem;
+}
+
+.right-nav-side li{
+    display: inline;
+    margin-right: 1rem;
+}
+
+.right-nav-side li:nth-child(3){
+    color: #fe5d26;
+}
+
+.right-nav-side img{
+    height: 1rem;
+}
+
+
+
+/* Fotter CSS */
+
+
+/* *{
+    margin: 0;
+} */
+
+.background-container{
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.store-description{
+    display: flex;
+    flex-direction: column;
+    padding: 5% 0 0 5%;
+    gap: 2rem;
+    color: white;
+    box-sizing: border-box;
+}
+
+.store-description img{
+    width: 10rem;
+}
+
+.store-description p{
+    width: 80%;
+}
+
+.background{
+    display: flex;
+}
+
+.footer-table{
+    height: 90vh;
+}
+
+
+.link{
+    color: white;
+    text-align: left;
+    padding: 5% 5% 0 0 ;
+}
+
+.link ul, .link2 ul{
+    padding: 0;
+}
+
+.link li{
+    list-style: none;
+    text-align: left;
+}
+
+.link li a{
+    text-decoration: none;
+    color: white;
+}
+
+
+.mobile-app{
+    color: white;
+    text-align: left;
+    width: 50%;
+}
+
+.link2 h1{
+    color: white;
+}
+
+.link2 a{
+    color: #fe5d26;
+    text-decoration: none;
+}
+
+.copyright{
+    color: white;
+    background-color: black;
+    border-top: 1px solid white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem 2rem;
+}

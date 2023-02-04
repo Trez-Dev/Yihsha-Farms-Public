@@ -1,0 +1,9 @@
+<div class="background">
+<div class="card" *ngFor="let service of services">
+    <div class="title">
+        <i [ngClass]="service.icon" style='font-size:24px; color: #fe5d26;'></i>
+        <h1>{{ service.name }}</h1>
+    </div>
+    <p>{{ service.about }}</p>
+</div>
+</div>

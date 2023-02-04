@@ -1,0 +1,19 @@
+<div class="background-container">
+<h1 class="title">Best Selling Products!</h1>
+<i class='fas fa-cannabis' style='font-size:48px; color: #fe5d26;'></i>
+<div class="product-gallery-container">
+    <div class="product-gallary">
+        <div class="gallery-item" *ngFor="let product of products">
+            <a href=""><img [src]="product.image"></a>
+            <p>{{ product.type }}</p>
+            <a href=""><h1>{{ product.name }}</h1></a>
+            <div class="stars">
+            <p *ngFor="let n of starNum(product.star);"><i class='fas fa-star' style='font-size:12px; color: #fe5d26;'></i></p>
+            <p *ngFor="let n of starNum(5-product.star);"><i class='fas fa-star' style='font-size:12px'></i></p>
+            </div>
+            <h2>{{ product.price }}</h2>
+        </div>
+    </div>
+</div>
+</div>
+

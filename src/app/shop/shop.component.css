@@ -1,0 +1,142 @@
+
+*{
+    /* border: 1px solid black; */
+}
+.background-container{
+    background-image: url(../../assets/images/website-bg.svg);
+    background-size: cover;
+}
+
+.background{
+    background-color: rgba(255, 255, 255,0.4);
+    padding: 10rem;
+    display: flex;
+}
+
+.search-bar{
+    gap: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search{
+    width: 30%;
+    height: 80%;
+    padding-right: 3rem;
+}
+
+.search input{
+    width: 80%;
+    height: 3rem;
+    border: none;
+}
+
+.search button{
+    width: 10%;
+    height: 3rem;
+    background-color: #fe5d26;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    /* padding: 0.5rem 1rem; */
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+
+}
+
+.shop{
+    width: 70%;
+    height: 80%;
+    padding-left: 3rem;
+    border-left: 1px solid #95a3b3;
+}
+
+.shop h1{
+    font-size: 4rem;
+    margin: 0;
+    color: #fe5d26;
+    margin-bottom: 4rem;
+}
+
+.items-showing{
+    display: flex;
+    justify-content: space-between;
+}
+
+.items-showing p{
+    margin: 0;
+}
+
+.shoping-items{
+    height: 70%;
+    display: grid;
+    margin-top: 1rem;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+}
+
+.gallery-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.image{
+    height: 15rem;
+    width: 15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image img{
+    height: 100%;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+.gallery-item h1{
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.gallery-item p{
+    font-size: 0.7rem;
+    margin: 0;
+}
+
+.gallery-item .stars{
+    display: flex;
+}
+
+.navs button{
+    width: 10%;
+    padding: 1rem;
+    margin-right: 2rem;
+    background: none;
+    border: 2px solid #fe5d26;
+    font: inherit;
+    color: #fe5d26;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: 0.2s ease-in;
+}
+
+.navs button:nth-child(1){
+    background-color: #fe5d26;
+    color: white;
+}
+
+.navs button:hover{
+    background-color: #fe5d26;
+    color: white;
+}
