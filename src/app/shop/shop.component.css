@@ -30,6 +30,8 @@
     width: 80%;
     height: 3rem;
     border: none;
+    border-radius: 2px;
+    padding-left: 1rem;
 }
 
 .search button{
@@ -81,6 +83,12 @@
     flex-direction: column;
     align-items: center;
     gap: 0.2rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.gallery-item:hover{
+    background-color: #95a3b34d;
 }
 
 .image{

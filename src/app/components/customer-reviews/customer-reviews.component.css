@@ -45,7 +45,7 @@ button:hover i{
 }
 
 .customer-reviews{
-    height: 100vh;
+    height: 60vh;
     display: flex;
     align-items: flex-end;
     justify-content: center;

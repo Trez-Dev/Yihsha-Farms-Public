@@ -87,7 +87,7 @@ nav{
 } */
 
 .background-container{
-    height: 100vh;
+    height: 80vh;
     background-color: black;
     display: flex;
     align-items: center;
