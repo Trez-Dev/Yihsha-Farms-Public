@@ -1,0 +1,54 @@
+<div class="background-container">
+    <div class="background" *ngIf="selectedProduct">
+        <div class="product">
+            <div class="landing-product-image">
+                <img [src]="selectedProduct.image">
+            </div>
+            <div class="landing-product-description">
+                <h1>Assorted Coffee</h1>
+                <h2>$35.00</h2>
+                <p>Neque porro quisquam est, qui dolore ipsum quia dolor sit amet, consectetur adipisci velit, sed quia non incidunt lores ta porro ame. numquam eius modi tempora incidunt lores ta porro ame.</p>
+                <div class="add-product">
+                <input type="number" max="20" value="1">
+                <button>ADD TO CART <i class='fas fa-cart-arrow-down' style='font-size:24px'></i></button>
+                </div>
+                <hr>
+                Categories: Groceries, Juice
+            </div>
+        </div>
+        <div class="extra-info">
+            <div class="description-reviews">
+                <button [ngClass]="selection? 'active-button' : 'non-active-button'" (click)="description()">Description</button>
+                <button [ngClass]="!selection? 'active-button' : 'non-active-button'" (click)="reviews()">Reviews(0)</button>
+            </div>
+        </div>
+        <p *ngIf="selection">Neque porro quisquam est, qui dolore ipsum quia dolor sit amet, consectetur adipisci velit, sed quia non incidunt lores ta porro ame. numquam eius modi tempora incidunt lores ta porro ame.</p>
+        <p *ngIf="!selection">There are no reviews yet.</p>
+        <div class="reviews" *ngIf="!selection">
+            <h2>Be the first to review “Assorted Coffee”</h2>
+            <p class="details">Your email address will not be published. Required fields are marked *</p>
+            <div class="your-rating"><p class="details">Your rating *</p><p *ngFor="let n of starNum(5);"><i class='fas fa-star' style='font-size:20px;'></i></p></div>
+            <textarea name="review" id="review"></textarea>
+            <div class="user-info">
+                <label for="name">Name*<input type="text" id="name"></label>
+                <label for="name">Email*<input type="email" id="name"></label>
+            </div>
+            <button>SUBMIT</button>
+        </div>
+        <div class="related-products">
+            <h1>Related products</h1>
+            <div class="related-items-gallery">
+                <div class="gallery-item" *ngFor="let product of relatedProducts">
+                    <a (click)="navigateProductLanding(product)"><div class="image"><img [src]="product.image"></div></a>
+                    <p>{{ product.type }}</p>
+                    <a (click)="navigateProductLanding(product)"><h1>{{ product.name }}</h1></a>
+                    <div class="stars">
+                    <p *ngFor="let n of starNum(product.star);"><i class='fas fa-star' style='font-size:12px; color: #fe5d26;'></i></p>
+                    <p *ngFor="let n of starNum(5-product.star);"><i class='fas fa-star' style='font-size:12px'></i></p>
+                    </div>
+                    <h2>{{ product.price }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

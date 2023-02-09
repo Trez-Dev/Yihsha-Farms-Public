@@ -43,6 +43,7 @@ a{
     width: 80%;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 .gallery-item h1{
     font-size: 1.5rem;

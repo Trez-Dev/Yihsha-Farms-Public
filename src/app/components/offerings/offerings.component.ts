@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UrlHandlingStrategy } from '@angular/router';
+import { Route, Router, UrlHandlingStrategy } from '@angular/router';
 
 @Component({
   selector: 'app-offerings',
@@ -7,6 +7,8 @@ import { UrlHandlingStrategy } from '@angular/router';
   styleUrls: ['./offerings.component.css']
 })
 export class OfferingsComponent {
+
+  constructor(private router: Router){}
 
   offerings = [
     {
@@ -25,5 +27,10 @@ export class OfferingsComponent {
       image: "../../../assets/images/all-spice-Pimento-whole.png"
     },
   ]
+
+  navigateToShop(){
+    this.router.navigate(['/shop'])
+  }
+
 
 }
