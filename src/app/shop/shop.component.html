@@ -5,6 +5,31 @@
                 <input placeholder="Search...">
                 <button><i class='fa fa-angle-double-right' style='font-size:24px'></i></button>
             </div>
+            <div class="filters">
+                <h3>Filter by Price</h3>
+            </div>
+            <div class="prices">
+                <input type="text" value="$40.00">
+                <input type="text" value="$80.00">
+            </div>
+            <div class="groceries">
+                    <a href=""><p>Groceries</p></a><p>(10)</p>
+            </div>
+            <div class="juices">
+                    <a href=""><p>Juices</p></a><p>(6)</p>
+            </div>
+            <div class="left-shopping-gallery">
+                <div class="gallery-item" *ngFor="let product of leftProducts">
+                    <a (click)="navigateProductLanding(product)"><div class="image"><img [src]="product.image"></div></a>
+                    <p>{{ product.type }}</p>
+                    <a (click)="navigateProductLanding(product)"><h1>{{ product.name }}</h1></a>
+                    <div class="stars">
+                    <p *ngFor="let n of starNum(product.star);"><i class='fas fa-star' style='font-size:12px; color: #fe5d26;'></i></p>
+                    <p *ngFor="let n of starNum(5-product.star);"><i class='fas fa-star' style='font-size:12px'></i></p>
+                    </div>
+                    <h2>{{ product.price }}</h2>
+                </div>
+            </div>
         </div>
         <div class="shop">
             <p>Home / shop</p>
@@ -23,9 +48,9 @@
             </div>
             <div class="shoping-items">
                 <div class="gallery-item" *ngFor="let product of products">
-                    <a href=""><div class="image"><img [src]="product.image"></div></a>
+                    <a (click)="navigateProductLanding(product)"><div class="image"><img [src]="product.image"></div></a>
                     <p>{{ product.type }}</p>
-                    <a href=""><h1>{{ product.name }}</h1></a>
+                    <a (click)="navigateProductLanding(product)"><h1>{{ product.name }}</h1></a>
                     <div class="stars">
                     <p *ngFor="let n of starNum(product.star);"><i class='fas fa-star' style='font-size:12px; color: #fe5d26;'></i></p>
                     <p *ngFor="let n of starNum(5-product.star);"><i class='fas fa-star' style='font-size:12px'></i></p>
@@ -35,8 +60,8 @@
             </div>
             <div class="navs">
                 <button>1</button>
-                <button>2</button>
-                <button><i class='fa fa-angle-right' style='font-size:20px'></i></button>
+                <button (click)="nextPage()">2</button>
+                <button (click)="restOfProducts()"><i class='fa fa-angle-right' style='font-size:20px'></i></button>
             </div>
         </div>
     </div>

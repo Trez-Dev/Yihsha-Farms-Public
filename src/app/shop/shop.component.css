@@ -1,7 +1,7 @@
-
+/* 
 *{
-    /* border: 1px solid black; */
-}
+    border: 1px solid black;
+} */
 .background-container{
     background-image: url(../../assets/images/website-bg.svg);
     background-size: cover;
@@ -9,7 +9,7 @@
 
 .background{
     background-color: rgba(255, 255, 255,0.4);
-    padding: 10rem;
+    padding: 8rem;
     display: flex;
 }
 
@@ -20,13 +20,66 @@
     align-items: center;
 }
 
+.filters h3{
+font-size: 1.8rem;
+}
+
+.search-bar button{
+    padding: 0.5rem;
+}
+
+.search-bar button i{
+    transition: 0.2s ease-in;
+}
+
+.search-bar button:hover{
+    background-color: #ff5015;
+}
+
+.search-bar button:hover i{
+    transform: translateX(2px);
+}
+
+
+.prices{
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.prices input{
+    width: 10%;
+    padding: 0.5rem;
+    color: #828e9c;
+    border-radius: 2px;
+    border: none;
+}
+
+.groceries, .juices{
+    display: flex;
+    gap: 0.5rem;
+}
+.groceries p, .juices p{
+    margin: 0.5rem 0;
+}
+.groceries a, .juices a{
+    text-decoration: none;
+    color: #fe5d26;
+}
+
+
+.left-shopping-gallery{
+    margin-top: 1rem;
+    display: grid;
+    grid-template-rows: repeat(3,1fr);
+}
+
 .search{
     width: 30%;
-    height: 80%;
     padding-right: 3rem;
 }
 
-.search input{
+.search-bar input{
     width: 80%;
     height: 3rem;
     border: none;
@@ -55,7 +108,7 @@
     border-left: 1px solid #95a3b3;
 }
 
-.shop h1{
+.shop h1, .left-shopping-gallery h1{
     font-size: 4rem;
     margin: 0;
     color: #fe5d26;
@@ -103,13 +156,14 @@
     height: 100%;
 }
 
-a{
+.shop a,.left-shopping-gallery a{
     text-decoration: none;
     color: black;
     text-align: center;
     width: 80%;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 .gallery-item h1{
     font-size: 1.5rem;

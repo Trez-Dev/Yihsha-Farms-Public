@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RESTAPIServiceService } from './restapiservice.service'; 
+import { SilasProductServiceService } from './silas-product-service.service'; 
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,12 +12,12 @@ export class AppComponent {
   title = 'Yihsha Farms';
   status: boolean = false;
 
-  constructor(private restapiservice: RESTAPIServiceService, private router: Router ){}
+  constructor(private restapiservice: SilasProductServiceService, private router: Router ){}
 
   ngOnInit() {
-    this.restapiservice.getPokiData().subscribe(data => {
-      console.log(data);
-    })
+    // this.restapiservice.getPokiData().subscribe(data => {
+    //   console.log(data);
+    // })
   }
   
 }

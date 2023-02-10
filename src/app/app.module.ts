@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RESTAPIServiceService } from './restapiservice.service';
+import { SilasProductServiceService } from './silas-product-service.service';
 import { HomeComponent } from './home/home.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { CardOneComponent } from './components/card-one/card-one.component';
@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { ShopComponent } from './shop/shop.component';
 import { ContactComponent } from './contact/contact.component';
+import { ProductLandingPageComponent } from './components/product-landing-page/product-landing-page.component';
 
 
 // const appRoutes = [
@@ -37,6 +38,7 @@ import { ContactComponent } from './contact/contact.component';
     AboutComponent,
     ShopComponent,
     ContactComponent,
+    ProductLandingPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,7 @@ import { ContactComponent } from './contact/contact.component';
     // RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    RESTAPIServiceService
+    SilasProductServiceService
   ],
   bootstrap: [AppComponent]
 })
