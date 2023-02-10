@@ -9,7 +9,7 @@ import {Product} from '../../shared/product.model'
   templateUrl: './card-one.component.html',
   styleUrls: ['./card-one.component.css']
 })
-export class CardOneComponent {
+export class CardOneComponent{
 
   products: any;
 
@@ -18,7 +18,7 @@ export class CardOneComponent {
   ngOnInit(): void {
     this.database.getPocketBaseData().then(data =>{
       this.products = data;
-      console.log(data);
+      // console.log(data);
     })
     
   }

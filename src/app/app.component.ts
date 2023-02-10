@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'Yihsha Farms';
   status: boolean = false;
+  hide: boolean = false;
 
   constructor(private restapiservice: SilasProductServiceService, private router: Router ){}
 
@@ -20,4 +21,7 @@ export class AppComponent {
     // })
   }
   
+  hideShop(){
+  this.hide = !this.hide;
+  }
 }

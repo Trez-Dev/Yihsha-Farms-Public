@@ -1,5 +1,5 @@
 <!-- Header -->
-
+<div ng-app="ngAnimate">
 <nav>
     <div class="left-nav-side">
         <a routerLink="/"><img src="../assets/images/logo-black.png" alt="logo"></a>
@@ -15,20 +15,31 @@
             <li>£0.00</li>
         </ul>
         <ul>
-            <li><img src="../../../assets/images/shopping-cart.png" alt="shopping-cart"></li>
+            <li><a ng-click="bool=!bool" (click)="hideShop()"><img src="../../../assets/images/shopping-cart.png" alt="shopping-cart"></a></li>
             <li><img src="../../../assets/images/user.png" alt="user"></li>
         </ul>
 
     </div>
 </nav>
+<!-- 
+<div [ngClass]="hide? 'shoping-cart-bg' : 'ng-active'">
+</div>
+<div class="shopping-cart" ng-hide="!bool">
+    <div class="shoping-cart-details" ng-hide="!bool">
+        <h1>Shopping Cart</h1>
+        <p>no products in cart</p>
+        <button ng-click="bool=!bool" (click)="hideShop()">CONTINUE SHOPPING</button>
+    </div>
+</div> -->
+
 <!-- Header -->
 
 <!-- This is the Page routing Insertion Area -->
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
 <!-- This is the Page routing Insertion Area -->
 
 <!-- Footer -->
-<div class="background-container">
+<!-- <div class="background-container">
     <div class="background">
         <div class="store-description">
             <img src="../assets/images/logo-white.png" alt="logo">
@@ -85,6 +96,6 @@
         <i class='fab fa-instagram' style='font-size:24px; color: white; padding: 0.5rem;'></i>
     </div>
 </div>
-
+</div> -->
 <!-- Footer -->
 <!-- <button type="submit" value="Submit">Submit</button> -->

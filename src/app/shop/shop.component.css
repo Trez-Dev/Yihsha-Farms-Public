@@ -120,6 +120,13 @@ font-size: 1.8rem;
     justify-content: space-between;
 }
 
+.items-showing select{
+    border: none;
+    padding: 0.2rem;
+    color: #828e9c;
+    border-radius: 2px;
+}
+
 .items-showing p{
     margin: 0;
 }
