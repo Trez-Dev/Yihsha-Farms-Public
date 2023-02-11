@@ -1,45 +1,70 @@
 <!-- Header -->
 <div ng-app="ngAnimate">
-<nav>
-    <div class="left-nav-side">
-        <a routerLink="/"><img src="../assets/images/logo-black.png" alt="logo"></a>
-        <ul>
-            <li><a routerLink="/shop">Shop</a></li>
-            <li><a routerLink="/about">About</a></li>
-            <li><a routerLink="/contact">Contact</a></li>
-        </ul>
+    <nav class="desktop-nav">
+        <div class="left-nav-side">
+            <a routerLink="/"><img class="logo" src="../assets/images/logo-black.png" alt="logo"></a>
+            <ul>
+                <li><a routerLink="/shop">Shop</a></li>
+                <li><a routerLink="/about">About</a></li>
+                <li><a routerLink="/contact">Contact</a></li>
+            </ul>
+        </div>
+    
+        <div class="right-nav-side">
+            <ul>
+                <li>£0.00</li>
+            </ul>
+            <ul>
+                <li><a ng-click="bool=!bool" (click)="hideShop()"><img src="../../../assets/images/shopping-cart.png" alt="shopping-cart"></a></li>
+                <li><img src="../../../assets/images/user.png" alt="user"></li>
+            </ul>
+    
+        </div>
+    </nav>
+
+    <!-- mobile elements -->
+    <div class="bg">
+        <div class="container">
+                <nav role="navigation">
+                  <div id="menuToggle">
+                    <input type="checkbox" />
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                  <ul id="menu">
+                    <li><a routerLink="/">Home</a></li>
+                    <li><a routerLink="/shop">Shop</a></li>
+                    <li><a routerLink="/about">About</a></li>
+                    <li><a routerLink="/contact">Contact</a></li>
+                    <li><a routerLink="/shoping-cart">Shoping Cart</a></li>
+                  </ul>
+                 </div>
+                 <a routerLink="/"><img class="logo" src="../assets/images/logo-black.png" alt="logo"></a>
+                </nav>
+        </div>
     </div>
+    <!-- mobile elements -->
 
-    <div class="right-nav-side">
-        <ul>
-            <li>£0.00</li>
-        </ul>
-        <ul>
-            <li><a ng-click="bool=!bool" (click)="hideShop()"><img src="../../../assets/images/shopping-cart.png" alt="shopping-cart"></a></li>
-            <li><img src="../../../assets/images/user.png" alt="user"></li>
-        </ul>
-
+<div class="shopping-cart-bg2">
+    <div [ngClass]="hide? 'shoping-cart-bg' : 'ng-active'">
     </div>
-</nav>
-<!-- 
-<div [ngClass]="hide? 'shoping-cart-bg' : 'ng-active'">
-</div>
-<div class="shopping-cart" ng-hide="!bool">
-    <div class="shoping-cart-details" ng-hide="!bool">
-        <h1>Shopping Cart</h1>
-        <p>no products in cart</p>
-        <button ng-click="bool=!bool" (click)="hideShop()">CONTINUE SHOPPING</button>
+    <div class="shopping-cart" ng-hide="!bool">
+        <div class="shoping-cart-details" ng-hide="!bool">
+            <h1>Shopping Cart</h1>
+            <p>no products in cart</p>
+            <button ng-click="bool=!bool" (click)="hideShop()">CONTINUE SHOPPING</button>
+        </div>
     </div>
-</div> -->
-
-<!-- Header -->
-
-<!-- This is the Page routing Insertion Area -->
-<!-- <router-outlet></router-outlet> -->
-<!-- This is the Page routing Insertion Area -->
-
-<!-- Footer -->
-<!-- <div class="background-container">
+</div> 
+    
+    <!-- Header -->
+    
+    <!-- This is the Page routing Insertion Area -->
+    <router-outlet></router-outlet>
+    <!-- This is the Page routing Insertion Area -->
+    
+    <!-- Footer -->
+<div class="background-container">
     <div class="background">
         <div class="store-description">
             <img src="../assets/images/logo-white.png" alt="logo">
@@ -90,12 +115,12 @@
 <div class="copyright">
     <p>Copyright © 2023 | Yisha Farms Store</p>
     <div class="socials">
-        <i class='fab fa-instagram' style='font-size:24px; color: white; padding: 0.5rem;'></i>
-        <i class='fab fa-youtube' style='font-size:24px; color: white; padding: 0.5rem;'></i>
-        <i class='fab fa-twitter' style='font-size:24px; color: white; padding: 0.5rem;'></i>
-        <i class='fab fa-instagram' style='font-size:24px; color: white; padding: 0.5rem;'></i>
+        <i class='fa fa-instagram' style='font-size:24px; color: white; padding: 0.5rem;'></i>
+        <i class='fa fa-youtube' style='font-size:24px; color: white; padding: 0.5rem;'></i>
+        <i class='fa fa-twitter' style='font-size:24px; color: white; padding: 0.5rem;'></i>
+        <i class='fa fa-instagram' style='font-size:24px; color: white; padding: 0.5rem;'></i>
     </div>
 </div>
-</div> -->
+</div>
 <!-- Footer -->
-<!-- <button type="submit" value="Submit">Submit</button> -->
+<!-- <button type="submit" value="Submit">Submit</button> -->    <!-- Footer --><!-- <button type="submit" value="Submit">Submit</button> -->

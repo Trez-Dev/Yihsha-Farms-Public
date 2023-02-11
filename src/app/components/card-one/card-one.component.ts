@@ -11,17 +11,17 @@ import {Product} from '../../shared/product.model'
 })
 export class CardOneComponent{
 
-  products: any;
+  products: Product[] = shoppingData.filter(((Product, i) => i < 4));
 
   constructor(private silasProductService: SilasProductServiceService, private database: PocketbaseService){}
 
-  ngOnInit(): void {
-    this.database.getPocketBaseData().then(data =>{
-      this.products = data;
-      // console.log(data);
-    })
+  // ngOnInit(): void {
+  //   this.database.getPocketBaseData().then(data =>{
+  //     this.products = data;
+  //     // console.log(data);
+  //   })
     
-  }
+  // }
 
   starNum(n: number): Array<number> {
     return Array(n);

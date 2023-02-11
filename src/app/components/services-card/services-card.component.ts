@@ -11,17 +11,17 @@ export class ServicesCardComponent {
     {
       name: "Free Shipping",
       about: "Above $5 only",
-      icon: "fas fa-truck"
+      icon: "fa fa-truck"
     },
     {
       name: "Certified Organic",
       about: "100% Guarantee",
-      icon: "far fa-address-book"
+      icon: "	fa fa-address-book"
     },
     {
       name: "Huge Savings",
       about: "At Lowest Price",
-      icon: "far fa-money-bill-alt"
+      icon: "fa fa-money"
     },
     
     {

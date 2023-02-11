@@ -48,6 +48,33 @@ button{
     font-weight: 500;
 }
 
+@media only screen and (max-width: 1000px){
+
+    img{
+        height: 10vh;
+    }
+
+    h1{
+        font-size: 2rem;
+    }
+
+    .background{
+        padding-top: 2rem;
+        height: 50vh;
+    }
+
+    p{
+        font-size: 1.5rem;
+        margin: 1rem;
+    }
+
+    button{
+        padding: 0.8rem 1.2rem;
+        font-weight: 600;
+    }
+    
+}
+
 
 
 

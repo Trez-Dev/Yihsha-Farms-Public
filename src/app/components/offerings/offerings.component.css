@@ -4,14 +4,12 @@
 }
 
 .background-container{
-    height: 120vh;
     background-image: url(../../../assets/images/website-bg.svg);
     background-size: cover;
 }
 
 .background{
     background-color: rgba(255, 255, 255,0.4);
-    height: 120vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,6 +17,7 @@
 }
 
 .offering{
+    margin-top: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -78,8 +77,8 @@ button:hover i{
 }
 
 img{
-    grid-column: 5 / -1;
-    grid-row: 3 / -1;
+    grid-column: 4 / -2;
+    grid-row: 2 / -2;
 }
 
 .grid button{
@@ -94,6 +93,7 @@ img{
     display: flex;
     align-items: center;
     justify-content: space-around;
+    padding: 1.5rem;
     margin-top: 5rem;
 }
 
@@ -101,3 +101,27 @@ img{
     color: white;
 }
 
+.try{
+    margin-bottom: 2rem;
+}
+
+@media only screen and (max-width: 1000px){
+    .offering{
+        flex-direction: column;
+        margin-top: 1rem;
+    }
+
+    .deal h1{
+        font-size: 1.5rem;
+        width: 50%;
+    }
+    button{
+        padding: 0.8rem 0.8rem;
+        font-weight: 600;
+    }
+
+    .try{
+        font-size: 1.5rem;
+        text-align: center;
+    }
+}

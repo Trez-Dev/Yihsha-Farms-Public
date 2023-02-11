@@ -6,6 +6,7 @@ import { ContactComponent } from './contact/contact.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ShopComponent } from './shop/shop.component';
 import { ProductLandingPageComponent } from './components/product-landing-page/product-landing-page.component';
+import { ShopingCartComponent } from './components/shoping-cart/shoping-cart.component';
 
 const routes: Routes = [
 { path: '', component: HomeComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
 { path: 'contact', component: ContactComponent },
 { path: 'shop', component: ShopComponent },
 { path: 'product-landing', component: ProductLandingPageComponent },
+{ path: 'shoping-cart', component: ShopingCartComponent },
 {path: '', redirectTo: '/home', pathMatch: 'full'},
 ];
 

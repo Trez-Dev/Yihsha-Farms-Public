@@ -16,6 +16,7 @@ import { AboutComponent } from './about/about.component';
 import { ShopComponent } from './shop/shop.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProductLandingPageComponent } from './components/product-landing-page/product-landing-page.component';
+import { ShopingCartComponent } from './components/shoping-cart/shoping-cart.component';
 
 
 // const appRoutes = [
@@ -39,6 +40,7 @@ import { ProductLandingPageComponent } from './components/product-landing-page/p
     ShopComponent,
     ContactComponent,
     ProductLandingPageComponent,
+    ShopingCartComponent,
   ],
   imports: [
     BrowserModule,

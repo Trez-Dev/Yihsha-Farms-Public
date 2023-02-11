@@ -45,12 +45,12 @@ button:hover i{
 }
 
 .customer-reviews{
-    height: 60vh;
     display: flex;
     align-items: flex-end;
     justify-content: center;
     padding-bottom: 5rem;
     gap: 2rem;
+    margin-top: 2rem;
 }
 
 .deal-of-the-day{
@@ -113,4 +113,22 @@ button:hover i{
     width: 4rem;
     height: 4rem;
     border-radius: 100%;
+}
+
+@media only screen and (max-width: 1000px){
+    .customer-reviews{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 3rem 0;
+        gap: 2rem;
+    }
+
+    button{
+        padding: 0.8rem 1.2rem;
+        font-weight: 600;
+    }
+    
+    
 }
