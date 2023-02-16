@@ -9,19 +9,18 @@ import { PocketbaseService } from '../pocketbase.service';
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css']
 })
-export class ShopComponent implements OnInit{
-  products: any;
-  leftProducts: any;
-
+export class ShopComponent{
+  products: Product[] = shoppingData.filter((Product, i) => i < 9);
+  leftProducts: Product[] = shoppingData.filter((Product, i) => i < 3);
   constructor(private silasProductService: SilasProductServiceService, private database: PocketbaseService){}
 
-  ngOnInit(): void {
-    this.database.getPocketBaseData().then(data =>{
-      this.products = data.slice(0,8)
-      this.leftProducts = data.slice(0,3)
-      console.log(data)
-    })
-  }
+  // ngOnInit(): void {
+  //   this.database.getPocketBaseData().then(data =>{
+  //     this.products = data.slice(0,8)
+  //     this.leftProducts = data.slice(0,3)
+  //     console.log(data)
+  //   })
+  // }
 
 
   nextPage(){

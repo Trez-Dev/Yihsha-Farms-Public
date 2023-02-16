@@ -7,8 +7,10 @@
     padding-top: 10rem;
     height: 50vh;
     background-image: url(../../assets/images/website-bg.svg);
+    background-size: cover;
     text-align: center;
     font-size: 3rem;
+    width: 100%;
 }
 
 .description-container{
@@ -23,9 +25,8 @@
 
 .description-island{
     display: flex;
-    position: absolute;
     width: 60%;
-    margin-top: -20rem;
+    margin-top: -30rem;
     gap: 2rem;
     padding: 2rem 5rem;
     border-radius: 10px;
@@ -47,4 +48,47 @@
 
 .description-container img{
     width: 50%;
+}
+
+.mobile-ions{
+    display: none;
+}
+
+.desktop-ions{
+    display: block;
+}
+
+@media only screen and (max-width: 1000px){
+
+    .desktop-ions{
+        display: none;
+    }
+
+    .mobile-ions{
+        display: block;
+    }
+
+    .about-us{
+        padding-top: 10rem;
+        height: 20vh;
+        font-size: 1.5rem;
+    }
+
+    .description-container{
+        height: 100vh;
+    }
+    
+
+    .description-island{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 0;
+        padding: 2rem 4rem;
+        box-shadow: 5px 5px 8px #1818184d;
+    }
+
+    .description{
+        width: 100%;
+    }
 }

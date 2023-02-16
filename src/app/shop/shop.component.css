@@ -209,3 +209,126 @@ font-size: 1.8rem;
     background-color: #fe5d26;
     color: white;
 }
+
+.mobile-shop{
+    display: none;
+}
+
+@media only screen and (max-width: 1000px){
+    /* *{
+        border: 1px solid black
+    } */
+
+    .mobile-shop{
+        display: block;
+    }
+    .desktop{
+        display: none;
+    }
+
+    .background{
+        padding: 6rem 1rem 0 1rem;
+        flex-direction: column;
+    }
+
+    .search{
+        width: 100%;
+    }
+
+    .filters h3{
+        font-size: 1.2rem;
+    }
+
+    .search-bar input{
+        width: 70%;
+        height: 3rem;
+        border-radius: 8px;
+        font-size: 1rem;
+    }
+
+    .search button{
+        width: 30%;
+        height: 3.2rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .prices input{
+        width: 20%;
+        height: 3rem;
+        border-radius: 8px;
+        font-size: 1rem;
+    }
+
+    .shop{
+        width: 100%;
+        height: 80%;
+        padding: 0;
+        border: none;
+    }
+
+    .shop h1{
+        margin: 0 0 2rem 0;
+    }
+
+    .shop p{
+        width: 100%;
+        margin: 2rem 0 2rem 0;
+    }
+
+    .navs button{
+        width: 20%;
+    }
+
+    .gallery-item h1{
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .gallery-item h2{
+        font-size: 1rem;
+    }
+
+
+    .gallery-item img{
+        height: 5rem;
+    }
+    
+    .shoping-items{
+        display: grid;
+        margin-top: 4rem;
+        grid-template:  repeat(2,1fr) / repeat(2,1fr);
+        overflow: hidden;
+        gap: 1rem;
+    }
+
+
+    .image{
+        height: 100%;
+        width: 100%;
+    }
+
+    .items-showing{
+        margin-top: 1rem;
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+    }
+    
+    .items-showing select{
+        border: none;
+        padding: 0.2rem;
+        color: #828e9c;
+        /* width: 20%; */
+        height: 3rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        background-color: white;
+    }
+    
+    .items-showing p{
+        margin: 0;
+    }
+ 
+}

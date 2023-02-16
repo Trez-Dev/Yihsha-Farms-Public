@@ -15,8 +15,8 @@
                 <li>£0.00</li>
             </ul>
             <ul>
-                <li><a ng-click="bool=!bool" (click)="hideShop()"><img src="../../../assets/images/shopping-cart.png" alt="shopping-cart"></a></li>
-                <li><img src="../../../assets/images/user.png" alt="user"></li>
+                <li><a ng-click="bool=!bool" (click)="hideShop()"><div class="shopping-cart-img"><img src="../../../assets/images/shopping-cart.png" alt="shopping-cart"></div></a></li>
+                <li><a routerLink="/login"><div class="user-img"><img src="../assets/images/leecoy-img.jpeg" alt="user"></div></a></li>
             </ul>
     
         </div>
@@ -46,7 +46,7 @@
     <!-- mobile elements -->
 
 <div class="shopping-cart-bg2">
-    <div [ngClass]="hide? 'shoping-cart-bg' : 'ng-active'">
+    <div [ngClass]="hide? 'shoping-cart-bg' : 'ng-active'" ng-click="bool=!bool" (click)="hideShop()">
     </div>
     <div class="shopping-cart" ng-hide="!bool">
         <div class="shoping-cart-details" ng-hide="!bool">
@@ -114,7 +114,13 @@
 </div>
 <div class="copyright">
     <p>Copyright © 2023 | Yisha Farms Store</p>
-    <div class="socials">
+    <div class="socials desktop-socials">
+        <i class='fab fa-instagram' style='font-size:24px; color: white; padding: 0.5rem;'></i>
+        <i class='fab fa-youtube' style='font-size:24px; color: white; padding: 0.5rem;'></i>
+        <i class='fab fa-twitter' style='font-size:24px; color: white; padding: 0.5rem;'></i>
+        <i class='fab fa-instagram' style='font-size:24px; color: white; padding: 0.5rem;'></i>
+    </div>
+    <div class="socials mobile-socials">
         <i class='fa fa-instagram' style='font-size:24px; color: white; padding: 0.5rem;'></i>
         <i class='fa fa-youtube' style='font-size:24px; color: white; padding: 0.5rem;'></i>
         <i class='fa fa-twitter' style='font-size:24px; color: white; padding: 0.5rem;'></i>

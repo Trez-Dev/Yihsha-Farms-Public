@@ -7,12 +7,13 @@
     padding-top: 10rem;
     height: 50vh;
     background-image: url(../../assets/images/website-bg.svg);
+    background-size: cover;
     text-align: center;
     font-size: 3rem;
+    width: 100%;
 }
 
 .description-container{
-    height: 100vh;
     width: 100%;
     display: flex;
     box-sizing: border-box;
@@ -32,4 +33,45 @@
     width: 50%;
     border-radius: 10px;
     box-shadow: 0px 5px 8px #1818184d;
+}
+
+.mobile-img{
+    display: none;
+}
+
+
+.desktop-img{
+    display: block;
+}
+
+@media only screen and (max-width: 1000px){
+    .about-us{
+        padding-top: 10rem;
+        height: 20vh;
+        font-size: 1.5rem;
+    }
+
+    .mobile-img{
+        display: block;
+    }
+
+    .description-container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        gap: 8rem;
+    }
+    .description{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .description h1{
+        width: 100%;
+    }
+    .desktop-img{
+        display: none;
+    }
 }
