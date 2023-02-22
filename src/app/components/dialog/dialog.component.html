@@ -1,0 +1,49 @@
+<div class="background">
+    <h1 class="title">{{ inputData.title }}</h1>
+    <div class="add-product" *ngIf="addProduct">
+        <mat-form-field appearance="fill">
+            <mat-label> Input Image Url:</mat-label>
+            <input matInput type="url" [(ngModel)]="imageUrl">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Product Type</mat-label>
+            <mat-select [(ngModel)]="productType">
+              <mat-option value="Seasoning">Seasoning</mat-option>
+              <mat-option value="Pepper Sauce">Pepper Sauce</mat-option>
+              <mat-option value="Jerk Seasoning">Jerk Seasoning</mat-option>
+              <mat-option value="Soup">Soup</mat-option>
+              <mat-option value="Other">Other</mat-option>
+              <mat-option value="Pre-Selected Boxes">Pre-Selected Boxes</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label> Product Name</mat-label>
+            <input matInput [(ngModel)]="productName">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label> Product Price</mat-label>
+            <input matInput type="number" [(ngModel)]="productPrice">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Star Number</mat-label>
+            <input matInput type="number" [(ngModel)]="starNumber" min="1" max="5">
+        </mat-form-field>
+    <div mat-dialog-actions class="options">
+        <button mat-raised-button mat-dialog-close>Cancel</button>
+        <button mat-raised-button style="background-color: #fe5d26; color: white;" mat-dialog-close cdkFocusInitial (click)="addProductToDatabase()">Add</button>
+    </div>
+    </div>
+    <div class="delete-product box-properties" *ngIf="deleteProduct">
+        <mat-radio-group [(ngModel)]="selectedId">
+        <mat-card *ngFor="let product of products" class="card">
+            <mat-card-content> 
+                <mat-radio-button color="warn" [value]="product.id"><img [src]="product.image" alt="product image" style="width: 1.5rem;"> {{product.name}} -- {{product.star}} star -- ${{product.price}}.00</mat-radio-button>
+            </mat-card-content>
+        </mat-card>
+        </mat-radio-group>
+        <div mat-dialog-actions class="options">
+            <button mat-raised-button mat-dialog-close>Cancel</button>
+            <button mat-raised-button style="background-color: #fe5d26; color: white;" mat-dialog-close cdkFocusInitial (click)="DeleteProductFromDatabase()">Delete</button>
+        </div>
+    </div>
+</div>

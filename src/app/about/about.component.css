@@ -25,6 +25,10 @@
     width: 50%;
 }
 
+.description h1{
+   font-size: 3rem;
+}
+
 .description p{
     margin: 2rem 0;
 }

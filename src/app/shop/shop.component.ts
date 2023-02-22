@@ -9,26 +9,37 @@ import { PocketbaseService } from '../pocketbase.service';
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css']
 })
-export class ShopComponent{
-  products: Product[] = shoppingData.filter((Product, i) => i < 9);
-  leftProducts: Product[] = shoppingData.filter((Product, i) => i < 3);
+export class ShopComponent implements OnInit{
+  // products: Product[] = shoppingData.slice(0,9);
+  // leftProducts: Product[] = shoppingData.slice(0,3);
+
+  products: any;
+  leftProducts: any;
+  databaseData: any;
   constructor(private silasProductService: SilasProductServiceService, private database: PocketbaseService){}
 
-  // ngOnInit(): void {
-  //   this.database.getPocketBaseData().then(data =>{
-  //     this.products = data.slice(0,8)
-  //     this.leftProducts = data.slice(0,3)
-  //     console.log(data)
-  //   })
-  // }
+  ngOnInit(): void {
+    this.database.getPocketBaseData().then(data =>{
+      this.databaseData = data;
+      // this.products = data;
+      // this.leftProducts = data;
+      this.products = data.slice(0,8);
+      this.leftProducts = data.slice(0,3);
+      console.log(data);
+    })
+  }
 
+  firstPage(){
+  this.products = [];
+   this.products = this.databaseData.slice(0,9);
+  }
 
   nextPage(){
-    this.products = shoppingData.filter((Product, i) => i > 9 && i < 19)
+    this.products = this.databaseData.slice(9,18)
   }
 
   restOfProducts(){
-    this.products = shoppingData.filter((Product, i) => i > 19)
+    this.products = this.databaseData.slice(19,23)
   }
 
   starNum(n: number): Array<number> {

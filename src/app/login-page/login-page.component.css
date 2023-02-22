@@ -1,0 +1,220 @@
+.background-container{
+    background-color: white;
+    height: 120vh;
+    padding-top: 5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.backdrop{
+    background-color: #00000078;
+    height: 30vh;
+    padding: 2rem;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    z-index: 3;
+    position: relative;
+    box-shadow: 0px 5px 8px #1818184d;
+}
+
+.backdrop-img{
+    position: absolute;
+    top: 5rem;
+    height: 30vh;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.backdrop-img img{
+    width: 100%;
+    margin-top: -140vh;
+}
+
+.backdrop button{
+    width: 2rem;
+    height: 2rem;
+    padding: 0.1rem;
+    background: none;
+    border: 2px solid rgba(255, 255, 255, 0.615);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.backdrop button:hover{
+    background-color: #00000008;
+}
+
+.backdrop path{
+    fill: rgba(255, 255, 255, 0.802);
+}
+
+.profile-img{
+    position: relative;
+    z-index: 4;
+    margin: -4rem 0 0 4rem;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 100%;
+    border: 0.3rem solid white;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.profile-img img{
+    width: 100%;
+    /* border-radius: 100%; */
+}
+
+.title-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.user-title{
+    font-weight: 500;
+    margin-left: 2rem;
+}
+.user-title span{
+    font-weight: 600;
+    color: #fe5d26;
+}
+
+.admin-title{
+    font-weight: 600;
+    color: #fe5d26;
+    margin-right: 10rem;
+}
+
+.user-options{
+    /* height: 50vh; */
+    display: grid;
+    gap: 2rem;
+    margin: 1rem 2rem;
+    grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+}
+
+.add-product, .delete-product{
+    background-color: #fe5d26;
+    color: white;
+    box-shadow: 0px 5px 8px #1818184d;
+}
+
+.grid-item{
+    /* margin: 1rem; */
+    border: 1px solid #fe5d26;
+    box-shadow: 0px 5px 8px #1818184d;
+    padding: 1.5rem 2rem;
+    border-radius: 10px;
+    display: flex;
+    transition: 0.2s ease-in;
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 1000px){
+
+    .grid-item:hover{
+        transform: scale(1.02)
+    }
+}
+
+
+.grid-item .description p{
+    font-size: 1.5rem;
+    margin: 0;
+}
+.grid-item .description h1{
+    margin: 0;
+}
+
+.description{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.icon{
+    width: 30%;
+    margin-right: 2rem;
+}
+
+.previous-orders{
+    grid-area: 2/1;
+}
+.payment-methods{
+    grid-area: 2/2;
+}
+
+.mobile{
+    display: none;
+}
+
+.desktop{
+    display: block;
+}
+
+@media only screen and (max-width: 1000px){
+
+    .mobile{
+        display: block;
+    }
+    .desktop{
+        display: none;
+    }
+    .backdrop{
+        align-items:flex-start;
+    }
+
+    .profile-img{
+        margin: -5rem auto 0 auto;
+        width: 10rem;
+        height: 10rem;
+    }
+
+    .background-container{
+        height: 100%;
+    }
+
+
+    .backdrop-img img{
+        width: 100%;
+        margin-top: -15vh;
+    }
+
+
+    .user-options{
+        display: grid;
+        grid-template:  repeat(12,1fr) / repeat(2,1fr);
+        overflow: hidden;
+        gap: 2rem;
+    }
+
+    .grid-item{
+        grid-area: span 2/ span 2;
+        box-shadow: none;
+        padding: 1.2rem 1rem;
+    }
+    
+    .description{
+        width: 90%;
+    }
+
+    .grid-item .description p{
+        font-size: 1rem;
+        margin: 0;
+    }
+    .grid-item .description h1{
+        margin: 0;
+        font-size: 1.2rem;
+    }
+
+    .icon{
+        margin-right: 0.5rem;
+    }
+    
+    
+}

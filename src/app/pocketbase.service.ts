@@ -20,14 +20,22 @@ export class PocketbaseService {
     })
   };
 
-  pb: any = new PocketBase('http://127.0.0.1:8090');
+  pocketBase: any = new PocketBase('http://127.0.0.1:8090');
 
   public async getPocketBaseData(){
-    const records = await this.pb.collection('products').getFullList(200, {
+    const records = await this.pocketBase.collection('products').getFullList(200, {
       sort: '-created',
   });
     return records
   }
 
+  public async publishPocketBaseData(pocketData: any){
+    const record = await this.pocketBase.collection('products').create(pocketData)
+    return !!record;
+  }
 
+  public async deletePocketBaseData(selectedID: string | undefined){
+    const record = await this.pocketBase.collection('products').delete(selectedID);
+    return !!record;
+  }
 }

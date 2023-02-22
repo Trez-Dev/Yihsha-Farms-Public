@@ -1,6 +1,8 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +19,15 @@ import { ShopComponent } from './shop/shop.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProductLandingPageComponent } from './components/product-landing-page/product-landing-page.component';
 import { ShopingCartComponent } from './components/shoping-cart/shoping-cart.component';
-import { LoginComponent } from './login/login.component';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { MatButton } from '@angular/material/button';
+import { Dialog } from '@angular/cdk/dialog';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { MaterialModule } from './material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
+import { LoginComponent } from './login-page/login/login.component';
+import { SignUpComponent } from './login-page/sign-up/sign-up.component';
 
 
 // const appRoutes = [
@@ -42,16 +52,25 @@ import { LoginComponent } from './login/login.component';
     ContactComponent,
     ProductLandingPageComponent,
     ShopingCartComponent,
+    LoginPageComponent,
+    DialogComponent,
     LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatNativeDateModule,
+    ScrollingModule
     // RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    SilasProductServiceService
+    SilasProductServiceService,
   ],
   bootstrap: [AppComponent]
 })

@@ -7,7 +7,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ShopComponent } from './shop/shop.component';
 import { ProductLandingPageComponent } from './components/product-landing-page/product-landing-page.component';
 import { ShopingCartComponent } from './components/shoping-cart/shoping-cart.component';
-import { LoginComponent } from './login/login.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 const routes: Routes = [
 { path: '', component: HomeComponent },
@@ -16,7 +16,7 @@ const routes: Routes = [
 { path: 'shop', component: ShopComponent },
 { path: 'product-landing', component: ProductLandingPageComponent },
 { path: 'shoping-cart', component: ShopingCartComponent },
-{ path: 'login', component: LoginComponent },
+{ path: 'login', component: LoginPageComponent },
 {path: '', redirectTo: '/home', pathMatch: 'full'},
 ];
 
