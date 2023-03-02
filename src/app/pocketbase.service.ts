@@ -22,6 +22,25 @@ export class PocketbaseService {
 
   pocketBase: any = new PocketBase('http://127.0.0.1:8090');
 
+  public async adminAuth(adminEmail: string, adminPassword: string){
+    const admin = await this.pocketBase.admins.authWithPassword(adminEmail,adminPassword)
+    console.log(this.pocketBase.authStore.isValid);
+    return !!admin
+  }
+
+  public async userAuth(userEmail: string, userPassword: string){
+    const user = await this.pocketBase.collection('users').authWithPassword(userEmail, userPassword)
+    console.log(this.pocketBase.authStore.isValid);
+    console.log(this.pocketBase.authStore.token);
+    console.log(this.pocketBase.authStore.model.id);
+    return !!user
+  }
+
+  public async userSignIn(userData: any){
+    const user = await this.pocketBase.collection('users').create(userData)
+    return !!user
+  }
+
   public async getPocketBaseData(){
     const records = await this.pocketBase.collection('products').getFullList(200, {
       sort: '-created',
