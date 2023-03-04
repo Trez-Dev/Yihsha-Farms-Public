@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PocketbaseService } from 'src/app/pocketbase.service';
 import { shoppingData } from 'src/app/shared/shopping-data';
 import { SilasProductServiceService } from 'src/app/silas-product-service.service';
 import { Product } from '../../shared/product.model';
@@ -12,21 +13,24 @@ import { Product } from '../../shared/product.model';
 export class ProductLandingPageComponent implements OnInit{
 
   selection: boolean = true;
-  selectedProduct: Product | undefined;
+  selectedProduct: any;
 
-  landingProduct: Product[] = shoppingData.filter(((Product, i) => i < 2))
-  relatedProducts: Product[] = shoppingData.filter(((Product, i) => i < 3))
+  landingProduct: any;
+  relatedProducts: any;
 
-  constructor(private activatedRoute: ActivatedRoute, private silasProductService: SilasProductServiceService){}
+  constructor(private activatedRoute: ActivatedRoute, private silasProductService: SilasProductServiceService,private database: PocketbaseService){}
 
   ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe(data =>{
-      console.log(JSON.parse(data['product']))
-      this.selectedProduct = JSON.parse(data['product'])
+    this.activatedRoute.params.subscribe(data =>{
+      this.database.viewPocketBaseData(data['id']).then(info =>{
+        console.log(info)
+        this.selectedProduct = info;
+      })
     })
-    
+    this.database.getPocketBaseData().then(data=>{
+      this.relatedProducts=data.slice(0,3);
+    })
   }
-
 
   starNum(n: number): Array<number> {
     return Array(n);
@@ -39,10 +43,6 @@ export class ProductLandingPageComponent implements OnInit{
   reviews(){
     this.selection = false
   }
-
-  navigateProductLanding(product: Product){
-    this.silasProductService.navigateToProduct(product)
-}
 
 
 }

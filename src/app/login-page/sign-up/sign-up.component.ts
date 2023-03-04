@@ -25,6 +25,7 @@ export class SignUpComponent implements OnInit {
   passwordConfirm: string ='';
   name: string | undefined;
   admin: boolean = false;
+  user: boolean = false;
 
   pocketData: any;
 
@@ -45,22 +46,21 @@ ngOnInit(){
 
     console.log(this.pocketData);
 
-  
-  this.database.userSignIn(this.pocketData).then(() =>{
-    this.snackbar.open("Welcome User!, Hi, how are ya! XD", "Go Away!")
-  })
-  .catch(()=>{
-    this.snackbar.open("Error!, something must have went Wrong ಠ_ಠ :( (ps: Don't Bother Dev!)", 'Go Away!')
-  });
-  }
-
-  adminTest(){
-    this.database.adminAuth((this.email).toLowerCase(),this.password).then(() =>{
-      this.snackbar.open("Welcome Admin!, Hi, how are ya! XD", "Go Away!")
+  this.database.adminAuth((this.email).toLowerCase(),this.password).then(()=>{
+    this.snackbar.open("Welcome Admin!", "Go Away!")
+    // login admin here instead
+  }).catch(()=>{
+    this.database.userAuth((this.email).toLowerCase(),this.password).then(()=>{
+      this.snackbar.open("Welcome User!", "Go Away!")
+      //login user here instead
+    }).catch(()=>{
+      this.database.userSignIn(this.pocketData).then(() =>{
+        this.snackbar.open("Welcome User!, Hi, how are ya! XD", "Go Away!")
+      })
+      .catch(()=>{
+        this.snackbar.open("Error!, something must have went Wrong ಠ_ಠ :( (ps: Don't Bother Dev!)", 'Go Away!')
+      });
     })
-    .catch(()=>{
-      this.snackbar.open("Error!, something must have went Wrong ಠ_ಠ :( (ps: Don't Bother Dev!)", 'Go Away!')
-    });
-    // this.database.userAuth((this.email).toLowerCase(),this.password)
+  })
   }
 }

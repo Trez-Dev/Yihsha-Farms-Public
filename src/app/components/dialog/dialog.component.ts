@@ -17,10 +17,11 @@ addProduct: boolean | undefined;
 deleteProduct: boolean | undefined;
 
 imageUrl: URL | undefined;
-productType: string | undefined;
-productName: string | undefined;
+productType: string ='';
+productName: string ='';
 productPrice: number | undefined;
 starNumber: number | undefined;
+productDescription: string ='';
 pocketData: any;
 
 products: any;
@@ -51,7 +52,8 @@ this.pocketData = {
   type: this.productType,
   name: this.productName,
   price: this.productPrice,
-  star: this.starNumber
+  star: this.starNumber,
+  description: this.productDescription
 }
 this.database.publishPocketBaseData(this.pocketData)
 .then(()=> {

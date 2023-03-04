@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { Post } from './post';
 import { Router } from '@angular/router';
 import { Product } from './shared/product.model';
+import { PocketbaseService } from './pocketbase.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SilasProductServiceService {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router,private database: PocketbaseService) { }
 
   httpOptions = {
     headers: new HttpHeaders ({
@@ -29,7 +30,10 @@ export class SilasProductServiceService {
   //   return this.http.get(pokiUrl,{params})
   // }
 
-  public navigateToProduct(product: Product){
-    this.router.navigate(['/product-landing'],{queryParams: {product: JSON.stringify(product)}})
+
+  public navigateToProduct(productId: any){
+    // this.router.navigate(['/product-landing'],{queryParams: {product: JSON.stringify(product)}})
+    console.log(productId)
+     this.router.navigate([`/product-landing/${productId}`])
 }
 }

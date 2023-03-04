@@ -20,9 +20,6 @@ export class ShopComponent implements OnInit{
 
   ngOnInit(): void {
     this.database.getPocketBaseData().then(data =>{
-      this.databaseData = data;
-      // this.products = data;
-      // this.leftProducts = data;
       this.products = data.slice(0,8);
       this.leftProducts = data.slice(0,3);
       console.log(data);
@@ -46,7 +43,8 @@ export class ShopComponent implements OnInit{
     return Array(n);
   }
 
-  navigateProductLanding(product: Product){
-      this.silasProductService.navigateToProduct(product)
+  navigateProductLanding(productId: any){
+    console.log(productId)
+      this.silasProductService.navigateToProduct(productId)
   }
 }

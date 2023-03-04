@@ -28,6 +28,10 @@
             <mat-label>Star Number</mat-label>
             <input matInput type="number" [(ngModel)]="starNumber" min="1" max="5">
         </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label> Product Description</mat-label>
+            <textarea matInput [(ngModel)]="productDescription" placeholder="Write Something about the product..."></textarea>
+        </mat-form-field>
     <div mat-dialog-actions class="options">
         <button mat-raised-button mat-dialog-close>Cancel</button>
         <button mat-raised-button style="background-color: #fe5d26; color: white;" mat-dialog-close cdkFocusInitial (click)="addProductToDatabase()">Add</button>
