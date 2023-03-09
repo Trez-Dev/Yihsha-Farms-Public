@@ -14,6 +14,7 @@ export class ProductLandingPageComponent implements OnInit{
 
   selection: boolean = true;
   selectedProduct: any;
+  // productId: string = '';
 
   landingProduct: any;
   relatedProducts: any;
@@ -21,7 +22,8 @@ export class ProductLandingPageComponent implements OnInit{
   constructor(private activatedRoute: ActivatedRoute, private silasProductService: SilasProductServiceService,private database: PocketbaseService){}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(data =>{
+    this.activatedRoute.params.subscribe(data => {
+      // this.productId = data['id']
       this.database.viewPocketBaseData(data['id']).then(info =>{
         console.log(info)
         this.selectedProduct = info;
@@ -44,5 +46,8 @@ export class ProductLandingPageComponent implements OnInit{
     this.selection = false
   }
 
+  addToCart(){
+    // localStorage.setItem('shoping-cart', JSON.stringify(this.selectedProduct))
+  }
 
 }

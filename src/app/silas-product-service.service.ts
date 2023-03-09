@@ -13,6 +13,8 @@ export class SilasProductServiceService {
 
   constructor(private http: HttpClient, private router: Router,private database: PocketbaseService) { }
 
+  hide: boolean = false;
+
   httpOptions = {
     headers: new HttpHeaders ({
       'Content-Type': 'application/json'
@@ -36,4 +38,8 @@ export class SilasProductServiceService {
     console.log(productId)
      this.router.navigate([`/product-landing/${productId}`])
 }
+
+  public hideShop(): boolean{
+    return this.hide = !this.hide;
+    }
 }

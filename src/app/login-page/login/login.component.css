@@ -1,8 +1,7 @@
 
 .background-container{
     background-image: url(../../../assets/images/website-bg.svg);
-    height: 120vh;
-    padding-top: 5rem;
+    padding: 5rem 0;
 }
 .login-container{
     background-color: rgba(255, 255, 255,0.8);

@@ -1,7 +1,7 @@
 <div *ngIf="loginStatus"><app-login></app-login></div>
-<div *ngIf="signUpStatus"><app-sign-up></app-sign-up></div>
+<div *ngIf="!signUpStatus"><app-sign-up></app-sign-up></div>
     
-<div class="background-container" *ngIf="!loginStatus">
+<div class="background-container" *ngIf="loginStatus">
     <div class="backdrop-img"><img src="../../assets/images/IMG_0008.jpeg" alt="backdrop image"></div>
     <div class="backdrop">
        <button> <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

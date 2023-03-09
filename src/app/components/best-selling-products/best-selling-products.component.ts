@@ -5,11 +5,11 @@ import { SilasProductServiceService } from 'src/app/silas-product-service.servic
 import {Product} from '../../shared/product.model'
 
 @Component({
-  selector: 'app-card-one',
-  templateUrl: './card-one.component.html',
-  styleUrls: ['./card-one.component.css']
+  selector: 'app-best-selling-products',
+  templateUrl: './best-selling-products.component.html',
+  styleUrls: ['./best-selling-products.component.css']
 })
-export class CardOneComponent{
+export class BestSellingProductsComponent{
 
   products: Product[] = shoppingData.filter(((Product, i) => i < 4));
 
@@ -20,7 +20,6 @@ export class CardOneComponent{
   //     this.products = data;
   //     // console.log(data);
   //   })
-    
   // }
 
   starNum(n: number): Array<number> {

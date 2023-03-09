@@ -10,7 +10,7 @@
                 <p>{{selectedProduct.description}}</p>
                 <div class="add-product">
                 <input type="number" max="20" value="1">
-                <button>ADD TO CART <i class='fas fa-cart-arrow-down' style='font-size:24px'></i></button>
+                <button (click)="addToCart()">ADD TO CART <i class='fas fa-cart-arrow-down' style='font-size:24px'></i></button>
                 </div>
                 <hr>
                 Type: {{selectedProduct.type}}

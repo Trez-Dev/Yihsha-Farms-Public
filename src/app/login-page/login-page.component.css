@@ -1,7 +1,6 @@
 .background-container{
     background-color: white;
-    height: 120vh;
-    padding-top: 5rem;
+    padding: 5rem 0;
     position: relative;
     z-index: 1;
 }

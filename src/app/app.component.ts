@@ -13,7 +13,7 @@ export class AppComponent {
   status: boolean = false;
   hide: boolean = false;
 
-  constructor(private restapiservice: SilasProductServiceService, private router: Router ){}
+  constructor(private silasService: SilasProductServiceService, private router: Router ){}
 
   ngOnInit() {
     // this.restapiservice.getPokiData().subscribe(data => {
@@ -22,6 +22,6 @@ export class AppComponent {
   }
   
   hideShop(){
-  this.hide = !this.hide;
+  this.hide = this.silasService.hideShop();
   }
 }

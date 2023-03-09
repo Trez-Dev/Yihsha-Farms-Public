@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { SilasProductServiceService } from './silas-product-service.service';
 import { HomeComponent } from './home/home.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
-import { CardOneComponent } from './components/card-one/card-one.component';
+import { BestSellingProductsComponent } from './components/best-selling-products/best-selling-products.component';
 import { ServicesCardComponent } from './components/services-card/services-card.component';
 import { OfferingsComponent } from './components/offerings/offerings.component';
 import { CustomerReviewsComponent } from './components/customer-reviews/customer-reviews.component';
@@ -28,6 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { LoginComponent } from './login-page/login/login.component';
 import { SignUpComponent } from './login-page/sign-up/sign-up.component';
+import { ProductsPageComponent } from './store/products-test-page.component';
 
 
 // const appRoutes = [
@@ -43,7 +44,7 @@ import { SignUpComponent } from './login-page/sign-up/sign-up.component';
     AppComponent,
     HomeComponent,
     LandingPageComponent,
-    CardOneComponent,
+    BestSellingProductsComponent,
     ServicesCardComponent,
     OfferingsComponent,
     CustomerReviewsComponent,
@@ -55,7 +56,8 @@ import { SignUpComponent } from './login-page/sign-up/sign-up.component';
     LoginPageComponent,
     DialogComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    ProductsPageComponent
   ],
   imports: [
     BrowserModule,

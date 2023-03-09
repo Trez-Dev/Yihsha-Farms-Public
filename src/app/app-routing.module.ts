@@ -8,6 +8,7 @@ import { ShopComponent } from './shop/shop.component';
 import { ProductLandingPageComponent } from './components/product-landing-page/product-landing-page.component';
 import { ShopingCartComponent } from './components/shoping-cart/shoping-cart.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { ProductsPageComponent } from './store/products-test-page.component';
 
 const routes: Routes = [
 { path: '', component: HomeComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
 { path: 'product-landing/:id', component: ProductLandingPageComponent },
 // { path: 'product-landing', component: ProductLandingPageComponent },
 { path: 'shoping-cart', component: ShopingCartComponent },
+{ path: 'product-state-test', component: ProductsPageComponent},
 { path: 'login', component: LoginPageComponent },
 {path: '', redirectTo: '/home', pathMatch: 'full'},
 ];
