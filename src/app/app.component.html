@@ -56,8 +56,18 @@
     <div class="shopping-cart" ng-hide="!bool">
         <div class="shoping-cart-details" ng-hide="!bool">
             <h1>Shopping Cart</h1>
-            <p>no products in cart</p>
+                <div class="cart-items" *ngFor="let items of cartItems">
+                    <div *ngIf="cartStatus">
+                        <img [src]="items.image" alt="cart-image" style="height: 2rem;">
+                        <p>{{ items.name }}</p>
+                        <div class="amount">
+                            <button><i class="fa fa-plus" style="font-size:24px"></i></button>
+                            <button><i class="fa fa-minus" style="font-size:24px"></i></button>
+                        </div>
+                    </div>
+                </div>
             <button ng-click="bool=!bool" (click)="hideShop()">CONTINUE SHOPPING</button>
+            <button (click)="clearShoppingCart()">CLEAR SHOP</button>
         </div>
     </div>
 </div> 

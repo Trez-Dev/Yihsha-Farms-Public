@@ -22,25 +22,24 @@ export class PocketbaseService {
 
   //Important Variables
   redirectUrl: any;
-  localStorage:any;
 
   pocketBase: any = new PocketBase('http://127.0.0.1:8090');
 
-  public async loginWithGoogle() {
-    const result = await this.pocketBase.collection('users').listAuthMethods();
-    const authProvider = result.authProviders.find((x: { name: string; }) => x.name === 'google') || {
-        authUrl: 'google'
+public async loginWithGoogle() {
+  const result = await this.pocketBase.collection('users').listAuthMethods();
+  const authProvider = result.authProviders.find((x: { name: string; }) => x.name === 'google') || {
+      authUrl: 'google'
     };
     localStorage.setItem('provider', JSON.stringify(authProvider));
     window.location.href = authProvider.authUrl + this.redirectUrl;
 }
 
-  public async confirmGoogleLogin() {
-    const params = new URL(window.location as unknown as URL | string).searchParams;
-    const provider = JSON.parse(this.localStorage.getItem('provider'));
-    const authData = await this.pocketBase
-        .collection('users')
-        .authWithOAuth2(provider.name, params.get('code'), provider.codeVerifier, this.redirectUrl);
+public async confirmGoogleLogin() {
+  const params = new URL(window.location as unknown as URL | string).searchParams;
+  const provider = JSON.parse(localStorage.getItem('provider') || '{}');
+  const authData = await this.pocketBase
+    .collection('users')
+    .authWithOAuth2(provider.name, params.get('code'), provider.codeVerifier, this.redirectUrl);
     if (authData.token) {
         window.location.href = '/shop';
     }

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SilasProductServiceService } from './silas-product-service.service'; 
 import { Router } from '@angular/router';
+import { Product } from './shared/product.model';
 
 @Component({
   selector: 'app-root',
@@ -8,20 +9,34 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'Yihsha Farms';
   status: boolean = false;
   hide: boolean = false;
 
-  constructor(private silasService: SilasProductServiceService, private router: Router ){}
+  cartStatus: boolean = false;
+  cartItems: any;
+  cart: any;
+
+  constructor(){}
+
 
   ngOnInit() {
-    // this.restapiservice.getPokiData().subscribe(data => {
-    //   console.log(data);
-    // })
+    this.cart = localStorage.getItem('shoping-cart');
+    this.cartItems = JSON.parse(this.cart);
+
+    if (this.cart != null) {
+      this.cartStatus = true;
+    }
   }
   
   hideShop(){
-  this.hide = this.silasService.hideShop();
+  this.hide = !this.hide 
+  console.log(`${this.cartStatus}`);
+  }
+
+  clearShoppingCart(){
+    localStorage.removeItem('shoping-cart');
+    window.location.reload();
   }
 }

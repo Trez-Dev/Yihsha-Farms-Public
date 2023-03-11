@@ -359,6 +359,10 @@
   .ng-active{
     opacity: 0;
   }
+
+  .inactive{
+    display: none;
+  }
   
   .ng-hide {
     width: 0;

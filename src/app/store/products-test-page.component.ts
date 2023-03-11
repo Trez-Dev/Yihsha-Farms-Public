@@ -25,32 +25,32 @@ import { ProductStore } from "./product.store";
 })
 
 export class ProductsPageComponent{
-    constructor(private readonly productsStore: ProductStore){}
+    constructor(private readonly productStore: ProductStore){}
 
-    products$ = this.productsStore.products$;
+    products$ = this.productStore.products$;
     browserStorage: any;
     products: string | undefined;
     productsArray: any; 
 
     clearBrowserStorage(){
-        // localStorage.clear()
+        localStorage.clear()
     }
 
     addProductToBrowser(product: string){
-        // this.products$.subscribe(data => {
-        //     console.log(data)
-        //     this.products = JSON.stringify(data)
-        //     localStorage.setItem('token', this.products)
-        // })
+        this.products$.subscribe(data => {
+            console.log(data)
+            this.products = JSON.stringify(data)
+            localStorage.setItem('token', this.products)
+        })
     }
 
     viewProductFromBrowser(product: string){
-        // this.productsArray = localStorage.getItem('token')
-        // this.browserStorage = JSON.parse(this.productsArray);
+        this.productsArray = localStorage.getItem('token')
+        this.browserStorage = JSON.parse(this.productsArray);
     }
     addProductToState(product: string){
         console.log(product)
-        this.productsStore.addProduct({image: '../../../assets/images/Easispice-All-Purpose-Seasoning-14.webp', 
+        this.productStore.addProduct({image: '../../../assets/images/Easispice-All-Purpose-Seasoning-14.webp', 
                                        type: 'GROCORIES',
                                        star: 4,
                                        name: 'Easispice All Purpose Seasoning',

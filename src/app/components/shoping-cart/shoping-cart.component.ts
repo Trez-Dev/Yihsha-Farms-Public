@@ -1,5 +1,6 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Product } from 'src/app/shared/product.model';
 import { SilasProductServiceService } from 'src/app/silas-product-service.service';
 
 @Component({
@@ -7,21 +8,25 @@ import { SilasProductServiceService } from 'src/app/silas-product-service.servic
   templateUrl: './shoping-cart.component.html',
   styleUrls: ['./shoping-cart.component.css']
 })
-export class ShopingCartComponent implements DoCheck{
+export class ShopingCartComponent implements OnInit{
 
-  constructor(private router: Router, private silasService: SilasProductServiceService){}
+  constructor(private router: Router){}
 
   navigateToShop(){
     this.router.navigate(['/shop']);
   }
 
   cartStatus: boolean = false;
+  cartItems: string[] = [];
+  cart: string = '';
 
-  ngDoCheck(): void{
-    this.cartStatus = this.silasService.hideShop();
-    if(this.cartStatus){
-      localStorage.getItem('shoping-cart')
-    }
+  ngOnInit(): void{
+      this.cart = JSON.stringify(localStorage.getItem('shoping-cart'));
+      this.cartItems.push(JSON.parse(this.cart));
   }
 
+  clearShoppingCart(){
+    localStorage.removeItem('shoping-cart')
+    window.location.reload();
+  }
 }

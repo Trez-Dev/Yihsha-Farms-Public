@@ -39,7 +39,7 @@ export class SilasProductServiceService {
      this.router.navigate([`/product-landing/${productId}`])
 }
 
-  public hideShop(): boolean{
-    return this.hide = !this.hide;
-    }
+  // public hideShop(): boolean{
+  //   return this.hide = !this.hide;
+  //   }
 }

@@ -7,7 +7,6 @@ import { SilasProductServiceService } from "../silas-product-service.service";
 
 export interface ProductState{
     products: Product[];
-    // preferedProducts: string[];
 }
 
 // Read state using select, combining selectors and view models 
@@ -50,3 +49,4 @@ export class ProductStore extends ComponentStore<ProductState>{
     readonly products$: Observable<Product[]> = this.select(state => state.products);
     readonly addProduct = this.updater((state, product: Product) => ({products: [...state.products, product]}))
 }
+
