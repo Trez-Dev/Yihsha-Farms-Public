@@ -4,10 +4,9 @@
             <h1 class="title">Login</h1>
             <p>google *</p>
             <div class="or"><hr>Or<hr></div>
-            <form class="user-inputs">
                 <mat-form-field class="email">
-                  <mat-label>Email</mat-label>
-                  <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+                  <mat-label>Username or Email</mat-label>
+                  <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher" [(ngModel)]="usernameOrEmail">
                   <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
                     Please enter a valid email address
                   </mat-error>
@@ -18,15 +17,14 @@
     
                 <mat-form-field appearance="fill" class="password">
                     <mat-label>Enter your password</mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'">
+                    <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
                     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
                   </mat-form-field>
-            </form>
             <a routerLink=""><p class="forgot">Forgot password?</p></a>
             <div class="submit">
-                <button mat-raised-button class="submit-button" style="background-color: #fe5d26; color: white;">Submit</button>
+                <button mat-raised-button class="submit-button" style="background-color: #fe5d26; color: white;" (click)="login()">Submit</button>
             </div>
             <p class="sign-up">Don't have an account? <a routerLink=""><span style="color: #fe5d26;">Sign Up</span></a></p>
         </div>

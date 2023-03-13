@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { PocketbaseService } from 'src/app/pocketbase.service';
 import { shoppingData } from 'src/app/shared/shopping-data';
-import { SilasProductServiceService } from 'src/app/silas-product-service.service';
+import { SilasService } from 'src/app/silas.service';
 import {Product} from '../../shared/product.model'
 
 @Component({
@@ -13,7 +13,7 @@ export class BestSellingProductsComponent{
 
   products: Product[] = shoppingData.filter(((Product, i) => i < 4));
 
-  constructor(private silasProductService: SilasProductServiceService, private database: PocketbaseService){}
+  constructor(private silasProductService: SilasService, private database: PocketbaseService){}
 
   // ngOnInit(): void {
   //   this.database.getPocketBaseData().then(data =>{

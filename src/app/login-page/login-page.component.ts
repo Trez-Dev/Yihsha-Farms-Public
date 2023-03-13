@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { DialogComponent } from '../components/dialog/dialog.component';
 import { PocketbaseService } from '../pocketbase.service';
 import { User } from '../shared/user.model';
+import { SilasService } from '../silas.service';
 
 @Component({
   selector: 'app-login-page',
@@ -12,7 +13,9 @@ import { User } from '../shared/user.model';
 })
 export class LoginPageComponent implements OnInit{
 
-  constructor(public dialogBox: MatDialog, private database: PocketbaseService, private activatedRoute: ActivatedRoute){}
+  constructor(public dialogBox: MatDialog, 
+    private silas: SilasService, 
+    private activatedRoute: ActivatedRoute){}
 
   dialogtitle: string | undefined;
   dalogDescription: string | undefined;
@@ -30,6 +33,8 @@ export class LoginPageComponent implements OnInit{
       if(data['id'] === 'tomx74rtyrpvtl0'){
         this.userData = new User('../../assets/images/leecoy-bg-flowers.jpeg','../../assets/images/leecoy-img.jpeg','Leecoy Coley','LeecoyColey');
         localStorage.setItem('user-login','{"image":"../assets/images/leecoy-img.jpeg","id":"tomx74rtyrpvtl0"}');
+      } else {
+        
       }
     })
   }

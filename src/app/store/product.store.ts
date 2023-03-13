@@ -3,7 +3,7 @@ import { ComponentStore } from "@ngrx/component-store";
 import { Product } from "../shared/product.model";
 import { Observable } from "rxjs";
 import { state } from "@angular/animations";
-import { SilasProductServiceService } from "../silas-product-service.service";
+import { SilasService } from "../silas.service";
 
 export interface ProductState{
     products: Product[];

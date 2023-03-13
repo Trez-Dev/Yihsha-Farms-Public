@@ -50,10 +50,10 @@ export class PocketbaseService {
     return this.pocketBase.authStore.model.id
   }
 
-  public async userAuth(userEmail: string, userPassword: string): Promise<boolean>{
+  public async userAuth(userEmail: string, userPassword: string){
     const user = await this.pocketBase.collection('users')
       .authWithPassword(userEmail, userPassword)
-    return this.pocketBase.authStore.isValid
+    return this.pocketBase.authStore.model.id
   }
 
   public async userSignIn(userData: any){

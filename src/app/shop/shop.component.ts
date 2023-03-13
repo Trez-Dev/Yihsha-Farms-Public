@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { shoppingData } from '../shared/shopping-data';
 import { Product } from '../shared/product.model';
-import { SilasProductServiceService } from '../silas-product-service.service';
+import { SilasService } from '../silas.service';
 import { PocketbaseService } from '../pocketbase.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class ShopComponent implements OnInit{
   products: any;
   leftProducts: any;
   databaseData: any;
-  constructor(private silasProductService: SilasProductServiceService, private database: PocketbaseService){}
+  constructor(private silasProductService: SilasService, private database: PocketbaseService){}
 
   ngOnInit(): void {
     this.database.getPocketBaseData().then(data =>{

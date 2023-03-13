@@ -9,7 +9,7 @@ import { PocketbaseService } from './pocketbase.service';
 @Injectable({
   providedIn: 'root'
 })
-export class SilasProductServiceService {
+export class SilasService {
 
   constructor(private http: HttpClient, private router: Router,private database: PocketbaseService) { }
 
@@ -26,10 +26,10 @@ export class SilasProductServiceService {
   //   return this.http.post(url, blog, this.httpOptions);
   // }
 
-  public getPokiData(): Observable<any>{
-    let pokiUrl = "https://pokeapi.co/api/v2/pokedex";
-    let params = new HttpParams().set('count','248')
-    return this.http.get(pokiUrl,{params})
+  public getUserAvatar(userName: string){
+    let multiAvatarUrl = `https://api.multiavatar.com/${userName}.svg`;
+    let params = new HttpParams().set('apikey','uAGaLn8FwOfY4Z')
+    return this.http.get(multiAvatarUrl, {responseType: 'text'})
   }
 
 

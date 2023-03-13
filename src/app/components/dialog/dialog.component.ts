@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PocketbaseService } from 'src/app/pocketbase.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dialog',
@@ -10,7 +11,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent implements OnInit{
-constructor(public dialogRef: MatDialogRef<DialogComponent>, @Inject(MAT_DIALOG_DATA) public data : string, private database: PocketbaseService, private snackbar: MatSnackBar){}
+
+constructor(public dialogRef: MatDialogRef<DialogComponent>, 
+  @Inject(MAT_DIALOG_DATA) public data : string, 
+  private database: PocketbaseService, 
+  private snackbar: MatSnackBar,
+  private router: Router){}
 
 inputData: any = this.data;
 addProduct: boolean | undefined;
@@ -97,6 +103,9 @@ DeleteProductFromDatabase(){
 
 logOut(){
   localStorage.clear();
-  window.location.reload();
+  this.router.navigate(["/home"]);
+  setTimeout(()=>{
+    window.location.reload();
+  }, 1000)
 }
 }

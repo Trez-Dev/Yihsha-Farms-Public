@@ -6,7 +6,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SilasProductServiceService } from './silas-product-service.service';
+import { SilasService } from './silas.service';
 import { HomeComponent } from './home/home.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { BestSellingProductsComponent } from './components/best-selling-products/best-selling-products.component';
@@ -75,7 +75,7 @@ import { FileUploadComponent } from './test/file-upload.component';
     // RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    SilasProductServiceService,
+    SilasService,
   ],
   bootstrap: [AppComponent]
 })

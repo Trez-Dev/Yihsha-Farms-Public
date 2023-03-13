@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { PocketbaseService } from 'src/app/pocketbase.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -17,7 +20,28 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class LoginComponent {
   hide: boolean = true;
+
+  usernameOrEmail: string = '';
+  password: string = '';
+
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
 
+  constructor(private database: PocketbaseService, private snackbar: MatSnackBar, private router: Router){}
+
   matcher = new MyErrorStateMatcher();
+
+
+  login(){
+    this.database.adminAuth((this.usernameOrEmail).toLowerCase(),this.password).then((data) => {
+      this.snackbar.open("Welcome Admin!", "Go Away!");
+      this.router.navigate([`/user-page/${data}`]);
+    }).catch(() => {
+      this.database.userAuth((this.usernameOrEmail).toLowerCase(),this.password).then((data) => {
+      this.snackbar.open("Welcome User!", "Go Away!");
+      this.router.navigate([`/user-page/${data}`])
+      }).catch(()=>{
+        this.snackbar.open("Error!, something must have went Wrong ಠ_ಠ :( (ps: Don't Bother Dev!)", 'Go Away!')
+      });
+    });
+  }
 }

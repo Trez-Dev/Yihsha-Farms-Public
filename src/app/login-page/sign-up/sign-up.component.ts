@@ -50,12 +50,12 @@ ngOnInit(){
     }
 
   this.database.adminAuth((this.email).toLowerCase(),this.password).then((data)=>{
-    this.snackbar.open("Welcome Admin!", "Go Away!")
-      this.router.navigate([`/user-page/${data}`])
+    this.snackbar.open("You Are Already a registered Admin, Plese Login!", "Go Away!");
+      this.router.navigate(["/login"]);
   }).catch(()=>{
     this.database.userAuth((this.email).toLowerCase(),this.password).then(()=>{
-      this.snackbar.open("Welcome User!", "Go Away!")
-      //login user here instead
+      this.snackbar.open("You Are Already a registered User, Plese Login!", "Go Away!");
+      this.router.navigate(["/login"]);
     }).catch(()=>{
       this.database.userSignIn(this.pocketData).then(() =>{
         this.snackbar.open("Welcome User!, Hi, how are ya! XD", "Go Away!")

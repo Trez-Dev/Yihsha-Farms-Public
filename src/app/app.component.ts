@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SilasProductServiceService } from './silas-product-service.service'; 
+import { SilasService } from './silas.service'; 
 import { Router } from '@angular/router';
 import { Product } from './shared/product.model';
 import { MatDialog } from '@angular/material/dialog';
@@ -20,11 +20,12 @@ export class AppComponent implements OnInit{
   cartStatus: boolean = false;
   cartItems: any;
   cart: any;
+  userName: string = '';
   // user: any;
 
   userLogin: any;
 
-  constructor(public dialogbox: MatDialog){}
+  constructor(public dialogbox: MatDialog, private silasService: SilasService){}
 
 
   ngOnInit() {
@@ -34,7 +35,6 @@ export class AppComponent implements OnInit{
 
     // this.user = ;
     this.userLogin = JSON.parse(localStorage.getItem('user-login') || '{"image":"../assets/images/user.png","loginStatus":false}');
-    console.log(this.userLogin)
     if (this.cart != null) {
       this.cartStatus = true;
     }
@@ -43,6 +43,9 @@ export class AppComponent implements OnInit{
     }else{
       this.loginStatus = true;
     }
+
+    this.silasService.getUserAvatar(this.userName).subscribe(res => console.log(res))
+
   }
   
   hideShop(){
