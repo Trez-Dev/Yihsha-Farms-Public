@@ -28,7 +28,6 @@
 
 .backdrop-img img{
     width: 100%;
-    margin-top: -140vh;
 }
 
 .backdrop button{
@@ -59,6 +58,9 @@
     border: 0.3rem solid white;
     box-sizing: border-box;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .profile-img img{

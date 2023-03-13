@@ -136,6 +136,7 @@ font-size: 1.8rem;
     display: grid;
     margin-top: 1rem;
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    gap: 2rem;
 }
 
 .gallery-item{

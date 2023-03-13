@@ -1,20 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { DialogComponent } from '../components/dialog/dialog.component';
+import { PocketbaseService } from '../pocketbase.service';
+import { User } from '../shared/user.model';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css']
 })
-export class LoginPageComponent {
-  constructor(public dialogBox: MatDialog){}
+export class LoginPageComponent implements OnInit{
+
+  constructor(public dialogBox: MatDialog, private database: PocketbaseService, private activatedRoute: ActivatedRoute){}
 
   dialogtitle: string | undefined;
   dalogDescription: string | undefined;
-  loginStatus: boolean = false;
-  signUpStatus: boolean = false;
 
+  userData: any;
+
+  // userData: User | any;
+
+  ngOnInit(){
+    this.activatedRoute.params.subscribe(data => {
+      if(data['id'] === '00ifxtvzg3sb5kj'){
+        this.userData = new User('../../assets/images/silas-bg2.jpg','../../assets/images/IMG_0957.jpeg','Silas Coley','SilasColey');
+        localStorage.setItem('user-login','{"image":"../assets/images/IMG_0957.jpeg","id":"00ifxtvzg3sb5kj"}');
+      }
+      if(data['id'] === 'tomx74rtyrpvtl0'){
+        this.userData = new User('../../assets/images/leecoy-bg-flowers.jpeg','../../assets/images/leecoy-img.jpeg','Leecoy Coley','LeecoyColey');
+        localStorage.setItem('user-login','{"image":"../assets/images/leecoy-img.jpeg","id":"tomx74rtyrpvtl0"}');
+      }
+    })
+  }
   userOptions = [
     {
       name: "Your Orders",

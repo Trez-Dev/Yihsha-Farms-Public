@@ -5,7 +5,7 @@ import { Post } from './post';
 import { Router } from '@angular/router';
 import { Product } from './shared/product.model';
 
-import PocketBase from 'pocketbase';
+import PocketBase, { Record } from 'pocketbase';
 
 @Injectable({
   providedIn: 'root'
@@ -21,34 +21,33 @@ export class PocketbaseService {
   };
 
   //Important Variables
-  redirectUrl: any;
+  redirectUrl: string = 'http://localhost:4200/redirect';
 
   pocketBase: any = new PocketBase('http://127.0.0.1:8090');
 
-public async loginWithGoogle() {
-  const result = await this.pocketBase.collection('users').listAuthMethods();
-  const authProvider = result.authProviders.find((x: { name: string; }) => x.name === 'google') || {
-      authUrl: 'google'
-    };
-    localStorage.setItem('provider', JSON.stringify(authProvider));
-    window.location.href = authProvider.authUrl + this.redirectUrl;
-}
+  public async loginWithGoogle() {
+    const result = await this.pocketBase.collection('users').listAuthMethods();
+    const authProvider = result.authProviders.find((x: { name: string; }) => x.name === 'google') || {
+        authUrl: 'google'
+      };
+      localStorage.setItem('provider', JSON.stringify(authProvider));
+      window.location.href = authProvider.authUrl + this.redirectUrl;
+  }
 
-public async confirmGoogleLogin() {
-  const params = new URL(window.location as unknown as URL | string).searchParams;
-  const provider = JSON.parse(localStorage.getItem('provider') || '{}');
-  const authData = await this.pocketBase
-    .collection('users')
-    .authWithOAuth2(provider.name, params.get('code'), provider.codeVerifier, this.redirectUrl);
-    if (authData.token) {
-        window.location.href = '/shop';
-    }
-}
+  public async confirmGoogleLogin() {
+    const params = new URL(window.location as unknown as URL | string).searchParams;
+    const provider = JSON.parse(localStorage.getItem('provider') || '{}');
+    const authData = await this.pocketBase
+      .collection('users')
+      .authWithOAuth2(provider.name, params.get('code'), provider.codeVerifier, this.redirectUrl);
+      if (authData.token) {
+          window.location.href = '/shop';
+      }
+  }
 
   public async adminAuth(adminEmail: string, adminPassword: string){
     const admin = await this.pocketBase.admins.authWithPassword(adminEmail,adminPassword)
-    console.log(this.pocketBase.authStore.isValid);
-    return this.pocketBase.authStore.isValid
+    return this.pocketBase.authStore.model.id
   }
 
   public async userAuth(userEmail: string, userPassword: string): Promise<boolean>{
@@ -77,6 +76,11 @@ public async confirmGoogleLogin() {
     return record
   }
 
+  public async viewUserData(userId: string): Promise<any>{
+    const record = await this.pocketBase.collection('users')
+    .getOne(userId)
+    return record
+  }
 
 
   public async publishPocketBaseData(pocketData: any){

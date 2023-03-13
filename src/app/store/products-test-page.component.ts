@@ -48,6 +48,7 @@ export class ProductsPageComponent{
         this.productsArray = localStorage.getItem('token')
         this.browserStorage = JSON.parse(this.productsArray);
     }
+    
     addProductToState(product: string){
         console.log(product)
         this.productStore.addProduct({image: '../../../assets/images/Easispice-All-Purpose-Seasoning-14.webp', 

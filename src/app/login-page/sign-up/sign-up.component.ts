@@ -4,6 +4,8 @@ import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/form
 import {ErrorStateMatcher} from '@angular/material/core';
 import { PocketbaseService } from 'src/app/pocketbase.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,7 +18,10 @@ export class SignUpComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private database: PocketbaseService, private snackbar: MatSnackBar){}
+  constructor(private database: PocketbaseService, 
+    private snackbar: MatSnackBar,
+    private activatedRoute: ActivatedRoute,
+    private router: Router){}
 
   username: string = '';
   email: string = '';
@@ -30,7 +35,7 @@ export class SignUpComponent implements OnInit {
   pocketData: any;
 
 ngOnInit(){
-  console.log(this.database.pocketBase.authStore);
+  // console.log(this.database.pocketBase.authStore);
 }
   
 
@@ -44,11 +49,9 @@ ngOnInit(){
       name: this.name
     }
 
-    console.log(this.pocketData);
-
-  this.database.adminAuth((this.email).toLowerCase(),this.password).then(()=>{
+  this.database.adminAuth((this.email).toLowerCase(),this.password).then((data)=>{
     this.snackbar.open("Welcome Admin!", "Go Away!")
-    // login admin here instead
+      this.router.navigate([`/user-page/${data}`])
   }).catch(()=>{
     this.database.userAuth((this.email).toLowerCase(),this.password).then(()=>{
       this.snackbar.open("Welcome User!", "Go Away!")
@@ -62,5 +65,11 @@ ngOnInit(){
       });
     })
   })
+  }
+
+  googleLogin(){
+    this.database.loginWithGoogle();
+    const userData: Observable <Params> = this.activatedRoute.params;
+    console.log(userData);
   }
 }

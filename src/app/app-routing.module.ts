@@ -9,6 +9,9 @@ import { ProductLandingPageComponent } from './components/product-landing-page/p
 import { ShopingCartComponent } from './components/shoping-cart/shoping-cart.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ProductsPageComponent } from './store/products-test-page.component';
+import { FileUploadComponent } from './test/file-upload.component';
+import { LoginComponent } from './login-page/login/login.component';
+import { SignUpComponent } from './login-page/sign-up/sign-up.component';
 
 const routes: Routes = [
 { path: '', component: HomeComponent },
@@ -16,10 +19,12 @@ const routes: Routes = [
 { path: 'contact', component: ContactComponent },
 { path: 'shop', component: ShopComponent },
 { path: 'product-landing/:id', component: ProductLandingPageComponent },
-// { path: 'product-landing', component: ProductLandingPageComponent },
 { path: 'shoping-cart', component: ShopingCartComponent },
+{ path: 'file-upload', component: FileUploadComponent },
 { path: 'product-state-test', component: ProductsPageComponent},
-{ path: 'login', component: LoginPageComponent },
+{ path: 'user-page/:id', component: LoginPageComponent },
+{ path: 'login', component: LoginComponent },
+{ path: 'sign-up', component: SignUpComponent },
 {path: '', redirectTo: '/home', pathMatch: 'full'},
 ];
 

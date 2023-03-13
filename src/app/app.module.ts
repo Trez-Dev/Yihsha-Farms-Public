@@ -29,6 +29,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { LoginComponent } from './login-page/login/login.component';
 import { SignUpComponent } from './login-page/sign-up/sign-up.component';
 import { ProductsPageComponent } from './store/products-test-page.component';
+import { FileUploadComponent } from './test/file-upload.component';
+
 
 
 // const appRoutes = [
@@ -57,7 +59,8 @@ import { ProductsPageComponent } from './store/products-test-page.component';
     DialogComponent,
     LoginComponent,
     SignUpComponent,
-    ProductsPageComponent
+    ProductsPageComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,

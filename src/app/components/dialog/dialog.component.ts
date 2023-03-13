@@ -15,6 +15,7 @@ constructor(public dialogRef: MatDialogRef<DialogComponent>, @Inject(MAT_DIALOG_
 inputData: any = this.data;
 addProduct: boolean | undefined;
 deleteProduct: boolean | undefined;
+logout: boolean | undefined;
 
 imageUrl: URL | undefined;
 productType: string ='';
@@ -36,12 +37,14 @@ ngOnInit(): void {
     this.products = data;
     console.log(this.products)
   })
-  console.log(this.data)
   if(this.inputData.selected === 'AP'){
     this.addProduct = true;
   }
   if(this.inputData.selected === 'DP'){
     this.deleteProduct = true;
+  }
+  if(this.inputData.selected === 'logout'){
+    this.logout = true
   }
 }
 
@@ -90,6 +93,10 @@ DeleteProductFromDatabase(){
   .catch(() => {
     this.snackbar.open("Error!, something must have went Wrong ಠ_ಠ :( (ps: Don't Bother Silas!)", 'Go Away!')
   })
-  console.log(this.selectedId)
+}
+
+logOut(){
+  localStorage.clear();
+  window.location.reload();
 }
 }
