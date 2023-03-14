@@ -25,6 +25,7 @@ export class PocketbaseService {
 
   pocketBase: any = new PocketBase('http://127.0.0.1:8090');
 
+
   public async loginWithGoogle() {
     const result = await this.pocketBase.collection('users').listAuthMethods();
     const authProvider = result.authProviders.find((x: { name: string; }) => x.name === 'google') || {
@@ -78,8 +79,8 @@ export class PocketbaseService {
 
   public async viewUserData(userId: string): Promise<any>{
     const record = await this.pocketBase.collection('users')
-    .getOne(userId)
-    return record
+    .getOne(userId, { '$autoCancel': false })
+    return record;
   }
 
 

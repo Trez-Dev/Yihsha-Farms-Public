@@ -15,26 +15,40 @@ export class LoginPageComponent implements OnInit{
 
   constructor(public dialogBox: MatDialog, 
     private silas: SilasService, 
-    private activatedRoute: ActivatedRoute){}
+    private activatedRoute: ActivatedRoute,
+    private database: PocketbaseService){}
 
   dialogtitle: string | undefined;
   dalogDescription: string | undefined;
+  imageBlobUrl: any;
+  background: string = '';
+  adminStatus: boolean | undefined;
 
-  userData: any;
 
-  // userData: User | any;
+  userData: any = new User ('../../assets/images/silas-bg2.jpg','../../assets/images/user.png','Silas Coley','User');
+
 
   ngOnInit(){
     this.activatedRoute.params.subscribe(data => {
+      this.background = localStorage.getItem('background') || 'https://ik.imagekit.io/qb5fs9jxh/Background/leecoy-bg-flowers.jpeg?updatedAt=1678756515397';
       if(data['id'] === '00ifxtvzg3sb5kj'){
-        this.userData = new User('../../assets/images/silas-bg2.jpg','../../assets/images/IMG_0957.jpeg','Silas Coley','SilasColey');
+        this.userData = new User(this.background,'../../assets/images/IMG_0957.jpeg','Silas Coley','SilasColey');
         localStorage.setItem('user-login','{"image":"../assets/images/IMG_0957.jpeg","id":"00ifxtvzg3sb5kj"}');
-      }
-      if(data['id'] === 'tomx74rtyrpvtl0'){
-        this.userData = new User('../../assets/images/leecoy-bg-flowers.jpeg','../../assets/images/leecoy-img.jpeg','Leecoy Coley','LeecoyColey');
+        this.adminStatus = true;
+      }else if(data['id'] === 'tomx74rtyrpvtl0'){
+        this.userData = new User(this.background,'../../assets/images/leecoy-img.jpeg','Leecoy Coley','LeecoyColey');
         localStorage.setItem('user-login','{"image":"../assets/images/leecoy-img.jpeg","id":"tomx74rtyrpvtl0"}');
+        this.adminStatus = true;
       } else {
-        
+        this.database.viewUserData(data['id']).then((data) => {
+          this.silas.getUserAvatar(data['name']).subscribe(avatar => {
+            this.createImageFromBlob(avatar);
+            this.userData = new User(this.background,'',data['name'],data['username']);
+            localStorage.setItem('user-login',`{"id":"${data['id']}"}`);
+            this.adminStatus = false
+          })
+        })
+        // this.userData = new User('')
       }
     })
   }
@@ -65,6 +79,16 @@ export class LoginPageComponent implements OnInit{
     },
   ]
 
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.imageBlobUrl = reader.result;
+    }, false);
+  if (image) {
+      reader.readAsDataURL(image);
+    }
+  }
+
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string, selectedOption: string){
 
     if (selectedOption === 'YO'){
@@ -84,6 +108,9 @@ export class LoginPageComponent implements OnInit{
     }
     if(selectedOption === 'DP'){
       this.dialogtitle = 'Delete Product'
+    }
+    if(selectedOption === 'Background'){
+      this.dialogtitle = 'Select a Background'
     }
 
     this.dialogBox.open(DialogComponent,{

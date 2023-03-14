@@ -22,6 +22,7 @@ inputData: any = this.data;
 addProduct: boolean | undefined;
 deleteProduct: boolean | undefined;
 logout: boolean | undefined;
+background: boolean | undefined;
 
 imageUrl: URL | undefined;
 productType: string ='';
@@ -38,6 +39,36 @@ selectedId: string | undefined;
 randomNum: any;
 // for funzies!
 
+backgroundImages = [
+  {
+    image: 'https://ik.imagekit.io/qb5fs9jxh/Background/lukasz-niescioruk-LHgq4S_Zk2w-unsplash.jpg?updatedAt=1678753086979'
+  },
+  {
+    image: 'https://ik.imagekit.io/qb5fs9jxh/Background/5026563.jpg?updatedAt=1678753107533'
+  },
+  {
+    image: 'https://ik.imagekit.io/qb5fs9jxh/Background/3185113.jpg?updatedAt=1678753107795'
+  },
+  {
+    image: 'https://ik.imagekit.io/qb5fs9jxh/Background/26180.jpg?updatedAt=1678753108367'
+  },
+  {
+    image: 'https://ik.imagekit.io/qb5fs9jxh/Background/BG-8.jpg?updatedAt=1678753108020'
+  },
+  {
+    image: 'https://ik.imagekit.io/qb5fs9jxh/Background/5590822.jpg?updatedAt=1678753111181'
+  },
+  {
+    image: 'https://ik.imagekit.io/qb5fs9jxh/Background/leecoy-bg-flowers.jpeg?updatedAt=1678756515397'
+  },
+  {
+    image: 'https://ik.imagekit.io/qb5fs9jxh/Background/landing-image.jpg?updatedAt=1678756672260'
+  },
+  {
+    image: 'https://ik.imagekit.io/qb5fs9jxh/Background/spices-166903.jpg?updatedAt=1678756691804'
+  },
+]
+
 ngOnInit(): void {
   this.database.getPocketBaseData().then(data => {
     this.products = data;
@@ -52,8 +83,15 @@ ngOnInit(): void {
   if(this.inputData.selected === 'logout'){
     this.logout = true
   }
+  if(this.inputData.selected === 'Background'){
+    this.background = true
+  }
 }
 
+setBackgroundImage(imageUrl: string){
+  localStorage.setItem('background', imageUrl);
+  window.location.reload();
+}
 
 addProductToDatabase(){
 this.pocketData = {

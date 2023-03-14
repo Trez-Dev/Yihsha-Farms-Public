@@ -27,9 +27,9 @@ export class SilasService {
   // }
 
   public getUserAvatar(userName: string){
-    let multiAvatarUrl = `https://api.multiavatar.com/${userName}.svg`;
+    let multiAvatarUrl = `https://api.multiavatar.com/${userName}.png`;
     let params = new HttpParams().set('apikey','uAGaLn8FwOfY4Z')
-    return this.http.get(multiAvatarUrl, {responseType: 'text'})
+    return this.http.get(multiAvatarUrl, {responseType: 'blob', params})
   }
 
 

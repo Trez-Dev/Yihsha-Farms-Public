@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Product } from './shared/product.model';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { PocketbaseService } from './pocketbase.service';
 
 @Component({
   selector: 'app-root',
@@ -21,11 +22,17 @@ export class AppComponent implements OnInit{
   cartItems: any;
   cart: any;
   userName: string = '';
+  imageBlobUrl: any;
   // user: any;
+  userId: any;
+
+
 
   userLogin: any;
 
-  constructor(public dialogbox: MatDialog, private silasService: SilasService){}
+  constructor(private dialogbox: MatDialog, 
+    private database: PocketbaseService,
+    private silas: SilasService){}
 
 
   ngOnInit() {
@@ -33,8 +40,12 @@ export class AppComponent implements OnInit{
      
     this.cartItems = JSON.parse(this.cart);
 
-    // this.user = ;
     this.userLogin = JSON.parse(localStorage.getItem('user-login') || '{"image":"../assets/images/user.png","loginStatus":false}');
+    this.database.viewUserData(this.userLogin['id']).then((data) => {
+      this.silas.getUserAvatar(data['name']).subscribe(avatar => {
+        this.createImageFromBlob(avatar);
+      })
+    })
     if (this.cart != null) {
       this.cartStatus = true;
     }
@@ -43,9 +54,16 @@ export class AppComponent implements OnInit{
     }else{
       this.loginStatus = true;
     }
-
-    this.silasService.getUserAvatar(this.userName).subscribe(res => console.log(res))
-
+  } 
+  
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.imageBlobUrl = reader.result;
+    }, false);
+  if (image) {
+      reader.readAsDataURL(image);
+    }
   }
   
   hideShop(){
@@ -54,8 +72,7 @@ export class AppComponent implements OnInit{
   }
 
   clearShoppingCart(){
-    // localStorage.removeItem('shoping-cart');
-    localStorage.clear();
+    localStorage.removeItem('shoping-cart');
     window.location.reload();
   }
 
