@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { SilasService } from './silas.service'; 
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from './shared/product.model';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from './components/dialog/dialog.component';
@@ -12,7 +12,7 @@ import { PocketbaseService } from './pocketbase.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, DoCheck{
   title = 'Yihsha Farms';
   status: boolean = false;
   hide: boolean = false;
@@ -25,6 +25,7 @@ export class AppComponent implements OnInit{
   imageBlobUrl: any;
   // user: any;
   userId: any;
+  currentRoute: string = '';
 
 
 
@@ -32,7 +33,8 @@ export class AppComponent implements OnInit{
 
   constructor(private dialogbox: MatDialog, 
     private database: PocketbaseService,
-    private silas: SilasService){}
+    private silas: SilasService,
+    private router: Router){}
 
 
   ngOnInit() {
@@ -55,6 +57,10 @@ export class AppComponent implements OnInit{
       this.loginStatus = true;
     }
   } 
+
+  ngDoCheck(): void {
+    this.currentRoute = this.router.url;
+  }
   
   createImageFromBlob(image: Blob) {
     let reader = new FileReader();

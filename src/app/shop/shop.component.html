@@ -13,10 +13,10 @@
                 <input type="text" value="$80.00">
             </div>
             <div class="groceries">
-                    <a href=""><p>Groceries</p></a><p>(10)</p>
+                    <a href=""><p>Seasonings</p></a><p>(10)</p>
             </div>
             <div class="juices">
-                    <a href=""><p>Juices</p></a><p>(6)</p>
+                    <a href=""><p>Pepper Sauces</p></a><p>(6)</p>
             </div>
             <div class="left-shopping-gallery">
                 <div class="gallery-item" *ngFor="let product of leftProducts">
@@ -27,7 +27,7 @@
                     <p *ngFor="let n of starNum(product.star);"><i class='fa fa-star' style='font-size:12px; color: #fe5d26;'></i></p>
                     <p *ngFor="let n of starNum(5-product.star);"><i class='fa fa-star' style='font-size:12px'></i></p>
                     </div>
-                    <h2>${{ product.price }}.00</h2>
+                    <h2>${{ product.price }}</h2>
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
                     <p *ngFor="let n of starNum(product.star);"><i class='fa fa-star' style='font-size:12px; color: #fe5d26;'></i></p>
                     <p *ngFor="let n of starNum(5-product.star);"><i class='fa fa-star' style='font-size:12px'></i></p>
                     </div>
-                    <h2>${{ product.price }}.00</h2>
+                    <h2>${{ product.price }}</h2>
                 </div>
             </div>
             <div class="navs">
@@ -112,7 +112,7 @@
                     <p *ngFor="let n of starNum(product.star);"><i class='fa fa-star' style='font-size:12px; color: #fe5d26;'></i></p>
                     <p *ngFor="let n of starNum(5-product.star);"><i class='fa fa-star' style='font-size:12px'></i></p>
                     </div>
-                    <h2>${{ product.price }}.00</h2>
+                    <h2>${{ product.price }}</h2>
                 </div>
             </div>
             

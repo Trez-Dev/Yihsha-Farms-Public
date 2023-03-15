@@ -81,3 +81,15 @@ margin-top: 2rem;
     font-size: 0.8rem;
     margin-top: 2rem;
 }
+
+.login-with-google-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.login-with-google{
+    width: 60%;
+    cursor: pointer;
+}

@@ -4,21 +4,21 @@
         <div class="left-nav-side">
             <a routerLink="/"><img class="logo" src="../assets/images/logo-black.png" alt="logo"></a>
             <ul>
-                <li><a routerLink="/home">Home</a></li>
-                <li><a routerLink="/shop">Shop</a></li>
-                <li><a routerLink="/about">About</a></li>
-                <li><a routerLink="/contact">Contact</a></li>
+                <li><a [ngClass]="currentRoute === '/home'? 'activeLink' : 'inactiveLink'" routerLink="/home">Home</a></li>
+                <li><a [ngClass]="currentRoute === '/shop'? 'activeLink' : 'inactiveLink'" routerLink="/shop">Shop</a></li>
+                <li><a [ngClass]="currentRoute === '/about'? 'activeLink' : 'inactiveLink'" routerLink="/about">About</a></li>
+                <li><a [ngClass]="currentRoute === '/contact'? 'activeLink' : 'inactiveLink'" routerLink="/contact">Contact</a></li>
             </ul>
         </div>
     
         <div class="right-nav-side">
             <ul>
-                <li>£0.00</li>
+                <li>$0.00</li>
             </ul>
             <ul>
                 <li><a ng-click="bool=!bool" (click)="hideShop()"><div class="shopping-cart-img"><img src="../../../assets/images/shopping-cart.png" alt="shopping-cart"></div></a></li>
                 <li><a [routerLink]="['/user-page/',userLogin.id]" *ngIf="loginStatus" ><div class="user-img"><img [src]="imageBlobUrl" alt="user" *ngIf="imageBlobUrl"><img [src]="userLogin.image" alt="user" *ngIf="!imageBlobUrl"></div></a></li>
-                <li><a routerLink="/login" *ngIf="!loginStatus">Login</a></li>
+                <li><a [ngClass]="currentRoute === '/login'? 'activeLink' : 'inactiveLink'" routerLink="/login" *ngIf="!loginStatus">Login</a></li>
                 <li><a *ngIf="loginStatus" (click)="logOut('0ms','0ms')">Log Out</a></li>
                 <li><button routerLink="/sign-up" *ngIf="!loginStatus">Sign Up</button></li>
             </ul>

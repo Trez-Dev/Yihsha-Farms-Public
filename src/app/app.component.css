@@ -28,20 +28,23 @@
     align-items: center;
 }
 
-.left-nav-side a, .right-nav-side a{
+.inactiveLink{
     cursor: pointer;
     text-decoration: none;
     color: black;
     transition: 0.2s ease-in;
 }
 
-
-.left-nav-side a:hover{
+.inactiveLink:hover{
     color: #fe5d26;
 }
 
-.right-nav-side a:hover{
+
+.activeLink{
+    cursor: pointer;
+    text-decoration: none;
     color: #fe5d26;
+    transition: 0.2s ease-in;
 }
 
 

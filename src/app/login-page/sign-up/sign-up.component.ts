@@ -57,8 +57,14 @@ ngOnInit(){
       this.snackbar.open("You Are Already a registered User, Plese Login!", "Go Away!");
       this.router.navigate(["/login"]);
     }).catch(()=>{
-      this.database.userSignIn(this.pocketData).then(() =>{
-        this.snackbar.open("Welcome User!, Hi, how are ya! XD", "Go Away!")
+      this.database.userSignIn(this.pocketData).then((data) =>{
+        this.snackbar.open("Welcome User!, Hi, how are ya! XD", "Go Away!");
+        this.database.userAuth((this.email).toLowerCase(),this.password).then((data) => {
+          this.snackbar.open("Welcome User!", "Go Away!");
+          this.router.navigate([`/user-page/${data}`])
+          }).catch(()=>{
+            this.snackbar.open("Error!, something must have went Wrong ಠ_ಠ :( (ps: Don't Bother Dev!)", 'Go Away!')
+          });
       })
       .catch(()=>{
         this.snackbar.open("Error!, something must have went Wrong ಠ_ಠ :( (ps: Don't Bother Dev!)", 'Go Away!')

@@ -20,7 +20,8 @@ export class ShopComponent implements OnInit{
 
   ngOnInit(): void {
     this.database.getPocketBaseData().then(data =>{
-      this.products = data.slice(0,8);
+      this.databaseData = data;
+      this.products = data.slice(0,9);
       this.leftProducts = data.slice(0,3);
       console.log(data);
     })
@@ -32,10 +33,12 @@ export class ShopComponent implements OnInit{
   }
 
   nextPage(){
+    this.products = [];
     this.products = this.databaseData.slice(9,18)
   }
 
   restOfProducts(){
+    this.products = [];
     this.products = this.databaseData.slice(19,23)
   }
 
