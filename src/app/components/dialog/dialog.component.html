@@ -60,6 +60,16 @@
             <button mat-raised-button mat-dialog-close>Cancel</button>
         </div>
     </div>
+    <div class="select-background box-properties" *ngIf="profile">
+        <div class="background-grid">
+            <div class="grid-profile-item" *ngFor="let image of imageBlobUrl">
+                <div mat-dialog-close cdkFocusInitial (click)="setprofile(image)"><img [src]="image"></div>
+            </div>
+        </div>
+        <div mat-dialog-actions class="options">
+            <button mat-raised-button mat-dialog-close>Cancel</button>
+        </div>
+    </div>
     <div class="log-out box-properties" *ngIf="logout">
         <div mat-dialog-actions class="options">
             <button mat-raised-button mat-dialog-close>Cancel</button>

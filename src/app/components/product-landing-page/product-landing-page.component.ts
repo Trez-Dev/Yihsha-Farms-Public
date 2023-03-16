@@ -20,6 +20,7 @@ export class ProductLandingPageComponent implements OnInit{
 
   landingProduct: any;
   relatedProducts: any;
+  quantity: number = 0;
 
   constructor(private activatedRoute: ActivatedRoute, private cartStore: CartStore,private database: PocketbaseService){}
 
@@ -52,8 +53,7 @@ export class ProductLandingPageComponent implements OnInit{
   addToCart(){
     this.cartStore.addCartItem(this.selectedProduct);
     this.cartStore.cartItems$.subscribe(items => {
-      console.log(JSON.stringify(items))
-      localStorage.setItem('shoping-cart', JSON.stringify(items));
+      localStorage.setItem('shoping-cart', `{"productDetails":${JSON.stringify(items)},"quantity":${JSON.stringify(this.quantity)}}`);
     })
     window.location.reload();
   }

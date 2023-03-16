@@ -15,7 +15,10 @@ export class ShopComponent implements OnInit{
 
   products: any;
   leftProducts: any;
-  databaseData: any;
+  databaseData: Product[] = [];
+  seasoningNum: number = 0;
+  sauceNum: number = 0;
+  jerkNum: number = 0;
   constructor(private silasProductService: SilasService, private database: PocketbaseService){}
 
   ngOnInit(): void {
@@ -23,7 +26,9 @@ export class ShopComponent implements OnInit{
       this.databaseData = data;
       this.products = data.slice(0,9);
       this.leftProducts = data.slice(0,3);
-      console.log(data);
+      this.seasoningNum = this.databaseData.filter(product => product.type === 'Seasonings').length
+      this.sauceNum = this.databaseData.filter(product => product.type === 'Pepper Sauces').length
+      this.jerkNum = this.databaseData.filter(product => product.type === 'Jerk Seasoning').length
     })
   }
 
@@ -49,5 +54,10 @@ export class ShopComponent implements OnInit{
   navigateProductLanding(productId: any){
     console.log(productId)
       this.silasProductService.navigateToProduct(productId)
+  }
+
+  filterProduct(type: string){
+  this.products = [];
+  this.products = this.databaseData.slice(0,9).filter(product => product.type === type);
   }
 }

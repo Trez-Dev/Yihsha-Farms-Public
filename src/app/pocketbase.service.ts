@@ -42,7 +42,7 @@ export class PocketbaseService {
       .collection('users')
       .authWithOAuth2(provider.name, params.get('code'), provider.codeVerifier, this.redirectUrl);
       if (authData.token) {
-          window.location.href = '/shop';
+          window.location.href = `/user-page/${this.pocketBase.authStore.model.id}`;
       }
   }
 

@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PocketbaseService } from 'src/app/pocketbase.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { SilasService } from 'src/app/silas.service';
 
 @Component({
   selector: 'app-dialog',
@@ -16,13 +17,16 @@ constructor(public dialogRef: MatDialogRef<DialogComponent>,
   @Inject(MAT_DIALOG_DATA) public data : string, 
   private database: PocketbaseService, 
   private snackbar: MatSnackBar,
-  private router: Router){}
+  private router: Router,
+  private silas: SilasService){}
 
 inputData: any = this.data;
 addProduct: boolean | undefined;
 deleteProduct: boolean | undefined;
 logout: boolean | undefined;
 background: boolean | undefined;
+profile: boolean | undefined;
+imageBlobUrl: any[] = [];
 
 imageUrl: URL | undefined;
 productType: string ='';
@@ -69,10 +73,14 @@ backgroundImages = [
   },
 ]
 
+
+names = ['Wayne Golden','Alisson Werner', 'Ariel Ochoa', 'Spencer Stevens', 'Royce Wilkinson', 'Triston Hernandez,', 'Kieran Cuevas', 'Cayden Cooper', 'Gabriella Wiggins', 'Bennett Cooke', 'Angie Wilkerson', 'Zaria Powell'];
+
+
+
 ngOnInit(): void {
   this.database.getPocketBaseData().then(data => {
     this.products = data;
-    console.log(this.products)
   })
   if(this.inputData.selected === 'AP'){
     this.addProduct = true;
@@ -86,10 +94,24 @@ ngOnInit(): void {
   if(this.inputData.selected === 'Background'){
     this.background = true
   }
+  if(this.inputData.selected === 'profile'){
+    this.profile = true
+  }
+
+  for(let i = 0; i < this.names.length; i++){
+    this.silas.getUserAvatar(this.names[i]).subscribe(avatar => {
+      this.createImageFromBlob(avatar);
+    });
+  }
 }
 
 setBackgroundImage(imageUrl: string){
   localStorage.setItem('background', imageUrl);
+  window.location.reload();
+}
+
+setprofile(image: any){
+  localStorage.setItem('profileImage', `{"image":${JSON.stringify(image)}}`);
   window.location.reload();
 }
 
@@ -145,5 +167,15 @@ logOut(){
   setTimeout(()=>{
     window.location.reload();
   }, 1000)
+}
+
+createImageFromBlob(image: Blob) {
+  let reader = new FileReader();
+  reader.addEventListener("load", () => {
+   this.imageBlobUrl.push(reader.result);
+  }, false);
+if (image) {
+    reader.readAsDataURL(image);
+  }
 }
 }

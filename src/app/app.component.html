@@ -1,6 +1,5 @@
 <!-- Header -->
-<div ng-app="ngAnimate">
-    <nav class="desktop-nav">
+<nav class="desktop-nav">
         <div class="left-nav-side">
             <a routerLink="/"><img class="logo" src="../assets/images/logo-black.png" alt="logo"></a>
             <ul>
@@ -16,7 +15,7 @@
                 <li>$0.00</li>
             </ul>
             <ul>
-                <li><a ng-click="bool=!bool" (click)="hideShop()"><div class="shopping-cart-img"><img src="../../../assets/images/shopping-cart.png" alt="shopping-cart"></div></a></li>
+                <li><a (click)="toggle()"><div class="shopping-cart-img"><img src="../../../assets/images/shopping-cart.png" alt="shopping-cart"></div></a></li>
                 <li><a [routerLink]="['/user-page/',userLogin.id]" *ngIf="loginStatus" ><div class="user-img"><img [src]="imageBlobUrl" alt="user" *ngIf="imageBlobUrl"><img [src]="userLogin.image" alt="user" *ngIf="!imageBlobUrl"></div></a></li>
                 <li><a [ngClass]="currentRoute === '/login'? 'activeLink' : 'inactiveLink'" routerLink="/login" *ngIf="!loginStatus">Login</a></li>
                 <li><a *ngIf="loginStatus" (click)="logOut('0ms','0ms')">Log Out</a></li>
@@ -51,23 +50,22 @@
     <!-- mobile elements -->
 
 <div class="shopping-cart-bg2">
-    <div [ngClass]="hide? 'shoping-cart-bg' : 'ng-active'" ng-click="bool=!bool" (click)="hideShop()">
+    <div [ngClass]="cartState? 'shoping-cart-bg' : 'ng-active'" ng-click="bool=!bool" (click)="toggle()">
     </div>
-    <div class="shopping-cart" ng-hide="!bool">
-        <div class="shoping-cart-details" ng-hide="!bool">
+    <div class="shopping-cart" [@openShop] = "cartState? 'open' : 'closed'">
+        <div class="shoping-cart-details">
             <h1>Shopping Cart</h1>
-                <div class="cart-items" *ngFor="let items of cartItems">
-                    <div *ngIf="cartStatus">
-                        <img [src]="items.image" alt="cart-image" style="height: 2rem;">
+                <div class="cart-items-container" *ngFor="let items of cartItems">
+                    <div *ngIf="cartStatus" class="cart-item">
+                        <img [src]="items.image" alt="cart-image">
                         <p>{{ items.name }}</p>
                         <div class="amount">
-                            <button><i class="fa fa-plus" style="font-size:24px"></i></button>
                             <button><i class="fa fa-minus" style="font-size:24px"></i></button>
                         </div>
                     </div>
                 </div>
                 <div class="shopping-cart-selectors">
-                    <button ng-click="bool=!bool" (click)="hideShop()">CONTINUE SHOPPING</button>
+                    <button (click)="toggle()">CONTINUE SHOPPING</button>
                     <button (click)="clearShoppingCart()">CLEAR SHOP</button>
                 </div>
             
@@ -144,7 +142,6 @@
         <i class='fa fa-twitter' style='font-size:24px; color: white; padding: 0.5rem;'></i>
         <i class='fa fa-instagram' style='font-size:24px; color: white; padding: 0.5rem;'></i>
     </div>
-</div>
 </div>
 <!-- Footer -->
 <!-- <button type="submit" value="Submit">Submit</button> -->    <!-- Footer --><!-- <button type="submit" value="Submit">Submit</button> -->

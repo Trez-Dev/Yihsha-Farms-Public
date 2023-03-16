@@ -22,6 +22,7 @@ export class LoginPageComponent implements OnInit{
   dalogDescription: string | undefined;
   imageBlobUrl: any;
   background: string = '';
+  profile: any;
   adminStatus: boolean | undefined;
 
 
@@ -82,7 +83,12 @@ export class LoginPageComponent implements OnInit{
   createImageFromBlob(image: Blob) {
     let reader = new FileReader();
     reader.addEventListener("load", () => {
-      this.imageBlobUrl = reader.result;
+      this.profile = JSON.parse(localStorage.getItem('profileImage') || '{"profile":false}');
+      if (this.profile.profile != false){
+        this.imageBlobUrl = this.profile.image;
+      }else{
+        this.imageBlobUrl = reader.result;
+      }
     }, false);
   if (image) {
       reader.readAsDataURL(image);
@@ -112,6 +118,9 @@ export class LoginPageComponent implements OnInit{
     if(selectedOption === 'Background'){
       this.dialogtitle = 'Select a Background'
     }
+    if(selectedOption === 'profile'){
+      this.dialogtitle = 'Select a Profile Image'
+    }
 
     this.dialogBox.open(DialogComponent,{
       enterAnimationDuration,
@@ -120,6 +129,9 @@ export class LoginPageComponent implements OnInit{
     })
 
   }
+
+
+  
 }
 
 

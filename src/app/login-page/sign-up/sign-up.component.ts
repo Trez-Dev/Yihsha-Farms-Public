@@ -75,7 +75,5 @@ ngOnInit(){
 
   googleLogin(){
     this.database.loginWithGoogle();
-    const userData: Observable <Params> = this.activatedRoute.params;
-    console.log(userData);
   }
 }

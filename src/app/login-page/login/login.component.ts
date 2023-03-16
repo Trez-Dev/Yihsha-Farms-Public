@@ -19,7 +19,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent{
   hide: boolean = true;
 
   usernameOrEmail: string = '';
@@ -50,18 +50,6 @@ export class LoginComponent {
   }
 
   googleLogin(){
-    // this.database.loginWithGoogle();
-    // const userData: Observable<Params> = this.activatedRoute.params;
-    // console.log(userData);
-
-    
-  const handleRedirect = async () => {
-    const params = new URL(window.location as unknown as string | URL).searchParams;
-    const provider = localStorage.getItem('provider');
-
-    if(params.get('code') && provider){
-      await this.database.confirmGoogleLogin;
-    }
-  }
+    this.database.loginWithGoogle();
   }
 }

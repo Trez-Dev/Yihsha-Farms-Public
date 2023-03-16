@@ -52,6 +52,17 @@
     cursor: pointer;
 }
 
+.grid-profile-item{
+    border: 1px solid #fe5d26;
+    box-shadow: 0px 5px 8px #1818184d;
+    padding: 0.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    transition: 0.2s ease-in;
+    cursor: pointer;
+}
+
 .grid-item img {
     border-radius: 5px;
 }
