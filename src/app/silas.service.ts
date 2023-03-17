@@ -14,6 +14,7 @@ export class SilasService {
   constructor(private http: HttpClient, private router: Router,private database: PocketbaseService) { }
 
   hide: boolean = false;
+  items: any = [];
 
   httpOptions = {
     headers: new HttpHeaders ({
@@ -37,9 +38,45 @@ export class SilasService {
     // this.router.navigate(['/product-landing'],{queryParams: {product: JSON.stringify(product)}})
     console.log(productId)
      this.router.navigate([`/product-landing/${productId}`])
-}
+  }
 
   // public hideShop(): boolean{
   //   return this.hide = !this.hide;
   //   }
+
+  addToCart(addedItem: any){
+    this.items.push(addedItem);
+    this.saveCart();
+  }
+
+  getItems(){
+    return this.items;
+  }
+
+  loadCart(): void{
+    this.items = JSON.parse(localStorage.getItem('cart-items') || '[{}]') ?? [];
+  }
+
+  saveCart(): void{
+    localStorage.setItem('cart-items', JSON.stringify(this.items));
+  }
+
+  clearCart(items: any){
+    this.items=[];
+    localStorage.removeItem('cart-items');
+    window.location.reload();
+  }
+
+  removeItem(item: any){
+    const index = this.items.findIndex((data: { id: any; }) => data.id === item.id);
+
+    if(index > -1){
+      this.items.splice(index, 1);
+      this.saveCart();
+    }
+  }
+
+  itemInCart(item: any): boolean{
+    return this.items.findIndex((data: { id: any; }) => data.id === item.id) > -1;
+  }
 }

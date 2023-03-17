@@ -1,5 +1,8 @@
 <div class="background-container">
     <div class="background" *ngIf="selectedProduct">
+        <div class="itemAdded" *ngIf="itemAdded">
+            <p><i class="fa fa-check-circle" style="font-size:24px;color:#fe5d26"></i> “{{selectedProduct.name}}” has been added to your cart. </p> <button>VIEW CART</button>
+        </div>
         <div class="product">
             <div class="landing-product-image">
                 <img [src]="selectedProduct.image">
@@ -10,9 +13,8 @@
                 <p>{{selectedProduct.description}}</p>
                 <div class="add-product">
                 <input type="number" max="20" value="1" [(ngModel)]="quantity">
-                <button (click)="addToCart()">ADD TO CART <i class='fas fa-cart-arrow-down' style='font-size:24px'></i></button>
+                <button (click)="addToCart(selectedProduct)">ADD TO CART <i class='fas fa-cart-arrow-down' style='font-size:24px'></i></button>
                 </div>
-                <hr>
                 Type: {{selectedProduct.type}}
             </div>
         </div>

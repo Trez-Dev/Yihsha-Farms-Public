@@ -3,6 +3,7 @@
 .desktop-nav{
     height: 5rem;
     display: flex;
+    padding-left: 1.5rem;
     justify-content: space-between;
     box-shadow: 0px 5px 8px #faedca4d;
     position: fixed;

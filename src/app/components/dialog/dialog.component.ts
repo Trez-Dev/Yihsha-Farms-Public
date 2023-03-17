@@ -5,6 +5,7 @@ import { PocketbaseService } from 'src/app/pocketbase.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SilasService } from 'src/app/silas.service';
+import { Address } from 'src/app/shared/address.model';
 
 @Component({
   selector: 'app-dialog',
@@ -26,6 +27,7 @@ deleteProduct: boolean | undefined;
 logout: boolean | undefined;
 background: boolean | undefined;
 profile: boolean | undefined;
+address: boolean | undefined;
 imageBlobUrl: any[] = [];
 
 imageUrl: URL | undefined;
@@ -42,6 +44,8 @@ selectedId: string | undefined;
 // for funzies!
 randomNum: any;
 // for funzies!
+
+addressData = new Address('','','','','','','');
 
 backgroundImages = [
   {
@@ -88,10 +92,13 @@ ngOnInit(): void {
   if(this.inputData.selected === 'DP'){
     this.deleteProduct = true;
   }
+  if(this.inputData.selected === 'AD'){
+    this.address = true;
+  }
   if(this.inputData.selected === 'logout'){
     this.logout = true
   }
-  if(this.inputData.selected === 'Background'){
+  if(this.inputData.selected === 'background'){
     this.background = true
   }
   if(this.inputData.selected === 'profile'){
@@ -113,6 +120,11 @@ setBackgroundImage(imageUrl: string){
 setprofile(image: any){
   localStorage.setItem('profileImage', `{"image":${JSON.stringify(image)}}`);
   window.location.reload();
+}
+
+addAddress(){
+localStorage.setItem('address', JSON.stringify(this.addressData));
+window.location.reload();
 }
 
 addProductToDatabase(){

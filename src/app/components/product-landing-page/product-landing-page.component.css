@@ -8,10 +8,30 @@
     padding: 8rem;
     /* height: 200vh; */
 }
-/* 
-*{
+/* {
     border: 1px solid black;
 } */
+
+.itemAdded{
+    border-top: 2px #ff5015 solid;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    box-sizing: border-box;
+    padding: 1rem 0;
+}
+
+.itemAdded button{
+    background-color: #fe5d26;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
 
 hr{
     border: 1px solid #95a3b34d;

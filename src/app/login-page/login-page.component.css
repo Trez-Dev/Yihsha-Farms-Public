@@ -89,12 +89,19 @@
     margin-right: 10rem;
 }
 
-.user-options{
+.admin-options{
     /* height: 50vh; */
     display: grid;
     gap: 2rem;
     margin: 1rem 2rem;
     grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+}
+
+.user-options{
+    display: grid;
+    gap: 2rem;
+    margin: 1rem 2rem;
+    grid-template: repeat(2, 1fr) / repeat(2, 1fr);
 }
 
 .add-product, .delete-product{

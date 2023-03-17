@@ -14,8 +14,8 @@ import { LoginComponent } from './login-page/login/login.component';
 import { SignUpComponent } from './login-page/sign-up/sign-up.component';
 
 const routes: Routes = [
-{ path: 'home', component: HomeComponent },
-{ path: 'about', component: AboutComponent },
+{ path: 'home', component: HomeComponent},
+{ path: 'about', component: AboutComponent},
 { path: 'contact', component: ContactComponent },
 { path: 'shop', component: ShopComponent },
 { path: 'product-landing/:id', component: ProductLandingPageComponent },
@@ -27,6 +27,7 @@ const routes: Routes = [
 { path: 'sign-up', component: SignUpComponent },
 {path: '', redirectTo: '/home', pathMatch: 'full'},
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes,{scrollPositionRestoration: 'enabled'}),RouterTestingModule],

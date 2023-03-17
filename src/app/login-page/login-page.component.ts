@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { DialogComponent } from '../components/dialog/dialog.component';
 import { PocketbaseService } from '../pocketbase.service';
+import { Address } from '../shared/address.model';
 import { User } from '../shared/user.model';
 import { SilasService } from '../silas.service';
 
@@ -22,8 +23,10 @@ export class LoginPageComponent implements OnInit{
   dalogDescription: string | undefined;
   imageBlobUrl: any;
   background: string = '';
+  address: any;
   profile: any;
   adminStatus: boolean | undefined;
+  userOptions: any = [];
 
 
   userData: any = new User ('../../assets/images/silas-bg2.jpg','../../assets/images/user.png','Silas Coley','User');
@@ -32,6 +35,8 @@ export class LoginPageComponent implements OnInit{
   ngOnInit(){
     this.activatedRoute.params.subscribe(data => {
       this.background = localStorage.getItem('background') || 'https://ik.imagekit.io/qb5fs9jxh/Background/leecoy-bg-flowers.jpeg?updatedAt=1678756515397';
+      this.address = JSON.parse(localStorage.getItem('address') || `{"firstName":"User","lastName":"User","address1":"-----------","address2":"-----------","City":"-------------","State":"----------","postalCode":"123"}`);
+      console.log(this.address);
       if(data['id'] === '00ifxtvzg3sb5kj'){
         this.userData = new User(this.background,'../../assets/images/IMG_0957.jpeg','Silas Coley','SilasColey');
         localStorage.setItem('user-login','{"image":"../assets/images/IMG_0957.jpeg","id":"00ifxtvzg3sb5kj"}');
@@ -49,37 +54,37 @@ export class LoginPageComponent implements OnInit{
             this.adminStatus = false
           })
         })
-        // this.userData = new User('')
       }
     })
+    this.userOptions = [
+      {
+        name: "Your Orders",
+        description: "Track, return or buy",
+      },
+      {
+        name: "Address",
+        description: `${this.address.address1}, ${this.address.City}`,
+      },
+      {
+        name: "Previous Orders",
+        description: "View and Manage",
+      },
+      {
+        name: "Payment Methods",
+        description: "View and Manage",
+      },
+      {
+        name: "Add Product",
+        description: "spice, groceries, juice, etc...",
+      },
+      {
+        name: "Delete Product",
+        description: "spice, groceries, juice, etc...",
+      },
+    ]
+  
   }
-  userOptions = [
-    {
-      name: "Your Orders",
-      description: "Track, return or buy",
-    },
-    {
-      name: "Address",
-      description: "Belle AireMeadows, Brown's Town P.O, St. Ann",
-    },
-    {
-      name: "Previous Orders",
-      description: "View and Manage",
-    },
-    {
-      name: "Payment Methods",
-      description: "View and Manage",
-    },
-    {
-      name: "Add Product",
-      description: "spice, groceries, juice, etc...",
-    },
-    {
-      name: "Delete Product",
-      description: "spice, groceries, juice, etc...",
-    },
-  ]
-
+ 
   createImageFromBlob(image: Blob) {
     let reader = new FileReader();
     reader.addEventListener("load", () => {
@@ -101,7 +106,7 @@ export class LoginPageComponent implements OnInit{
       this.dialogtitle = 'Your Orders'
     }
     if(selectedOption === 'AD'){
-      this.dialogtitle = 'Address'
+      this.dialogtitle = 'Input your Address'
     }
     if(selectedOption === 'PO'){
       this.dialogtitle = 'Previous Orders'
@@ -115,7 +120,7 @@ export class LoginPageComponent implements OnInit{
     if(selectedOption === 'DP'){
       this.dialogtitle = 'Delete Product'
     }
-    if(selectedOption === 'Background'){
+    if(selectedOption === 'background'){
       this.dialogtitle = 'Select a Background'
     }
     if(selectedOption === 'profile'){

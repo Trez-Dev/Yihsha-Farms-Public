@@ -1,8 +1,10 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PocketbaseService } from 'src/app/pocketbase.service';
 import { shoppingData } from 'src/app/shared/shopping-data';
 import { SilasProductServiceService } from 'src/app/silas-product-service.service';
+import { SilasService } from 'src/app/silas.service';
 import { CartStore } from 'src/app/store/cart.store';
 import { Product } from '../../shared/product.model';
 
@@ -16,13 +18,19 @@ export class ProductLandingPageComponent implements OnInit{
 
   selection: boolean = true;
   selectedProduct: any;
+  itemAdded: boolean | undefined;
   // productId: string = '';
 
   landingProduct: any;
   relatedProducts: any;
-  quantity: number = 0;
+  quantity: number = 1;
 
-  constructor(private activatedRoute: ActivatedRoute, private cartStore: CartStore,private database: PocketbaseService){}
+  constructor(private activatedRoute: ActivatedRoute, 
+    private cartStore: CartStore,
+    private database: PocketbaseService,
+    private silas: SilasService,
+    // private currencyPipe: CurrencyPipe
+    ){}
 
   cartItems$ = this.cartStore.cartItems$;
 
@@ -50,12 +58,45 @@ export class ProductLandingPageComponent implements OnInit{
     this.selection = false
   }
 
-  addToCart(){
-    this.cartStore.addCartItem(this.selectedProduct);
-    this.cartStore.cartItems$.subscribe(items => {
-      localStorage.setItem('shoping-cart', `{"productDetails":${JSON.stringify(items)},"quantity":${JSON.stringify(this.quantity)}}`);
-    })
-    window.location.reload();
-  }
+  // addToCart(){
+  //   this.cartStore.addCartItem(this.selectedProduct);
+  //   this.cartStore.cartItems$.subscribe(items => {
+  //     localStorage.setItem('shoping-cart', `{"productDetails":${JSON.stringify(items)},"quantity":${JSON.stringify(this.quantity)}}`);
+  //   })
+  //   window.location.reload();
+  // }
 
+
+  items: any = [];
+  sampleSuggestionsArray = [
+    {
+      id: "1",
+      menuName: "Item 1",
+      variationCost: "20.50",
+      qtyTotal: 0
+    },
+    {
+      id: "2",
+      menuName: "Item 2",
+      variationCost: "10",
+      qtyTotal: 0
+    },
+    {
+      id: "3",
+      menuName: "Item 3",
+      variationCost: "5.50",
+      qtyTotal: 0
+    }
+  ];
+
+  //----- add item to cart
+  addToCart(item: any) {
+    item.quantity = this.quantity;
+    if (!this.silas.itemInCart(item)) {
+      item.qtyTotal = 1;
+      this.silas.addToCart(item); //add items in cart
+      this.items = [...this.silas.getItems()];
+      this.itemAdded = true;
+    }
+  }
 }

@@ -55,26 +55,34 @@
     <div class="shopping-cart" [@openShop] = "cartState? 'open' : 'closed'">
         <div class="shoping-cart-details">
             <h1>Shopping Cart</h1>
-                <div class="cart-items-container" *ngFor="let items of cartItems">
-                    <div *ngIf="cartStatus" class="cart-item">
-                        <img [src]="items.image" alt="cart-image">
-                        <p>{{ items.name }}</p>
+            <ng-container>
+                <div class="cart-items-container" *ngFor="let item of items; let i = index">
+                    <div class="cart-item">
+                        <img [src]="item.image" alt="cart-image">
+                        <p>{{ item.name }}</p>
+                        <small #subTotalWrap>( {{ item.price | currency }} ) </small>
+                        <p>{{ item.quantity }}</p>
                         <div class="amount">
-                            <button><i class="fa fa-minus" style="font-size:24px"></i></button>
+                            <button  (click)="removeFromCart(item)"><i class="fa fa-minus" style="font-size:24px"></i></button>
                         </div>
                     </div>
                 </div>
+                <hr />
+                <div>
+                                Order Total:
+                                <span class="font-weight-bold  ">{{total | currency}}</span><hr>
+                
                 <div class="shopping-cart-selectors">
                     <button (click)="toggle()">CONTINUE SHOPPING</button>
-                    <button (click)="clearShoppingCart()">CLEAR SHOP</button>
+                    <button (click)="clearCart(items)">CLEAR SHOP</button>
                 </div>
             
         </div>
+    </ng-container>
     </div>
 </div> 
     
 <!-- Header -->
-    
     <!-- This is the Page routing Insertion Area -->
     <router-outlet></router-outlet>
     <!-- This is the Page routing Insertion Area -->
