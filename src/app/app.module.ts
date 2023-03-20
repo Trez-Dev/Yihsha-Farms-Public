@@ -30,6 +30,9 @@ import { LoginComponent } from './login-page/login/login.component';
 import { SignUpComponent } from './login-page/sign-up/sign-up.component';
 import { ProductsPageComponent } from './store/products-test-page.component';
 import { FileUploadComponent } from './test/file-upload.component';
+import { CartComponent } from './shop/cart/cart.component';
+import { CheckoutComponent } from './shop/checkout/checkout.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 
 
@@ -60,7 +63,9 @@ import { FileUploadComponent } from './test/file-upload.component';
     LoginComponent,
     SignUpComponent,
     ProductsPageComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    CartComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +76,8 @@ import { FileUploadComponent } from './test/file-upload.component';
     ReactiveFormsModule,
     FormsModule,
     MatNativeDateModule,
-    ScrollingModule
+    ScrollingModule,
+    NgxPayPalModule
     // RouterModule.forRoot(appRoutes)
   ],
   providers: [

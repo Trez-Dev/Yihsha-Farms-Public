@@ -1,0 +1,50 @@
+<div class="background">
+    <h1>Cart</h1>
+    <ng-container>
+    <table class="cart-table">
+        <thead class="cart-table-head">
+          <tr>
+            <th></th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody class="cart-table-body">
+          <tr *ngFor="let item of items; let i = index">
+            <td><div class="image"><button class="close-btn" (click)="removeFromCart(item)"><i class="fa fa-close" style="font-size:12px;"></i></button> <img [src]="item.image" alt="cart-image"></div></td>
+            <td>{{ item.name }}</td>
+            <td #subTotalWrap>{{ item.price | currency }}</td>
+            <td><input disabled class="quantity" type="number" [(ngModel)]="item.quantity"></td>
+            <td>{{item.price * item.quantity | currency}}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><button class="clear-cart" (click)="clearCart(items)">CLEAR CART</button></td>
+          </tr>
+        </tbody>
+    </table>
+<div class="cart-totals">
+    <table class="cart-total">
+        <thead class="cart-table-head">
+          <tr>
+            <th colspan="2"><h1 class="totals">Cart totals </h1></th>
+          </tr>
+        </thead>
+        <tbody class="cart-total-body">
+          <tr>
+            <td>Total</td>
+            <td>{{total | currency}}</td>
+          </tr>
+          <tr>
+            <td colspan="2"><button class="clear-cart" routerLink="/checkout">PROCEED TO CHECKOUT</button></td>
+          </tr>
+        </tbody>
+    </table>
+</div>
+    </ng-container>
+</div>

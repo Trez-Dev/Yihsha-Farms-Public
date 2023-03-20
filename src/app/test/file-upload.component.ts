@@ -1,5 +1,5 @@
 import {HttpClient } from "@angular/common/http";
-import { Component, Injectable } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, Injectable, ViewChild } from "@angular/core";
 import { Observable } from "rxjs";
 
 
@@ -44,7 +44,7 @@ export class ImageService{
   </mat-icon> -->
 
 
-    <label class="image-upload-container btn btn-bwm">
+    <!-- <label class="image-upload-container btn btn-bwm">
         <span>Select Image</span>
         <input #imageInput
         type="file"
@@ -64,12 +64,32 @@ export class ImageService{
 
     <div *ngIf="selectedFile.status === 'ok'" class="alert alert-success">Image Uploaded Successfuly!</div>
     <div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger">Image Uploaded Failed!</div>
+    </div> -->
+    <button (click)="open()">Launch demo modal</button>
+
+    <div class="modal fade my-modal" tabindex="-1" role="dialog" #myModal>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" (click)="close()" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"> ... </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"  (click)="close()" >Close</button>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <div class="modal-backdrop fade show"></div>
+
     `,
      styleUrls: ['image-upload.component.scss']
 })
 
-export class FileUploadComponent {
+export class FileUploadComponent implements AfterViewInit{
 
     // fileName = '';
     // uploadProgress: number = 0;
@@ -93,36 +113,49 @@ export class FileUploadComponent {
 
 
 
-     selectedFile: ImageSnippet | any;
+    //  selectedFile: ImageSnippet | any;
 
-    constructor(private imageService: ImageService){}
+    // constructor(private imageService: ImageService){}
 
-    private onSuccess(){
-        this.selectedFile.pending = false;
-        this.selectedFile.status = 'ok';
+    // private onSuccess(){
+    //     this.selectedFile.pending = false;
+    //     this.selectedFile.status = 'ok';
+    // }
+
+    // private onError(){
+    //     this.selectedFile.pending = false;
+    //     this.selectedFile.status = 'fail';
+    //     this.selectedFile.src = '';
+    // }
+
+    // processFile(imageInput: any){
+    //     const file: File = imageInput.files[0];
+    //     const reader = new FileReader();
+
+    //     reader.addEventListener('load', (event: any) => {
+    //         this.selectedFile = new ImageSnippet(event.target.result, file);
+    //         this.imageService.uploadImage(this.selectedFile.file).subscribe({
+    //             complete: () => {
+    //                 this.onSuccess();
+    //             },
+    //             error: () => {
+    //                 this.onError();
+    //             }
+    //     })
+    //     });
+    //     reader.readAsDataURL(file);
+    // }
+
+    @ViewChild('myModal', { static: false }) myModal!: ElementRef;
+    elm!: HTMLElement;
+
+    ngAfterViewInit(): void {
+        this.elm = this.myModal.nativeElement as HTMLElement;
+     }
+     close(): void {
+        this.elm.classList.remove('show');
     }
-
-    private onError(){
-        this.selectedFile.pending = false;
-        this.selectedFile.status = 'fail';
-        this.selectedFile.src = '';
-    }
-
-    processFile(imageInput: any){
-        const file: File = imageInput.files[0];
-        const reader = new FileReader();
-
-        reader.addEventListener('load', (event: any) => {
-            this.selectedFile = new ImageSnippet(event.target.result, file);
-            this.imageService.uploadImage(this.selectedFile.file).subscribe({
-                complete: () => {
-                    this.onSuccess();
-                },
-                error: () => {
-                    this.onError();
-                }
-        })
-        });
-        reader.readAsDataURL(file);
+    open(): void {
+        this.elm.classList.add('show');
     }
 }

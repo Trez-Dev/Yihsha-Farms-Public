@@ -103,16 +103,16 @@ export class LoginPageComponent implements OnInit{
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string, selectedOption: string){
 
     if (selectedOption === 'YO'){
-      this.dialogtitle = 'Your Orders'
+      this.dialogtitle = 'Your Orders Comming Soon!'
     }
     if(selectedOption === 'AD'){
       this.dialogtitle = 'Input your Address'
     }
     if(selectedOption === 'PO'){
-      this.dialogtitle = 'Previous Orders'
+      this.dialogtitle = 'Previous Orders Comming Soon!'
     }
     if(selectedOption === 'PM'){
-      this.dialogtitle = 'Payment Methods'
+      this.dialogtitle = 'Payment Methods Comming Soon!'
     }
     if(selectedOption === 'AP'){
       this.dialogtitle = 'Add Product'

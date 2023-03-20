@@ -1,0 +1,62 @@
+.background{
+    background-color:white; 
+    padding: 8rem 5rem 5rem 5rem;
+}
+
+.billing-container{
+    display: flex;
+    justify-content: space-between;
+}
+h1{
+    color:  #fe5d26;
+}
+.order-table-title{
+    font-size: 1.5rem;
+    color:  #fe5d26;
+}
+
+.payment{
+    width: 50%;
+    height: 50vh;
+    /* border: 1px solid black; */
+}
+
+.your-order-table{
+    border: 2px solid #828e9c;
+    padding: 1rem 2rem;
+    width: 100%;
+}
+
+.your-order-table-head th{
+    text-align: left;
+    padding: 0 0 2rem 0;
+}
+
+.your-order-table-head th, .your-order-table-body td{
+    width: 16rem;
+}
+
+.bottom-border{
+    border-bottom: 1px solid #828e9c;
+}
+
+/* .place-order{
+    background-color: #fe5d26;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: auto;
+    width: 90%;
+} */
+
+.your-order-table-body td{
+    padding: 1rem 0;
+}

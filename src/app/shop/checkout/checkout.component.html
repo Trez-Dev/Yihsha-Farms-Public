@@ -1,0 +1,35 @@
+<div class="background">
+    <h1>Checkout</h1>
+    <div class="billing-container">
+        <div class="payment">
+            <div id="Paypal">
+                <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+            </div>
+        </div>
+        <div class="your-order">
+            <table class="your-order-table">
+                <thead class="your-order-table-head">
+                  <tr>
+                    <th colspan="2"><h1 class="order-table-title">Cart Summary</h1></th>
+                  </tr>
+                </thead>
+                <tbody class="your-order-table-body">
+                  <tr>
+                    <td><b>Pruduct</b></td>
+                    <td  style="text-align: right;"><b>Subtotal</b></td>
+                  </tr>
+                  <ng-container>
+                  <tr class="bottom-border" *ngFor="let item of items; let i = index">
+                    <td class="bottom-border">{{ item.name }} x {{item.quantity}}</td>
+                    <td class="bottom-border" style="text-align: right;">{{item.price * item.quantity | currency}}</td>
+                  </tr>
+                  <tr>
+                    <td class="bottom-border"><b>Total:</b></td>
+                    <td class="bottom-border"  style="text-align: right;"><b>{{total | currency}}</b></td>
+                  </tr>
+                </ng-container>
+                </tbody>
+                </table>
+        </div>
+    </div>
+</div>

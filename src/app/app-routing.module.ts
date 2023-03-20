@@ -12,12 +12,16 @@ import { ProductsPageComponent } from './store/products-test-page.component';
 import { FileUploadComponent } from './test/file-upload.component';
 import { LoginComponent } from './login-page/login/login.component';
 import { SignUpComponent } from './login-page/sign-up/sign-up.component';
+import { CartComponent } from './shop/cart/cart.component';
+import { CheckoutComponent } from './shop/checkout/checkout.component';
 
 const routes: Routes = [
 { path: 'home', component: HomeComponent},
 { path: 'about', component: AboutComponent},
 { path: 'contact', component: ContactComponent },
 { path: 'shop', component: ShopComponent },
+{ path: 'cart', component: CartComponent },
+{ path: 'checkout', component: CheckoutComponent },
 { path: 'product-landing/:id', component: ProductLandingPageComponent },
 { path: 'shoping-cart', component: ShopingCartComponent },
 { path: 'file-upload', component: FileUploadComponent },

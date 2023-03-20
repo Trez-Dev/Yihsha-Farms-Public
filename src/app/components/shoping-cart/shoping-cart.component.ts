@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/shared/product.model';
-import { SilasProductServiceService } from 'src/app/silas-product-service.service';
 
 @Component({
   selector: 'app-shoping-cart',

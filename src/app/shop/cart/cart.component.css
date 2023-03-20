@@ -1,0 +1,110 @@
+.background{
+    height: 125vh; background-color:white; 
+    padding: 8rem 5rem 5rem 5rem;
+  }
+
+  h1{
+   color: #fe5d26;
+  }
+  .cart-table{
+    width: 100%;
+    
+  }
+
+.cart-table-head{
+    background-color: #f9e4a44d;
+}
+
+.cart-table-head th, .cart-table-body td{
+    width: 15rem;
+    height: 2rem;
+}
+
+.cart-table-body td{
+    background-color: #fcf2d14d;
+    vertical-align: middle;
+    height: 5rem;
+    text-align: center;
+    padding: 1rem 0rem;
+}
+
+.image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+}
+.image img{
+    width: 4rem;
+}
+
+.close-btn{
+    border-radius: 50%;
+    border: 1px solid #828e9c;
+    background: none;
+    padding: 0.7rem;
+    cursor: pointer;
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.close-btn i{
+    color: #828e9c;
+}
+
+.close-btn:hover{
+    border: 1px solid black;
+}
+
+.close-btn:hover i{
+    color: black;
+}
+
+.quantity{
+    width: 2rem;
+    padding: 0.5rem;
+    border-radius: 2px;
+    border: none;
+}
+
+.clear-cart{
+    background-color: #fe5d26;
+    margin-top: 2rem;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: auto;
+}
+
+.cart-totals{
+    padding: 2rem 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.cart-total-body td{
+    padding: 1rem 5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.cart-total{
+    width: 50%;
+}
+
+.totals{
+    font-size: 1.5rem;
+}

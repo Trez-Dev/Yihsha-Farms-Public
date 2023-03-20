@@ -3,7 +3,6 @@ import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren }
 import { ActivatedRoute } from '@angular/router';
 import { PocketbaseService } from 'src/app/pocketbase.service';
 import { shoppingData } from 'src/app/shared/shopping-data';
-import { SilasProductServiceService } from 'src/app/silas-product-service.service';
 import { SilasService } from 'src/app/silas.service';
 import { CartStore } from 'src/app/store/cart.store';
 import { Product } from '../../shared/product.model';
@@ -44,6 +43,8 @@ export class ProductLandingPageComponent implements OnInit{
     this.database.getPocketBaseData().then(data=>{
       this.relatedProducts=data.slice(0,3);
     })
+    this.silas.loadCart();
+    this.items = this.silas.getItems();
   }
 
   starNum(n: number): Array<number> {

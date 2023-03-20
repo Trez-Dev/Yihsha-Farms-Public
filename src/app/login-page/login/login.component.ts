@@ -1,18 +1,10 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PocketbaseService } from 'src/app/pocketbase.service';
 
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 
 @Component({
   selector: 'app-login',
@@ -25,14 +17,10 @@ export class LoginComponent{
   usernameOrEmail: string = '';
   password: string = '';
 
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-
   constructor(private database: PocketbaseService, 
     private snackbar: MatSnackBar,
      private router: Router,
      private activatedRoute: ActivatedRoute){}
-
-  matcher = new MyErrorStateMatcher();
 
 
   login(){

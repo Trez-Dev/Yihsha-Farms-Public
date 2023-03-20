@@ -54,7 +54,7 @@ export class SilasService {
   }
 
   loadCart(): void{
-    this.items = JSON.parse(localStorage.getItem('cart-items') || '[{}]') ?? [];
+    this.items = JSON.parse(localStorage.getItem('cart-items')!) ?? [];
   }
 
   saveCart(): void{
@@ -62,9 +62,8 @@ export class SilasService {
   }
 
   clearCart(items: any){
-    this.items=[];
+    this.items=[]; 
     localStorage.removeItem('cart-items');
-    window.location.reload();
   }
 
   removeItem(item: any){

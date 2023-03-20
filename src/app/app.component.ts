@@ -89,13 +89,12 @@ export class AppComponent implements OnInit, DoCheck{
         })
       })
     }
-
-    this.silas.loadCart();
-    this.items = this.silas.getItems();
   } 
 
   ngDoCheck(): void {
     this.currentRoute = this.router.url;
+    this.silas.loadCart();
+    this.items = this.silas.getItems();
   }
 
   toggle(){
@@ -125,7 +124,7 @@ export class AppComponent implements OnInit, DoCheck{
 
    //----- clear cart item
    clearCart(items: any) {
-    // this.items.forEach((item, index) => this.cartService.removeItem(index));
+    // this.items.forEach((item: any, index: any) => this.silas.removeItem(index));
     this.silas.clearCart(items);
     this.items = [...this.silas.getItems()];
   }
@@ -143,11 +142,6 @@ export class AppComponent implements OnInit, DoCheck{
   if (image) {
       reader.readAsDataURL(image);
     }
-  }
-
-  clearShoppingCart(){
-    localStorage.removeItem('shoping-cart');
-    window.location.reload();
   }
 
   logOut(enterAnimationDuration: string, exitAnimationDuration: string){

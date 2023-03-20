@@ -38,11 +38,10 @@
     border: 2px solid rgba(255, 255, 255, 0.615);
     border-radius: 5px;
     cursor: pointer;
+    transition: 0.2s ease-in;
 }
 
-.backdrop button:hover{
-    background-color: #00000008;
-}
+
 
 .backdrop path{
     fill: rgba(255, 255, 255, 0.802);
@@ -61,6 +60,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 0.2s ease-in;
+    cursor: pointer;
 }
 
 .profile-img img{
@@ -126,6 +127,16 @@
     .grid-item:hover{
         transform: scale(1.02);
     }
+
+    .profile-img:hover{
+        transform: scale(1.02);
+    }
+
+    .backdrop button:hover{
+        background-color: #00000008;
+        transform: scale(1.02);
+    }
+    
 }
 
 

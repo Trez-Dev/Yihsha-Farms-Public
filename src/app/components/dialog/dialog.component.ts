@@ -24,6 +24,9 @@ constructor(public dialogRef: MatDialogRef<DialogComponent>,
 inputData: any = this.data;
 addProduct: boolean | undefined;
 deleteProduct: boolean | undefined;
+yourOrders: boolean | undefined;
+previousOrders: boolean | undefined;
+paymentMethods: boolean | undefined;
 logout: boolean | undefined;
 background: boolean | undefined;
 profile: boolean | undefined;

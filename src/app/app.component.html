@@ -1,4 +1,6 @@
 <!-- Header -->
+<ng-container>
+<div>
 <nav class="desktop-nav">
         <div class="left-nav-side">
             <a routerLink="/"><img class="logo" src="../assets/images/logo-black.png" alt="logo"></a>
@@ -7,12 +9,12 @@
                 <li><a [ngClass]="currentRoute === '/shop'? 'activeLink' : 'inactiveLink'" routerLink="/shop">Shop</a></li>
                 <li><a [ngClass]="currentRoute === '/about'? 'activeLink' : 'inactiveLink'" routerLink="/about">About</a></li>
                 <li><a [ngClass]="currentRoute === '/contact'? 'activeLink' : 'inactiveLink'" routerLink="/contact">Contact</a></li>
+                <!-- <li><a [ngClass]="currentRoute === '/file-upload'? 'activeLink' : 'inactiveLink'" routerLink="/file-upload">test</a></li> -->
             </ul>
-        </div>
-    
+        </div>   
         <div class="right-nav-side">
             <ul>
-                <li>$0.00</li>
+                <li><p>{{ total | currency }}</p></li>
             </ul>
             <ul>
                 <li><a (click)="toggle()"><div class="shopping-cart-img"><img src="../../../assets/images/shopping-cart.png" alt="shopping-cart"></div></a></li>
@@ -21,7 +23,6 @@
                 <li><a *ngIf="loginStatus" (click)="logOut('0ms','0ms')">Log Out</a></li>
                 <li><button routerLink="/sign-up" *ngIf="!loginStatus">Sign Up</button></li>
             </ul>
-    
         </div>
     </nav> 
 
@@ -54,34 +55,28 @@
     </div>
     <div class="shopping-cart" [@openShop] = "cartState? 'open' : 'closed'">
         <div class="shoping-cart-details">
-            <h1>Shopping Cart</h1>
-            <ng-container>
-                <div class="cart-items-container" *ngFor="let item of items; let i = index">
-                    <div class="cart-item">
+            <h1>Shopping Cart <button class="cart-btn" (click)="toggle()"><i class="fa fa-close" style="font-size:12px;"></i></button></h1>
+                <div class="cart-items-container">
+                    <div class="cart-item"  *ngFor="let item of items; let i = index">
                         <img [src]="item.image" alt="cart-image">
                         <p>{{ item.name }}</p>
-                        <small #subTotalWrap>( {{ item.price | currency }} ) </small>
+                        <small #subTotalWrap>({{ item.price | currency }})</small>
                         <p>{{ item.quantity }}</p>
                         <div class="amount">
-                            <button  (click)="removeFromCart(item)"><i class="fa fa-minus" style="font-size:24px"></i></button>
+                            <button class="cart-btn"  (click)="removeFromCart(item)"><i class="fa fa-minus" style="font-size:24px"></i></button>
                         </div>
                     </div>
                 </div>
-                <hr />
-                <div>
-                                Order Total:
-                                <span class="font-weight-bold  ">{{total | currency}}</span><hr>
-                
+                <div class="cart-selectors">
+                   <p> Order Total: <b> <span class="font-weight-bold  ">{{total | currency}}</span></b></p>
                 <div class="shopping-cart-selectors">
-                    <button (click)="toggle()">CONTINUE SHOPPING</button>
-                    <button (click)="clearCart(items)">CLEAR SHOP</button>
+                    <button class="cart-btn" routerLink="/cart">VIEW CART</button>
+                    <button class="cart-btn" (click)="clearCart(items)">CLEAR CART</button>
                 </div>
-            
+                </div>
         </div>
-    </ng-container>
-    </div>
-</div> 
-    
+    </div> 
+</div>
 <!-- Header -->
     <!-- This is the Page routing Insertion Area -->
     <router-outlet></router-outlet>
@@ -137,7 +132,7 @@
     </div>
 </div>
 <div class="copyright">
-    <p>Copyright © 2023 | Yisha Farms Store</p>
+    <p>Copyright © 2023 | Yisha Farms Store | Developed By <a class="silas" href="https://www.instagram.com/silascoley.3/?next=%2F" target="_blank">Silas Coley</a></p>
     <div class="socials desktop-socials">
         <i class='fab fa-instagram' style='font-size:24px; color: white; padding: 0.5rem;'></i>
         <i class='fab fa-youtube' style='font-size:24px; color: white; padding: 0.5rem;'></i>
@@ -151,5 +146,7 @@
         <i class='fa fa-instagram' style='font-size:24px; color: white; padding: 0.5rem;'></i>
     </div>
 </div>
+</div>
+</ng-container>
 <!-- Footer -->
 <!-- <button type="submit" value="Submit">Submit</button> -->    <!-- Footer --><!-- <button type="submit" value="Submit">Submit</button> -->

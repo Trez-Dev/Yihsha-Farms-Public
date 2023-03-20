@@ -1,7 +1,7 @@
 <div class="background-container">
     <div class="background" *ngIf="selectedProduct">
         <div class="itemAdded" *ngIf="itemAdded">
-            <p><i class="fa fa-check-circle" style="font-size:24px;color:#fe5d26"></i> “{{selectedProduct.name}}” has been added to your cart. </p> <button>VIEW CART</button>
+            <p><i class="fa fa-check-circle" style="font-size:24px;color:#fe5d26"></i> “{{selectedProduct.name}}” has been added to your cart. </p> <button routerLink="/cart">VIEW CART</button>
         </div>
         <div class="product">
             <div class="landing-product-image">
