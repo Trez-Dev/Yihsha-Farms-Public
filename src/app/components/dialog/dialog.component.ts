@@ -32,6 +32,7 @@ background: boolean | undefined;
 profile: boolean | undefined;
 address: boolean | undefined;
 imageBlobUrl: any[] = [];
+backgroundImagesLoad: boolean = true;
 
 imageUrl: URL | undefined;
 productType: string ='';
@@ -40,6 +41,7 @@ productPrice: number | undefined;
 starNumber: number | undefined;
 productDescription: string ='';
 pocketData: any;
+profileLoad: boolean = true;
 
 products: any;
 selectedId: string | undefined;
@@ -111,6 +113,7 @@ ngOnInit(): void {
   for(let i = 0; i < this.names.length; i++){
     this.silas.getUserAvatar(this.names[i]).subscribe(avatar => {
       this.createImageFromBlob(avatar);
+      this.profileLoad = false;
     });
   }
 }
@@ -192,5 +195,13 @@ createImageFromBlob(image: Blob) {
 if (image) {
     reader.readAsDataURL(image);
   }
+}
+
+onBackgroundImagesLoad(){
+  this.backgroundImagesLoad = false;
+}
+
+onProfileLoad(){
+  this.profileLoad = false;
 }
 }

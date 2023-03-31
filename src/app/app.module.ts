@@ -65,7 +65,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
     ProductsPageComponent,
     FileUploadComponent,
     CartComponent,
-    CheckoutComponent
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,7 +77,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
     FormsModule,
     MatNativeDateModule,
     ScrollingModule,
-    NgxPayPalModule
+    NgxPayPalModule,
     // RouterModule.forRoot(appRoutes)
   ],
   providers: [

@@ -130,6 +130,11 @@ button:hover i{
         padding: 0.8rem 1.2rem;
         font-weight: 600;
     }
+
+    .review{
+        height: 100%;
+        
+    }
     
     
 }

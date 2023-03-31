@@ -15,13 +15,11 @@
         <div class="right-nav-side">
             <ul>
                 <li><p>{{ total | currency }}</p></li>
-            </ul>
-            <ul>
                 <li><a (click)="toggle()"><div class="shopping-cart-img"><img src="../../../assets/images/shopping-cart.png" alt="shopping-cart"></div></a></li>
-                <li><a [routerLink]="['/user-page/',userLogin.id]" *ngIf="loginStatus" ><div class="user-img"><img [src]="imageBlobUrl" alt="user" *ngIf="imageBlobUrl"><img [src]="userLogin.image" alt="user" *ngIf="!imageBlobUrl"></div></a></li>
-                <li><a [ngClass]="currentRoute === '/login'? 'activeLink' : 'inactiveLink'" routerLink="/login" *ngIf="!loginStatus">Login</a></li>
-                <li><a *ngIf="loginStatus" (click)="logOut('0ms','0ms')">Log Out</a></li>
-                <li><button routerLink="/sign-up" *ngIf="!loginStatus">Sign Up</button></li>
+                <li *ngIf="loginStatus"><a [routerLink]="['/user-page/',userLogin.id]"><div class="user-img"><img [src]="imageBlobUrl" alt="user" *ngIf="imageBlobUrl"><img [src]="userLogin.image" alt="user" *ngIf="!imageBlobUrl"></div></a></li>
+                <li *ngIf="!loginStatus"><a [ngClass]="currentRoute === '/login'? 'activeLink' : 'inactiveLink'" routerLink="/login">Login</a></li>
+                <li *ngIf="loginStatus"><a (click)="logOut('0ms','0ms')">Log Out</a></li>
+                <li *ngIf="!loginStatus"><button routerLink="/sign-up">Sign Up</button></li>
             </ul>
         </div>
     </nav> 
@@ -41,7 +39,10 @@
                     <li><a routerLink="/about">About</a></li>
                     <li><a routerLink="/contact">Contact</a></li>
                     <li><a routerLink="/shoping-cart">Shoping Cart</a></li>
-                    <li><a routerLink="/login">Profile</a></li>
+                    <li *ngIf="loginStatus"><a [routerLink]="['/user-page/',userLogin.id]">Profile</a></li>
+                    <li *ngIf="!loginStatus"><a routerLink="/login">Login</a></li>
+                    <li *ngIf="loginStatus"><a (click)="logOut('0ms','0ms')">Log Out</a></li>
+                    <li *ngIf="!loginStatus"><a routerLink="/sign-up">Sign Up</a></li>
                   </ul>
                  </div>
                  <a routerLink="/home"><img class="logo" src="../assets/images/logo-black.png" alt="logo"></a>
@@ -132,18 +133,16 @@
     </div>
 </div>
 <div class="copyright">
-    <p>Copyright © 2023 | Yisha Farms Store | Developed By <a class="silas" href="https://www.instagram.com/silascoley.3/?next=%2F" target="_blank">Silas Coley</a></p>
+    <p>Copyright © 2023 | Yisha Farms Store | Developed By   <a class="silas" href="https://www.instagram.com/silascoley.3/?next=%2F" target="_blank">Silas Coley</a></p>
     <div class="socials desktop-socials">
         <i class='fab fa-instagram' style='font-size:24px; color: white; padding: 0.5rem;'></i>
         <i class='fab fa-youtube' style='font-size:24px; color: white; padding: 0.5rem;'></i>
         <i class='fab fa-twitter' style='font-size:24px; color: white; padding: 0.5rem;'></i>
-        <i class='fab fa-instagram' style='font-size:24px; color: white; padding: 0.5rem;'></i>
     </div>
     <div class="socials mobile-socials">
         <i class='fa fa-instagram' style='font-size:24px; color: white; padding: 0.5rem;'></i>
         <i class='fa fa-youtube' style='font-size:24px; color: white; padding: 0.5rem;'></i>
         <i class='fa fa-twitter' style='font-size:24px; color: white; padding: 0.5rem;'></i>
-        <i class='fa fa-instagram' style='font-size:24px; color: white; padding: 0.5rem;'></i>
     </div>
 </div>
 </div>

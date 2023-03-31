@@ -10,6 +10,7 @@
 .background{
     background-color: rgba(255, 255, 255,0.4);
     padding: 8rem;
+    box-sizing: border-box;
     display: flex;
 }
 
@@ -214,8 +215,13 @@ font-size: 1.8rem;
     color: white;
 }
 
-.mobile-shop{
-    display: none;
+@media only screen and (min-width: 1000px){
+    .mobile-shop{
+        display: none;
+    }
+    .desktop{
+        display: block;
+    }
 }
 
 @media only screen and (max-width: 1000px){
@@ -285,9 +291,15 @@ font-size: 1.8rem;
         width: 20%;
     }
 
-    .gallery-item h1{
+    .gallery-item{
+        box-sizing: border-box;
+    }
+
+    .gallery-item h1, .gallery-item a{
         font-size: 1rem;
         text-align: center;
+        color: #fe5d26;
+        text-decoration: none;
     }
 
     .gallery-item h2{

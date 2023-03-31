@@ -1,7 +1,23 @@
 <div class="shopping-cart">
     <div class="shoping-cart-details">
         <h1>Shopping Cart</h1>
-        <p>no products in cart</p>
-        <button (click)="navigateToShop()">CONTINUE SHOPPING</button>
+                <div class="cart-items-container">
+                    <div class="cart-item"  *ngFor="let item of items; let i = index">
+                        <img [src]="item.image" alt="cart-image">
+                        <p>{{ item.name }}</p>
+                        <small #subTotalWrap>({{ item.price | currency }})</small>
+                        <p>{{ item.quantity }}</p>
+                        <div class="amount">
+                            <button class="cart-btn"  (click)="removeFromCart(item)"><i class="fa fa-minus" style="font-size:24px"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cart-selectors">
+                   <p> Order Total: <b> <span class="font-weight-bold  ">{{total | currency}}</span></b></p>
+                <div class="shopping-cart-selectors">
+                    <button class="cart-btn" routerLink="/cart">VIEW CART</button>
+                    <button class="cart-btn" (click)="clearCart(items)">CLEAR CART</button>
+                </div>
+            </div>
     </div>
 </div>

@@ -100,7 +100,8 @@
     <div class="select-background box-properties" *ngIf="background">
         <div class="background-grid">
             <div class="grid-item" *ngFor="let image of backgroundImages">
-                <div mat-dialog-close cdkFocusInitial (click)="setBackgroundImage(image.image)"><img [src]="image.image"></div>
+                <mat-progress-bar color="warn" mode="indeterminate" *ngIf="backgroundImagesLoad"></mat-progress-bar>
+                <div mat-dialog-close cdkFocusInitial (click)="setBackgroundImage(image.image)"><img [src]="image.image" (load)="onBackgroundImagesLoad()"></div>
             </div>
         </div>
         <div mat-dialog-actions class="options">
@@ -110,6 +111,7 @@
     <div class="select-background box-properties" *ngIf="profile">
         <div class="background-grid">
             <div class="grid-profile-item" *ngFor="let image of imageBlobUrl">
+                <mat-spinner color="warn" *ngIf="profileLoad"></mat-spinner>
                 <div mat-dialog-close cdkFocusInitial (click)="setprofile(image)"><img [src]="image"></div>
             </div>
         </div>

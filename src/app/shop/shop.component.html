@@ -82,17 +82,20 @@
                 <button><i class='fa fa-angle-double-right' style='font-size:24px'></i></button>
             </div>
             <div class="filters">
-                <h3>Filter by Price</h3>
+                <h3>Filter by Type</h3>
             </div>
-            <div class="prices">
+            <!-- <div class="prices">
                 <input type="text" value="$40.00">
                 <input type="text" value="$80.00">
-            </div>
+            </div> -->
             <div class="groceries">
-                    <a href=""><p>Groceries</p></a><p>(10)</p>
+                <a style="cursor: pointer;" (click)="filterProduct('Seasonings')"><p>Seasonings</p></a><p>({{seasoningNum}})</p>
             </div>
             <div class="juices">
-                    <a href=""><p>Juices</p></a><p>(6)</p>
+                    <a style="cursor: pointer;" (click)="filterProduct('Pepper Sauces')"><p>Pepper Sauces</p></a><p>({{sauceNum}})</p>
+            </div>
+            <div class="juices">
+                    <a style="cursor: pointer;" (click)="filterProduct('Jerk Seasoning')"><p>Jerk Seasonings</p></a><p>({{jerkNum}})</p>
             </div>
         </div>
             <div class="items-showing">

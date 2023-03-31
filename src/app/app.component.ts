@@ -6,29 +6,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { PocketbaseService } from './pocketbase.service';
 import { trigger,state,style,animate,transition } from '@angular/animations';
-import { slideInAnimation } from './animations/animations';
+import { shopAnimation } from './animations/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   animations: [
-    trigger('openShop', [
-      state('open', style({
-        opacity: '1',
-      })),
-      state('closed', style({
-        transform: 'translateX(200px)',
-        opacity: '0',
-        display: 'none'
-      })),
-      transition('open => closed', [
-        animate('0.1s ease-in-out')
-      ]),
-      transition('open => closed', [
-        animate('0.1s ease-in-out')
-      ])
-    ]),
+   shopAnimation
   ]
 })
 
@@ -64,21 +49,8 @@ export class AppComponent implements OnInit, DoCheck{
 
 
   ngOnInit() {
-
     this.handleRedirect();
-
-    this.cart = localStorage.getItem('shoping-cart');
-     
-    
-    console.log(this.cartItems)
-
     this.userLogin = JSON.parse(localStorage.getItem('user-login') || '{"image":"../assets/images/user.png","loginStatus":false}');
-    
-    if (this.cart != null) {
-      this.cartStatus = true;
-      this.cartItems = (JSON.parse(this.cart)).productDetails;
-      this.quantity =(JSON.parse(this.cart)).quantity;
-    }
     if (this.userLogin.loginStatus == false){
       this.loginStatus = false;
     }else{

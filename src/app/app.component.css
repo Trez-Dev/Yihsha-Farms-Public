@@ -70,7 +70,7 @@
 
 .right-nav-side li{
     display: inline;
-    margin-right: 1rem;
+    margin-right: 1.5rem;
 }
 
 .right-nav-side li:nth-child(1){
@@ -82,7 +82,6 @@
     height: 2rem;
     border-radius: 100%;
     overflow: hidden;
-    margin-right: -1rem;
 }
 
 .shopping-cart-img{
@@ -151,10 +150,6 @@
         left: 80%;
         position: absolute;
     }
-
-    /* *{
-        border: 1px solid black;
-    } */
 
     .bg {
         background-color: #f9f9f9;
@@ -289,15 +284,6 @@
 
 
 /* Fotter CSS */
-
-
-/* *{
-    margin: 0;
-} */
-
-/* *{
-    border: 1px solid white;
-} */
 
 .background-container{
     background-color: black;
@@ -492,6 +478,10 @@ button:hover i{
         display: none;
     }
 
+    .shopping-cart{
+        display: none;
+    }
+
     .desktop-socials{
         display: none;
     }
@@ -499,44 +489,16 @@ button:hover i{
     .mobile-socials{
         display: block;
     }
-/* 
-    .link h1{
-        font-size: 1rem;
-    }
-
-    .link a{
-        font-size: 0.5rem;
-    }
-
-    .mobile-app h1{
-        font-size: 1rem;
-    }
-
-    .mobile-app p{
-        font-size: 0.5rem;
-    }
-
-    .store-description img{
-        width: 5rem;
-    }
-    
-    .store-description p{
-        width: 100%;
-        font-size: 0.5rem;
-    }
-
-    .link2 h1{
-        font-size: 1rem;
-    }
-
-    .link2 a{
-        font-size: 0.5rem;
-    } */
     
     .background-container{
         display: none;
     }
     .copyright p{
+        font-size: 0.5rem;
+        width: 50%;
+    }
+
+    .silas{
         font-size: 0.5rem;
     }
 }

@@ -1,6 +1,6 @@
 import { trigger,state,style,animate,transition, query, animateChild, group } from '@angular/animations';
 
-export const slideInAnimation =
+export const RouteAnimation =
   trigger('routeAnimations', [
     transition('HomePage <=> AboutPage', [
       style({ position: 'relative' }),
@@ -49,4 +49,23 @@ export const slideInAnimation =
         query('@*', animateChild())
       ]),
     ])
+  ])
+
+  export const shopAnimation =  trigger('openShop', [
+    state('open', style({
+      opacity: '1',
+    })),
+    state('closed', style({
+      transform: 'translateX(200px)',
+      opacity: '0',
+      display: 'none'
+    })),
+    transition('open => closed', [
+      animate('0.1s ease-in-out')
+    ]),
+    transition('open => closed', [
+      animate('0.1s ease-in-out')
+    ])
   ]);
+  
+

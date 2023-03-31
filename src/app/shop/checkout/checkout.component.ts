@@ -25,17 +25,6 @@ export class CheckoutComponent implements OnInit{
     this.initConfig();
   }
 
-  // ngAfterContentInit(): void {
-  //   render({
-  //     id: '#Paypal',
-  //     currency: 'USD',
-  //     value: '100.00',
-  //     onApprove: (details) => {
-  //       alert("Transaction Successfull");
-  //     }
-  //   })
-  // }
-
   items: any = [];
 
   //----- calculate total
@@ -75,11 +64,11 @@ export class CheckoutComponent implements OnInit{
         {
           amount: {
             currency_code: 'USD',
-            value: this.total,
+            value: '9.99',
             breakdown: {
               item_total: {
                 currency_code: 'USD',
-                value: this.total
+                value: '9.99'
               }
             }
           },
@@ -89,7 +78,7 @@ export class CheckoutComponent implements OnInit{
               quantity: '1',
               category: 'DIGITAL_GOODS',
               unit_amount: {
-                currency_code: 'EUR',
+                currency_code: 'USD',
                 value: '9.99',
               },
             }

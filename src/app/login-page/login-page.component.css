@@ -30,6 +30,12 @@
     width: 100%;
 }
 
+.backdrop-loader{
+    position: absolute;
+    z-index: 3;
+}
+
+
 .backdrop button{
     width: 2rem;
     height: 2rem;
@@ -203,6 +209,13 @@
     .backdrop-img img{
         width: 100%;
         margin-top: -15vh;
+    }
+
+    .admin-options{
+        display: grid;
+        gap: 2rem;
+        margin: 1rem 2rem;
+        grid-template: repeat(12, 1fr) / repeat(2, 1fr);
     }
 
 

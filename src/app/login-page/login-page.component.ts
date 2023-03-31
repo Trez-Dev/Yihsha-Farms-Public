@@ -26,6 +26,8 @@ export class LoginPageComponent implements OnInit{
   address: any;
   profile: any;
   adminStatus: boolean | undefined;
+  backDropLoad: boolean = true;
+  profileLoad: boolean = true;
   userOptions: any = [];
 
 
@@ -41,17 +43,20 @@ export class LoginPageComponent implements OnInit{
         this.userData = new User(this.background,'../../assets/images/IMG_0957.jpeg','Silas Coley','SilasColey');
         localStorage.setItem('user-login','{"image":"../assets/images/IMG_0957.jpeg","id":"00ifxtvzg3sb5kj"}');
         this.adminStatus = true;
+        this.profileLoad = false;
       }else if(data['id'] === 'tomx74rtyrpvtl0'){
         this.userData = new User(this.background,'../../assets/images/leecoy-img.jpeg','Leecoy Coley','LeecoyColey');
         localStorage.setItem('user-login','{"image":"../assets/images/leecoy-img.jpeg","id":"tomx74rtyrpvtl0"}');
         this.adminStatus = true;
+        this.profileLoad = false;
       } else {
         this.database.viewUserData(data['id']).then((data) => {
           this.silas.getUserAvatar(data['name']).subscribe(avatar => {
             this.createImageFromBlob(avatar);
             this.userData = new User(this.background,'',data['name'],data['username']);
             localStorage.setItem('user-login',`{"id":"${data['id']}"}`);
-            this.adminStatus = false
+            this.adminStatus = false;
+            this.profileLoad = false;
           })
         })
       }
@@ -82,7 +87,6 @@ export class LoginPageComponent implements OnInit{
         description: "spice, groceries, juice, etc...",
       },
     ]
-  
   }
  
   createImageFromBlob(image: Blob) {
@@ -136,6 +140,12 @@ export class LoginPageComponent implements OnInit{
   }
 
 
+  onBackdropLoad(){
+    this.backDropLoad = false;
+  }
+  onProfileLoad(){
+    this.profileLoad = false;
+  }
   
 }
 
