@@ -35,6 +35,15 @@ export class PocketbaseService {
       window.location.href = authProvider.authUrl + this.redirectUrl;
   }
 
+  public async loginWithFacebook() {
+    const result = await this.pocketBase.collection('users').listAuthMethods();
+    const authProvider = result.authProviders.find((x: { name: string; }) => x.name === 'facebook') || {
+        authUrl: 'facebook'
+      };
+      localStorage.setItem('provider', JSON.stringify(authProvider));
+      window.location.href = authProvider.authUrl + this.redirectUrl;
+  }
+
   public async confirmGoogleLogin() {
     const params = new URL(window.location as unknown as URL | string).searchParams;
     const provider = JSON.parse(localStorage.getItem('provider') || '{}');
@@ -68,9 +77,7 @@ export class PocketbaseService {
 
   public async getPocketBaseData(){
     const records = await this.pocketBase.collection('products')
-      .getFullList(200, {
-      sort: '-created',
-  });
+      .getFullList(200, {sort: '-created'});
     return records
   }
   

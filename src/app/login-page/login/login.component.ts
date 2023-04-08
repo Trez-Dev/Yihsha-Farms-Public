@@ -46,4 +46,8 @@ export class LoginComponent{
   googleLogin(){
     this.database.loginWithGoogle();
   }
+
+  facebookLogin(){
+    this.database.loginWithFacebook();
+  }
 }

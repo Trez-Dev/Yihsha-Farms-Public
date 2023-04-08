@@ -142,7 +142,8 @@ this.pocketData = {
   star: this.starNumber,
   description: this.productDescription
 }
-this.database.publishPocketBaseData(this.pocketData)
+
+this.database.publishPocketBaseData(this.pocketData,)
 .then(()=> {
 this.randomNum = Math.floor((Math.random() * 3) + 1)
     if(this.randomNum === 1){

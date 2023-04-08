@@ -59,14 +59,6 @@ export class ProductLandingPageComponent implements OnInit{
     this.selection = false
   }
 
-  // addToCart(){
-  //   this.cartStore.addCartItem(this.selectedProduct);
-  //   this.cartStore.cartItems$.subscribe(items => {
-  //     localStorage.setItem('shoping-cart', `{"productDetails":${JSON.stringify(items)},"quantity":${JSON.stringify(this.quantity)}}`);
-  //   })
-  //   window.location.reload();
-  // }
-
 
   items: any = [];
   sampleSuggestionsArray = [
@@ -92,12 +84,14 @@ export class ProductLandingPageComponent implements OnInit{
 
   //----- add item to cart
   addToCart(item: any) {
-    item.quantity = this.quantity;
-    if (!this.silas.itemInCart(item)) {
+    item.quantity = Math.round(this.quantity);
+    if (!this.silas.itemInCart(item) && item.quantity > 0) {
       item.qtyTotal = 1;
       this.silas.addToCart(item); //add items in cart
       this.items = [...this.silas.getItems()];
       this.itemAdded = true;
+    }else if(this.silas.itemInCart(item) && item.quantity > 0){
+      this.silas.itemUpdate(item, item.quantity)
     }
   }
 }

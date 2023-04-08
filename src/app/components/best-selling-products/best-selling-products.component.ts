@@ -11,23 +11,18 @@ import {Product} from '../../shared/product.model'
 })
 export class BestSellingProductsComponent{
 
-  products: Product[] = shoppingData.filter(((Product, i) => i < 4));
+  products: any;
 
   constructor(private silasProductService: SilasService, private database: PocketbaseService){}
 
-  // ngOnInit(): void {
-  //   this.database.getPocketBaseData().then(data =>{
-  //     this.products = data;
-  //     // console.log(data);
-  //   })
-  // }
+  ngOnInit(): void {
+    this.database.getPocketBaseData().then(data =>{
+      this.products = data.slice(0,4)
+    })
+  }
 
   starNum(n: number): Array<number> {
     return Array(n);
-  }
-
-  navigateProductLanding(product: Product){
-    this.silasProductService.navigateToProduct(product)
   }
 
 }

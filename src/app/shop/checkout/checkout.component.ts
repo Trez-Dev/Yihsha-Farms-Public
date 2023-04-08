@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
 import { SilasService } from 'src/app/silas.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-checkout',
@@ -57,7 +58,7 @@ export class CheckoutComponent implements OnInit{
   private initConfig(): void {
     this.payPalConfig = {
     currency: 'USD',
-    clientId: 'AU_gR6MotvbdS2NNxiJu7PlNu_5Rz2KIWV18upJWvxNzPEud-EQHFxoDxFgAy_SIK3vOZSVbS5vMpRBa',
+    clientId: environment.PAYPAL_CLIENT_ID,
     createOrderOnClient: (data) => <ICreateOrderRequest>{
       intent: 'CAPTURE',
       purchase_units: [

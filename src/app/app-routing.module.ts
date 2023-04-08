@@ -30,6 +30,7 @@ const routes: Routes = [
 { path: 'login', component: LoginComponent },
 { path: 'sign-up', component: SignUpComponent },
 {path: '', redirectTo: '/home', pathMatch: 'full'},
+{path: '**', redirectTo: '/home', },
 ];
 
 

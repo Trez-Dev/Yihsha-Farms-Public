@@ -16,7 +16,7 @@
             <td><div class="image"><button class="close-btn" (click)="removeFromCart(item)"><i class="fa fa-close" style="font-size:12px;"></i></button> <img [src]="item.image" alt="cart-image"></div></td>
             <td>{{ item.name }}</td>
             <td #subTotalWrap>{{ item.price | currency }}</td>
-            <td><input disabled class="quantity" type="number" [(ngModel)]="item.quantity"></td>
+            <td><span class="quantity-display"><button class="clear-cart" (click)="plus(item)"><i class="fa fa-plus" style="font-size:12px"></i></button> <p>{{ item.quantity }}</p> <button class="clear-cart" (click)="minus(item)"><i class="fa fa-minus" style="font-size:12px"></i></button></span> </td>
             <td>{{item.price * item.quantity | currency}}</td>
           </tr>
           <tr>

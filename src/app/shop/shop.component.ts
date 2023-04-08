@@ -30,7 +30,7 @@ export class ShopComponent implements OnInit{
       this.sauceNum = this.databaseData.filter(product => product.type === 'Pepper Sauces').length
       this.jerkNum = this.databaseData.filter(product => product.type === 'Jerk Seasoning').length
     })
-  }
+  };
 
   firstPage(){
   this.products = [];

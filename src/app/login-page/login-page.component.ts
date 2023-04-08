@@ -6,6 +6,7 @@ import { PocketbaseService } from '../pocketbase.service';
 import { Address } from '../shared/address.model';
 import { User } from '../shared/user.model';
 import { SilasService } from '../silas.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login-page',
@@ -39,14 +40,14 @@ export class LoginPageComponent implements OnInit{
       this.background = localStorage.getItem('background') || 'https://ik.imagekit.io/qb5fs9jxh/Background/leecoy-bg-flowers.jpeg?updatedAt=1678756515397';
       this.address = JSON.parse(localStorage.getItem('address') || `{"firstName":"User","lastName":"User","address1":"-----------","address2":"-----------","City":"-------------","State":"----------","postalCode":"123"}`);
       console.log(this.address);
-      if(data['id'] === '00ifxtvzg3sb5kj'){
+      if(data['id'] === environment.SILAS_ADMIN_ID){
         this.userData = new User(this.background,'../../assets/images/IMG_0957.jpeg','Silas Coley','SilasColey');
-        localStorage.setItem('user-login','{"image":"../assets/images/IMG_0957.jpeg","id":"00ifxtvzg3sb5kj"}');
+        localStorage.setItem('user-login',`{"image":"../assets/images/IMG_0957.jpeg","id":"${environment.SILAS_ADMIN_ID}"}`);
         this.adminStatus = true;
         this.profileLoad = false;
-      }else if(data['id'] === 'tomx74rtyrpvtl0'){
+      }else if(data['id'] === environment.LECOY_ADMIN_ID){
         this.userData = new User(this.background,'../../assets/images/leecoy-img.jpeg','Leecoy Coley','LeecoyColey');
-        localStorage.setItem('user-login','{"image":"../assets/images/leecoy-img.jpeg","id":"tomx74rtyrpvtl0"}');
+        localStorage.setItem('user-login',`{"image":"../assets/images/leecoy-img.jpeg","id":"${environment.LECOY_ADMIN_ID}"}`);
         this.adminStatus = true;
         this.profileLoad = false;
       } else {

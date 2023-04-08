@@ -5,6 +5,8 @@ import { Post } from './post';
 import { Router } from '@angular/router';
 import { Product } from './shared/product.model';
 import { PocketbaseService } from './pocketbase.service';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -27,9 +29,10 @@ export class SilasService {
   //   return this.http.post(url, blog, this.httpOptions);
   // }
 
+  
   public getUserAvatar(userName: string){
     let multiAvatarUrl = `https://api.multiavatar.com/${userName}.png`;
-    let params = new HttpParams().set('apikey','uAGaLn8FwOfY4Z')
+    let params = new HttpParams().set('apikey', environment.AVATAR_API_KEY)
     return this.http.get(multiAvatarUrl, {responseType: 'blob', params})
   }
 
@@ -45,8 +48,8 @@ export class SilasService {
   //   }
 
   addToCart(addedItem: any){
-    this.items.push(addedItem);
-    this.saveCart();
+      this.items.push(addedItem);
+      this.saveCart();
   }
 
   getItems(){
@@ -73,6 +76,15 @@ export class SilasService {
       this.items.splice(index, 1);
       this.saveCart();
     }
+  }
+
+  itemUpdate(item: any, quantity: any){
+    this.items.forEach((data: {id: any, quantity: any}) => {
+      if(data.id === item.id){
+        data.quantity = quantity + data.quantity
+      }
+    })
+    this.saveCart();
   }
 
   itemInCart(item: any): boolean{

@@ -12,7 +12,7 @@
                 <h2>${{selectedProduct.price}}</h2>
                 <p>{{selectedProduct.description}}</p>
                 <div class="add-product">
-                <input type="number" max="20" value="1" [(ngModel)]="quantity">
+                <input type="number" max="20" value="1" min="1" [(ngModel)]="quantity" >
                 <button (click)="addToCart(selectedProduct)">ADD TO CART <i class='fas fa-cart-arrow-down' style='font-size:24px'></i></button>
                 </div>
                 Type: {{selectedProduct.type}}

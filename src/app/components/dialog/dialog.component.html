@@ -8,7 +8,7 @@
         <mat-form-field appearance="fill" color="warn">
             <mat-label>Product Type</mat-label>
             <mat-select [(ngModel)]="productType">
-              <mat-option value="Seasoning">Seasoning</mat-option>
+              <mat-option value="Seasonings">Seasonings</mat-option>
               <mat-option value="Pepper Sauce">Pepper Sauce</mat-option>
               <mat-option value="Jerk Seasoning">Jerk Seasoning</mat-option>
               <mat-option value="Soup">Soup</mat-option>
@@ -88,7 +88,7 @@
         <mat-radio-group [(ngModel)]="selectedId">
         <mat-card *ngFor="let product of products" class="card">
             <mat-card-content> 
-                <mat-radio-button color="warn" [value]="product.id"><img [src]="product.image" alt="product image" style="width: 1.5rem;"> {{product.name}} -- {{product.star}} star -- ${{product.price}}.00</mat-radio-button>
+                <mat-radio-button color="warn" [value]="product.id"><img [src]="product.image" alt="product image" style="width: 1.5rem;"> {{product.name}} -- {{product.star}} star -- ${{product.price}}</mat-radio-button>
             </mat-card-content>
         </mat-card>
         </mat-radio-group>
