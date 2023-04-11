@@ -52,6 +52,7 @@ export class LoginPageComponent implements OnInit{
         this.profileLoad = false;
       } else {
         this.database.viewUserData(data['id']).then((data) => {
+          localStorage.setItem('userId',`{userId":"${data['id']}"}`)
           this.silas.getUserAvatar(data['name']).subscribe(avatar => {
             this.createImageFromBlob(avatar);
             this.userData = new User(this.background,'',data['name'],data['username']);
@@ -68,7 +69,7 @@ export class LoginPageComponent implements OnInit{
         description: "Track, return or buy",
       },
       {
-        name: "Address",
+        name: "Shipping Address",
         description: `${this.address.address1}, ${this.address.City}`,
       },
       {

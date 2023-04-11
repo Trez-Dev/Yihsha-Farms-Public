@@ -50,7 +50,7 @@ selectedId: string | undefined;
 randomNum: any;
 // for funzies!
 
-addressData = new Address('','','','','','','');
+addressData = new Address('','','','','','','','');
 
 backgroundImages = [
   {

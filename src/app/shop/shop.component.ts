@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { shoppingData } from '../shared/shopping-data';
 import { Product } from '../shared/product.model';
 import { SilasService } from '../silas.service';
 import { PocketbaseService } from '../pocketbase.service';
+import { zip } from 'rxjs';
 
 @Component({
   selector: 'app-shop',
@@ -19,18 +20,44 @@ export class ShopComponent implements OnInit{
   seasoningNum: number = 0;
   sauceNum: number = 0;
   jerkNum: number = 0;
+  searchItem: any;
   constructor(private silasProductService: SilasService, private database: PocketbaseService){}
 
   ngOnInit(): void {
     this.database.getPocketBaseData().then(data =>{
-      this.databaseData = data;
-      this.products = data.slice(0,9);
-      this.leftProducts = data.slice(0,3);
+      this.databaseData = data.sort((a: {name:any}, z: {name: any}) => a.name.localeCompare(z.name));
+      this.products = data.sort((a: {name:any}, z: {name: any}) => a.name.localeCompare(z.name)).slice(0,9);
+      this.leftProducts = data.sort((a: {name:any}, z: {name: any}) => z.name.localeCompare(a.name)).slice(0,3);
       this.seasoningNum = this.databaseData.filter(product => product.type === 'Seasonings').length
       this.sauceNum = this.databaseData.filter(product => product.type === 'Pepper Sauces').length
       this.jerkNum = this.databaseData.filter(product => product.type === 'Jerk Seasoning').length
     })
   };
+
+
+  sort(event: any){
+    let sorting = event.target.value;
+    switch (sorting) {
+      case '0':
+        this.products=[];
+        this.products = this.databaseData.sort((a, b) => a.name.localeCompare(b.name)).slice(0,9);
+        break;
+      case '1':
+        this.products = [];
+        this.products = this.databaseData.sort((lowest: {price: any}, highest: {price: any}) => lowest.price - highest.price).slice(0,9)
+        break;
+      case '2':
+        this.products = [];
+        this.products = this.databaseData.sort((lowest: {price: any}, highest: {price: any}) => highest.price - lowest.price).slice(0,9)
+        break;
+      case '3':
+        this.products = [];
+        this.products = this.databaseData.sort((lowest, highest) => highest.star - lowest.star).slice(0,9)
+        break;
+      default:
+        break;
+    }
+  }
 
   firstPage(){
   this.products = [];

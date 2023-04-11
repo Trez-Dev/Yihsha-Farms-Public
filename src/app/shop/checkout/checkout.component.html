@@ -1,35 +1,114 @@
 <div class="background">
-    <h1>Checkout</h1>
-    <div class="billing-container">
-        <div class="payment">
-            <div id="Paypal">
-                <ngx-paypal [config]="payPalConfig"></ngx-paypal>
-            </div>
-        </div>
-        <div class="your-order">
-            <table class="your-order-table">
-                <thead class="your-order-table-head">
-                  <tr>
-                    <th colspan="2"><h1 class="order-table-title">Cart Summary</h1></th>
-                  </tr>
-                </thead>
-                <tbody class="your-order-table-body">
-                  <tr>
-                    <td><b>Pruduct</b></td>
-                    <td  style="text-align: right;"><b>Subtotal</b></td>
-                  </tr>
-                  <ng-container>
-                  <tr class="bottom-border" *ngFor="let item of items; let i = index">
-                    <td class="bottom-border">{{ item.name }} x {{item.quantity}}</td>
-                    <td class="bottom-border" style="text-align: right;">{{item.price * item.quantity | currency}}</td>
-                  </tr>
-                  <tr>
-                    <td class="bottom-border"><b>Total:</b></td>
-                    <td class="bottom-border"  style="text-align: right;"><b>{{total | currency}}</b></td>
-                  </tr>
-                </ng-container>
-                </tbody>
-                </table>
-        </div>
+  <div class="order-accepted" [@flyInOut] *ngIf="showSuccess">
+    <div class="check-icon">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10Zm-5.186-2.419a1 1 0 1 0-1.628-1.162l-4.314 6.04-2.165-2.166a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.52-.126l5-7Z" fill="#00dd65"/></svg>
+    </div>
+    <h2>Order Approved!</h2>
+  </div>
+    <div class="shipping-address">
+      <h1>Shipping Address</h1>
+      <table class="example-full-width">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width" color="warn">
+            <mat-label>First name</mat-label>
+            <input matInput [(ngModel)]="addressData.firstName">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width" color="warn">
+            <mat-label>Last Name</mat-label>
+            <input matInput [(ngModel)]="addressData.lastName">
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+        <mat-form-field class="example-full-width" color="warn">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput [formControl]="UserFormControl" [errorStateMatcher]="matcher" matInput [(ngModel)]="addressData.email">
+          <mat-error *ngIf="UserFormControl.hasError('email') && !UserFormControl.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="UserFormControl.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+      </mat-form-field>
+        <mat-form-field class="example-full-width" color="warn">
+          <mat-label>Address</mat-label>
+          <textarea matInput placeholder="Ex. 100 Main St" [formControl]="AddressFormControl" [(ngModel)]="addressData.address1"></textarea>
+          <mat-error *ngIf="AddressFormControl.hasError('required')">
+            Address is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" color="warn">
+          <mat-label>Address 2</mat-label>
+          <textarea matInput [(ngModel)]="addressData.address2"></textarea>
+        </mat-form-field>
+    
+      <table class="example-full-width">
+        <tr>
+            <td><mat-form-field class="example-full-width" color="warn">
+            <mat-label>City</mat-label>
+            <input matInput placeholder="Ex. San Francisco" [(ngModel)]="addressData.City">
+            </mat-form-field></td>
+            <td><mat-form-field class="example-full-width">
+            <mat-label>State</mat-label>
+            <input matInput placeholder="Ex. California" [(ngModel)]="addressData.State">
+            </mat-form-field></td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field class="example-full-width">
+            <mat-label>Phone Number</mat-label>
+            <input type="tel" matInput placeholder="555-555-1234">
+            <mat-icon matSuffix>phone</mat-icon>
+          </mat-form-field>
+        </td>
+        <td><mat-form-field class="example-full-width" color="warn">
+            <mat-label>Postal Code</mat-label>
+            <input matInput #postalCode maxlength="5" placeholder="Ex. 94105" [(ngModel)]="addressData.postalCode">
+            </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    </div>
+    <div>
+      <h1>Checkout</h1>
+      <div class="billing-container">
+         <!-- <button (click)="accept()">animate</button> -->
+          <div class="your-order">
+              <table class="your-order-table">
+                  <thead class="your-order-table-head">
+                    <tr>
+                      <th colspan="2"><h1 class="order-table-title">Cart Summary</h1></th>
+                    </tr>
+                  </thead>
+                  <tbody class="your-order-table-body">
+                    <tr>
+                      <td><b>Pruduct</b></td>
+                      <td  style="text-align: right;"><b>Subtotal</b></td>
+                    </tr>
+                    <ng-container>
+                    <tr class="bottom-border" *ngFor="let item of items; let i = index">
+                      <td class="bottom-border">{{ item.name }} x {{item.quantity}}</td>
+                      <td class="bottom-border" style="text-align: right;">{{item.price * item.quantity | currency}}</td>
+                    </tr>
+                    <tr>
+                      <td class="bottom-border"><b>Total:</b></td>
+                      <td class="bottom-border"  style="text-align: right;"><b>{{total | currency}}</b></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">
+                        <div class="payment">
+                              <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+                        </div>
+                      </td>
+                    </tr>
+                  </ng-container>
+                  </tbody>
+                  </table>
+          </div>
+          
+      </div>
     </div>
 </div>

@@ -63,9 +63,20 @@ export const RouteAnimation =
     transition('open => closed', [
       animate('0.1s ease-in-out')
     ]),
-    transition('open => closed', [
+    transition('closed => open', [
       animate('0.1s ease-in-out')
     ])
   ]);
+
+  export const orderAcceptAnimation = trigger('flyInOut', [
+    state('in', style({ transform: 'translateX(0)' })),
+    transition('void => *', [
+      style({ transform: 'translateX(100%)' }),
+      animate(100)
+    ]),
+    transition('* => void', [
+      animate(100, style({ transform: 'translateX(100%)' }))
+    ])
+  ])
   
 

@@ -1,33 +1,23 @@
 <div class="background">
     <h1>Cart</h1>
     <ng-container>
-    <table class="cart-table">
-        <thead class="cart-table-head">
-          <tr>
-            <th></th>
-            <th>Product</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Subtotal</th>
-          </tr>
-        </thead>
-        <tbody class="cart-table-body">
-          <tr *ngFor="let item of items; let i = index">
-            <td><div class="image"><button class="close-btn" (click)="removeFromCart(item)"><i class="fa fa-close" style="font-size:12px;"></i></button> <img [src]="item.image" alt="cart-image"></div></td>
-            <td>{{ item.name }}</td>
-            <td #subTotalWrap>{{ item.price | currency }}</td>
-            <td><span class="quantity-display"><button class="clear-cart" (click)="plus(item)"><i class="fa fa-plus" style="font-size:12px"></i></button> <p>{{ item.quantity }}</p> <button class="clear-cart" (click)="minus(item)"><i class="fa fa-minus" style="font-size:12px"></i></button></span> </td>
-            <td>{{item.price * item.quantity | currency}}</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td><button class="clear-cart" (click)="clearCart(items)">CLEAR CART</button></td>
-          </tr>
-        </tbody>
-    </table>
+      <div class="cart-headers">
+        <h2></h2>
+        <h2>Product</h2>
+        <h2>Price</h2>
+        <h2>Quantity</h2>
+        <h2>Subtotal</h2>
+      </div>
+      <div class="cart-items" *ngFor="let item of items; let i = index">
+        <div class="grid-element"><div class="image"><button class="close-btn" (click)="removeFromCart(item)"><i class="fa fa-close" style="font-size:12px;"></i></button> <img [src]="item.image" alt="cart-image"></div></div>
+        <div class="grid-element"><p>{{ item.name }}</p></div>
+        <div class="grid-element"><p #subTotalWrap>{{ item.price | currency }}</p></div>
+        <div class="grid-element"><span class="quantity-display"><button class="clear-cart" (click)="plus(item)"><i class="fa fa-plus" style="font-size:12px"></i></button> <p>{{ item.quantity }}</p> <button class="clear-cart" (click)="minus(item)"><i class="fa fa-minus" style="font-size:12px"></i></button></span></div>
+        <div class="grid-element"> <p>{{item.price * item.quantity | currency}}</p></div>
+      </div>
+      <div class="cart-footer">
+        <div class="grid-element cart-btn-element"><button class="clear-cart main" (click)="clearCart(items)">CLEAR CART</button></div>
+      </div>
 <div class="cart-totals">
     <table class="cart-total">
         <thead class="cart-table-head">

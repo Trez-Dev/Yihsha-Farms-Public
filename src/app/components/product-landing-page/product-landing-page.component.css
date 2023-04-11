@@ -44,14 +44,18 @@ hr{
 }
 .landing-product-image{
     width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: white;
     border-radius: 10px;
     overflow: hidden;
     padding: 1rem;
+    max-height: 50vh;
 }
 
 .landing-product-image img{
-width: 100%;
+    height: 100%;
 }
 
 .landing-product-description{

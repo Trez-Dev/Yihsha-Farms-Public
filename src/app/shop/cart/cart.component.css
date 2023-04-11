@@ -6,27 +6,74 @@
   h1{
    color: #fe5d26;
   }
-  .cart-table{
-    width: 100%;
-    
-  }
 
 .cart-table-head{
     background-color: #f9e4a44d;
 }
 
-.cart-table-head th, .cart-table-body td{
-    width: 15rem;
-    height: 2rem;
+
+
+.cart-headers{
+    display: grid;
+    grid-template: 1fr / repeat(5, 1fr);
 }
 
-.cart-table-body td{
-    background-color: #fcf2d14d;
-    vertical-align: middle;
-    height: 5rem;
-    text-align: center;
-    padding: 1rem 0rem;
-}
+    .cart-headers h2{
+        margin: 0;
+        font-size: 1rem;
+        text-align: center;
+        padding: 0.5rem 1rem;
+        background-color: #f9e4a44d;
+        border: 1px solid white;
+    }
+
+    .cart-items{
+        display: grid;
+        grid-template: 1fr / repeat(5, 1fr);
+    }
+
+    .grid-element{
+        background-color: #fcf2d14d;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid white;
+        padding: 2rem 0;
+    }
+
+    .grid-element p{
+        text-align: center;
+    }
+
+    .cart-footer{
+        display: grid;
+        grid-template: 1fr / repeat(5, 1fr);
+    }
+
+    .cart-btn-element{
+        grid-column: span 5;
+    }
+
+    .clear-cart{
+        background-color: #fe5d26;
+        margin-top: 2rem;
+        color: white;
+        border: none;
+        border-radius: 2px;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 1rem;
+        font-weight: 500;
+        margin: auto;
+    }
+
+    .main{
+        margin: 0 2rem 0 auto ;
+    }
 
 .image{
     display: flex;
@@ -71,22 +118,7 @@
     border: none;
 }
 
-.clear-cart{
-    background-color: #fe5d26;
-    margin-top: 2rem;
-    color: white;
-    border: none;
-    border-radius: 2px;
-    padding: 0.5rem 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 1rem;
-    font-weight: 500;
-    margin: auto;
-}
+
 
 .cart-totals{
     padding: 2rem 0;
@@ -111,4 +143,36 @@
 
 .quantity-display{
     display: flex;
+    gap: 2rem;
+}
+
+@media only screen and (max-width: 1000px){
+    .background{
+        padding: 5rem 0 0 0;
+    }
+
+    .cart-headers h2{
+        padding: 1rem 0;
+    }
+
+    .background h1{
+        text-align: center;
+    }
+
+    .quantity-display{
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .image{
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .grid-element p{
+        font-size: 0.8rem;
+    }
+
+    .cart-totals{
+        justify-content: center;
+    }
 }

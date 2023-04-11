@@ -1,4 +1,4 @@
-import { Component, DoCheck, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { SilasService } from 'src/app/silas.service';
 
 @Component({
@@ -22,6 +22,8 @@ export class CartComponent implements OnInit, DoCheck{
     this.silas.loadCart();
     this.items = this.silas.getItems();
   }
+
+ 
 
   items: any = [];
 

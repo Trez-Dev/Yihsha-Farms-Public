@@ -33,6 +33,7 @@ import { FileUploadComponent } from './test/file-upload.component';
 import { CartComponent } from './shop/cart/cart.component';
 import { CheckoutComponent } from './shop/checkout/checkout.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { CustomFilterPipe } from './filterPipe/custom-filter-pipe.pipe';
 
 
 
@@ -66,6 +67,7 @@ import { NgxPayPalModule } from 'ngx-paypal';
     FileUploadComponent,
     CartComponent,
     CheckoutComponent,
+    CustomFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -78,7 +80,6 @@ import { NgxPayPalModule } from 'ngx-paypal';
     MatNativeDateModule,
     ScrollingModule,
     NgxPayPalModule,
-    // RouterModule.forRoot(appRoutes)
   ],
   providers: [
     SilasService,

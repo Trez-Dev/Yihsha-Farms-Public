@@ -81,7 +81,9 @@ export class SilasService {
   itemUpdate(item: any, quantity: any){
     this.items.forEach((data: {id: any, quantity: any}) => {
       if(data.id === item.id){
-        data.quantity = quantity + data.quantity
+        if (data.quantity > 1 || quantity == 1){
+          data.quantity = quantity + data.quantity
+        }
       }
     })
     this.saveCart();
