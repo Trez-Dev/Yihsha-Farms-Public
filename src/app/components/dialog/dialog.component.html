@@ -48,6 +48,16 @@
               <input matInput [(ngModel)]="addressData.lastName">
             </mat-form-field></td>
           </tr></table>
+          <mat-form-field class="example-full-width" color="warn">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput [formControl]="UserFormControl" [errorStateMatcher]="matcher" matInput [(ngModel)]="addressData.email">
+            <mat-error *ngIf="UserFormControl.hasError('email') && !UserFormControl.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="UserFormControl.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
         
           <p>
             <mat-form-field class="example-full-width" color="warn">
@@ -72,8 +82,15 @@
                 </mat-form-field></td>
           </tr>
           <tr>
+            <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Phone Number</mat-label>
+                  <input type="tel" matInput placeholder="555-555-1234">
+                  <mat-icon matSuffix>phone</mat-icon>
+                </mat-form-field>
+              </td>
             <td><mat-form-field class="example-full-width" color="warn">
-                <mat-label>Postal Code</mat-label>
+                <mat-label>Zip Code</mat-label>
                 <input matInput #postalCode maxlength="5" placeholder="Ex. 94105" [(ngModel)]="addressData.postalCode">
                 </mat-form-field>
             </td>

@@ -111,7 +111,7 @@
     grid-template: repeat(2, 1fr) / repeat(2, 1fr);
 }
 
-.add-product, .delete-product{
+.admin-item{
     background-color: #fe5d26;
     color: white;
     box-shadow: 0px 5px 8px #1818184d;

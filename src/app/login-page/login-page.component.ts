@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DialogComponent } from '../components/dialog/dialog.component';
 import { PocketbaseService } from '../pocketbase.service';
 import { Address } from '../shared/address.model';
@@ -18,7 +18,8 @@ export class LoginPageComponent implements OnInit{
   constructor(public dialogBox: MatDialog, 
     private silas: SilasService, 
     private activatedRoute: ActivatedRoute,
-    private database: PocketbaseService){}
+    private database: PocketbaseService,
+    private router: Router){}
 
   dialogtitle: string | undefined;
   dalogDescription: string | undefined;
@@ -30,6 +31,7 @@ export class LoginPageComponent implements OnInit{
   backDropLoad: boolean = true;
   profileLoad: boolean = true;
   userOptions: any = [];
+  userId: string | undefined;
 
 
   userData: any = new User ('../../assets/images/silas-bg2.jpg','../../assets/images/user.png','Silas Coley','User');
@@ -37,9 +39,9 @@ export class LoginPageComponent implements OnInit{
 
   ngOnInit(){
     this.activatedRoute.params.subscribe(data => {
+      this.userId = data['id'];
       this.background = localStorage.getItem('background') || 'https://ik.imagekit.io/qb5fs9jxh/Background/leecoy-bg-flowers.jpeg?updatedAt=1678756515397';
       this.address = JSON.parse(localStorage.getItem('address') || `{"firstName":"User","lastName":"User","address1":"-----------","address2":"-----------","City":"-------------","State":"----------","postalCode":"123"}`);
-      console.log(this.address);
       if(data['id'] === environment.SILAS_ADMIN_ID){
         this.userData = new User(this.background,'../../assets/images/IMG_0957.jpeg','Silas Coley','SilasColey');
         localStorage.setItem('user-login',`{"image":"../assets/images/IMG_0957.jpeg","id":"${environment.SILAS_ADMIN_ID}"}`);
@@ -88,6 +90,10 @@ export class LoginPageComponent implements OnInit{
         name: "Delete Product",
         description: "spice, groceries, juice, etc...",
       },
+      {
+        name: "Customer Orders",
+        description: "Manage and Deliver",
+      },
     ]
   }
  
@@ -101,9 +107,9 @@ export class LoginPageComponent implements OnInit{
         this.imageBlobUrl = reader.result;
       }
     }, false);
-  if (image) {
-      reader.readAsDataURL(image);
-    }
+      if (image) {
+          reader.readAsDataURL(image);
+      }
   }
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string, selectedOption: string){
@@ -132,7 +138,6 @@ export class LoginPageComponent implements OnInit{
     if(selectedOption === 'profile'){
       this.dialogtitle = 'Select a Profile Image'
     }
-
     this.dialogBox.open(DialogComponent,{
       enterAnimationDuration,
       exitAnimationDuration,
@@ -140,13 +145,15 @@ export class LoginPageComponent implements OnInit{
     })
 
   }
-
-
   onBackdropLoad(){
     this.backDropLoad = false;
   }
   onProfileLoad(){
     this.profileLoad = false;
+  }
+
+  logNav(){
+    this.router.navigate([`/logs/${this.userId}`])
   }
   
 }

@@ -1,0 +1,82 @@
+<div class="background">
+    <mat-paginator [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page">
+    </mat-paginator>
+    <mat-card class="log-header">
+        <mat-card-content>
+           <div class="log-headers">
+            <h2>First Name</h2>
+            <h2>Last Name</h2>
+            <h2>Phone Number</h2>
+            <h2>Purchase Time</h2>
+            <h2>Email Address</h2>
+           </div>
+        </mat-card-content>
+    </mat-card>
+    <div class="user-log">
+        <mat-card class="user">
+            <mat-card-content>
+                <div class="log-content">
+                    <p>John</p>
+                    <p>Doe</p>
+                    <p>(876)123-4567</p>
+                    <p>2023-04-11T00:31:58Z</p>
+                    <p>example@gmail.com</p>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <mat-accordion class="accordion">
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-description>
+                    <div class="address-log">
+                        <p><strong>Address</strong></p>
+                        <p><strong>Address 2</strong></p>
+                        <p><strong>City</strong></p>
+                        <p><strong>State</strong></p>
+                        <p><strong>Zip Code</strong></p>
+                    </div>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div class="address-log">
+                <p>123 street</p>
+                <p>19 drive</p>
+                <p>Boston</p>
+                <p>Massetusets</p>
+                <p>1402</p>
+              </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-description>
+                    <div class="product-log">
+                        <p><strong>Product</strong></p>
+                        <p><strong>Price</strong></p>
+                        <p><strong>Quantity</strong></p>
+                        <p><strong>Subtotal</strong></p>
+                    </div>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="product-log">
+                    <p>Betapak Curry Powder</p>
+                    <p>$11.99</p>
+                    <p>2</p>
+                    <p>$23.98</p>
+                </div>
+                <div class="product-log">
+                    <p>Eaton's Jerk Seasoning</p>
+                    <p>$8.99</p>
+                    <p>1</p>
+                    <p>$8.99</p>
+                </div>
+                <div class="product-log">
+                    <p><strong>TOTAL:</strong></p>
+                    <p class="total-price"><strong>$32.97</strong></p>
+                </div>
+              </mat-expansion-panel>
+          </mat-accordion>
+          <mat-divider></mat-divider>
+    </div>
+</div>

@@ -34,6 +34,7 @@ import { CartComponent } from './shop/cart/cart.component';
 import { CheckoutComponent } from './shop/checkout/checkout.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { CustomFilterPipe } from './filterPipe/custom-filter-pipe.pipe';
+import { LogsComponent } from './components/logs/logs.component';
 
 
 
@@ -67,7 +68,8 @@ import { CustomFilterPipe } from './filterPipe/custom-filter-pipe.pipe';
     FileUploadComponent,
     CartComponent,
     CheckoutComponent,
-    CustomFilterPipe
+    CustomFilterPipe,
+    LogsComponent
   ],
   imports: [
     BrowserModule,

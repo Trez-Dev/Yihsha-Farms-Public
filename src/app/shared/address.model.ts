@@ -6,5 +6,6 @@ export class Address {
       public address2: string, 
       public City: string, 
       public State: string, 
-      public postalCode: string) {}
+      public postalCode: string,
+      public phone: string) {}
   }

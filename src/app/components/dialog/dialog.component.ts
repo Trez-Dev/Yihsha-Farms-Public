@@ -6,6 +6,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SilasService } from 'src/app/silas.service';
 import { Address } from 'src/app/shared/address.model';
+import { FormControl, Validators } from '@angular/forms';
+import { MyErrorStateMatcher } from 'src/app/login-page/sign-up/sign-up.component';
 
 @Component({
   selector: 'app-dialog',
@@ -50,7 +52,11 @@ selectedId: string | undefined;
 randomNum: any;
 // for funzies!
 
-addressData = new Address('','','','','','','','');
+UserFormControl = new FormControl('', [Validators.required, Validators.email]);
+AddressFormControl = new FormControl('', [Validators.required]);
+
+matcher = new MyErrorStateMatcher();
+addressData = new Address('','','','','','','','','');
 
 backgroundImages = [
   {

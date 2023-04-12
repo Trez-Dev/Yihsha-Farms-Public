@@ -14,6 +14,8 @@ import { LoginComponent } from './login-page/login/login.component';
 import { SignUpComponent } from './login-page/sign-up/sign-up.component';
 import { CartComponent } from './shop/cart/cart.component';
 import { CheckoutComponent } from './shop/checkout/checkout.component';
+import { LogsComponent } from './components/logs/logs.component';
+import { environment } from 'src/environments/environment';
 
 const routes: Routes = [
 { path: 'home', component: HomeComponent},
@@ -29,6 +31,7 @@ const routes: Routes = [
 { path: 'user-page/:id', component: LoginPageComponent },
 { path: 'login', component: LoginComponent },
 { path: 'sign-up', component: SignUpComponent },
+{ path: `logs/${environment.SILAS_ADMIN_ID}` || `logs/${environment.LECOY_ADMIN_ID}`, component: LogsComponent},
 {path: '', redirectTo: '/home', pathMatch: 'full'},
 {path: '**', redirectTo: '/home', },
 ];

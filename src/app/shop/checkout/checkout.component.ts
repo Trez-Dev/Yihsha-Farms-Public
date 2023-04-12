@@ -21,7 +21,7 @@ export class CheckoutComponent implements OnInit{
 
   public payPalConfig ? : IPayPalConfig;
   showSuccess: boolean = false;
-  addressData = new Address('','','','','','','','');
+  addressData = new Address('','','','','','','','','');
 
   UserFormControl = new FormControl('', [Validators.required, Validators.email]);
   AddressFormControl = new FormControl('', [Validators.required]);
@@ -34,7 +34,9 @@ export class CheckoutComponent implements OnInit{
     this.silas.loadCart();
     this.items = this.silas.getItems();
     this.initConfig();
-
+    if(JSON.parse(localStorage.getItem('address')!)){
+      this.addressData=JSON.parse(localStorage.getItem('address')!)
+    }
     console.log(localStorage.getItem('userId'))
   }
 
