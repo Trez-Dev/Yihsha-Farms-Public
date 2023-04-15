@@ -14,8 +14,9 @@
                 <div class="add-product">
                 <input type="number" max="20" value="1" min="1" [(ngModel)]="quantity" >
                 <button (click)="addToCart(selectedProduct)">ADD TO CART <i class='fas fa-cart-arrow-down' style='font-size:24px'></i></button>
+                <h2 *ngIf="lowStock" class="low-stock-warn">Only {{selectedProduct.inventory}} left in stock!</h2>
                 </div>
-                Type: {{selectedProduct.type}}
+               <p>Type: {{selectedProduct.type}}</p>
             </div>
         </div>
         <div class="extra-info">
@@ -41,9 +42,9 @@
             <h1>Related products</h1>
             <div class="related-items-gallery">
                 <div class="gallery-item" *ngFor="let product of relatedProducts">
-                    <a [routerLink]="['/product-landing', product.id]"><div class="image"><img [src]="product.image"></div></a>
+                    <a (click)="reset()" [routerLink]="['/product-landing', product.id]"><div class="image"><img [src]="product.image"></div></a>
                     <p>{{ product.type }}</p>
-                    <a [routerLink]="['/product-landing', product.id]"><h1>{{ product.name }}</h1></a>
+                    <a (click)="reset()" [routerLink]="['/product-landing', product.id]"><h1>{{ product.name }}</h1></a>
                     <div class="stars">
                     <p *ngFor="let n of starNum(product.star);"><i class='fas fa-star' style='font-size:12px; color: #fe5d26;'></i></p>
                     <p *ngFor="let n of starNum(5-product.star);"><i class='fas fa-star' style='font-size:12px'></i></p>

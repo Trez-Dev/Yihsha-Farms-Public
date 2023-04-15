@@ -1,8 +1,8 @@
 <div class="background">
-    <mat-paginator [length]="100"
-              [pageSize]="10"
+    <mat-paginator [length]="customerLogs.length"
+              [pageSize]="pageSize"
               [pageSizeOptions]="[5, 10, 25, 100]"
-              aria-label="Select page">
+              aria-label="Select page" #paginator>
     </mat-paginator>
     <mat-card class="log-header">
         <mat-card-content>
@@ -12,19 +12,23 @@
             <h2>Phone Number</h2>
             <h2>Purchase Time</h2>
             <h2>Email Address</h2>
+            <h2>Order Status</h2>
            </div>
         </mat-card-content>
     </mat-card>
-    <div class="user-log">
+    <div class="user-log" *ngFor="let customerLog of customerLogs | slice:(paginator.pageIndex * paginator.pageSize):(paginator.pageIndex + 1) * paginator.pageSize">
         <mat-card class="user">
             <mat-card-content>
-                <div class="log-content">
-                    <p>John</p>
-                    <p>Doe</p>
-                    <p>(876)123-4567</p>
-                    <p>2023-04-11T00:31:58Z</p>
-                    <p>example@gmail.com</p>
-                </div>
+                    <div class="log-content">
+                        <p>{{customerLog.firstName}}</p>
+                        <p>{{customerLog.lastName}}</p>
+                        <p>{{customerLog.phone}}</p>
+                        <p>{{customerLog.purchaseTime}}</p>
+                        <p>{{customerLog.email}}</p>
+                        <mat-chip-option *ngIf="admin" class="chip-option" color="accent" [selected]="customerLog.orderStatus" (click)="updateOrders(customerLog.log,customerLog.id,chip.selected)" #chip>Order Completed</mat-chip-option>
+                        <p *ngIf="!customerLog.orderStatus && !admin">Pending</p>
+                        <p *ngIf="customerLog.orderStatus && !admin">Completed</p>
+                    </div>
             </mat-card-content>
         </mat-card>
         <mat-accordion class="accordion">
@@ -41,17 +45,18 @@
                 </mat-panel-description>
               </mat-expansion-panel-header>
               <div class="address-log">
-                <p>123 street</p>
-                <p>19 drive</p>
-                <p>Boston</p>
-                <p>Massetusets</p>
-                <p>1402</p>
+                <p>{{customerLog.shippingAddress.adress}}</p>
+                <p>{{customerLog.shippingAddress.address2}}</p>
+                <p>{{customerLog.shippingAddress.city}}</p>
+                <p>{{customerLog.shippingAddress.state}}</p>
+                <p>{{customerLog.shippingAddress.zipCode}}</p>
               </div>
             </mat-expansion-panel>
             <mat-expansion-panel hideToggle>
                 <mat-expansion-panel-header>
                   <mat-panel-description>
                     <div class="product-log">
+                        <p><strong>Image</strong></p>
                         <p><strong>Product</strong></p>
                         <p><strong>Price</strong></p>
                         <p><strong>Quantity</strong></p>
@@ -59,21 +64,19 @@
                     </div>
                   </mat-panel-description>
                 </mat-expansion-panel-header>
-                <div class="product-log">
-                    <p>Betapak Curry Powder</p>
-                    <p>$11.99</p>
-                    <p>2</p>
-                    <p>$23.98</p>
+                <div class="product-log" *ngFor="let product of customerLog.productPurchased">
+                    <div class="product-img">
+                        <img [src]="product.image" alt="product-img">
+                    </div>
+                    <p>{{product.name}}</p>
+                    <p>{{product.price}}</p>
+                    <p>{{product.quantity}}</p>
+                    <p>{{product.subTotal}}</p>
                 </div>
-                <div class="product-log">
-                    <p>Eaton's Jerk Seasoning</p>
-                    <p>$8.99</p>
-                    <p>1</p>
-                    <p>$8.99</p>
-                </div>
+                <mat-divider></mat-divider>
                 <div class="product-log">
                     <p><strong>TOTAL:</strong></p>
-                    <p class="total-price"><strong>$32.97</strong></p>
+                    <p class="total-price"><strong>{{customerLog.total}}</strong></p>
                 </div>
               </mat-expansion-panel>
           </mat-accordion>

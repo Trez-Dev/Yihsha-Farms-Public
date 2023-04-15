@@ -1,6 +1,5 @@
 .background{
     background-color: #f9e4a44d;
-    height: 100vh;
     padding: 8rem 0;
 }
 
@@ -9,7 +8,7 @@
 }
 
 .user-log{
-    margin: 0.5rem 2rem;
+    margin: 2.5rem 2rem;
 }
 
 .user{
@@ -18,7 +17,7 @@
 
 .log-headers{
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
 }
 
 .log-headers h2{
@@ -28,8 +27,9 @@
 
 .log-content{
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
 }
+
 
 .log-content p{
     text-align: center;
@@ -53,10 +53,34 @@
 .product-log{
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     text-align: center;
+    margin: 1rem 0;
 }
 
 .total-price{
-    grid-column: 4;
+    grid-column: 5;
+}
+
+.product-img{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.product-img img{
+    width: 50%;
+}
+
+.order-update{
+    width: 100%;
+    display: flex;
+}
+
+.order-update button{
+    margin: 0 auto;
+}
+
+.chip-option{
+    margin: auto;
 }

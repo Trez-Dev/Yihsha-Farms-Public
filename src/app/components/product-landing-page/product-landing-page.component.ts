@@ -18,6 +18,7 @@ export class ProductLandingPageComponent implements OnInit{
   selection: boolean = true;
   selectedProduct: any;
   itemAdded: boolean | undefined;
+  lowStock: boolean = false;
   // productId: string = '';
 
   landingProduct: any;
@@ -38,6 +39,11 @@ export class ProductLandingPageComponent implements OnInit{
       // this.productId = data['id']
       this.database.viewPocketBaseData(data['id']).then(info =>{
         this.selectedProduct = info;
+        if(this.selectedProduct.inventory > 1 && this.selectedProduct.inventory < 10){
+          this.lowStock = true;
+        }else{
+          this.lowStock = false;
+        }
       })
     })
     this.database.getPocketBaseData().then(data=>{
@@ -94,4 +100,9 @@ export class ProductLandingPageComponent implements OnInit{
       this.silas.itemUpdate(item, item.quantity)
     }
   }
+
+  reset(){
+    this.itemAdded = false;
+  }
+
 }

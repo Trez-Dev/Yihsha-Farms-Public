@@ -36,6 +36,12 @@
 hr{
     border: 1px solid #95a3b34d;
 }
+
+.low-stock-warn{
+    color: #ff5015;
+    margin: auto;
+}
+
 .product{
     display: flex;
     gap: 2rem;

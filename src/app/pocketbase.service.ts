@@ -3,9 +3,10 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Post } from './post';
 import { Router } from '@angular/router';
-import { Product } from './shared/product.model';
+import { InventoryProduct, Product } from './shared/product.model';
 
 import PocketBase, { Record } from 'pocketbase';
+import { Address, AddressOnly } from './shared/address.model';
 
 @Injectable({
   providedIn: 'root'
@@ -52,9 +53,6 @@ export class PocketbaseService {
       .authWithOAuth2(provider.name, params.get('code'), provider.codeVerifier, this.redirectUrl);
       if (authData.token) {
         this.router.navigate([`/user-page/${this.pocketBase.authStore.model.id}`])
-        setTimeout(()=>{
-          window.location.reload();
-        }, 1000)
       }
   }
 
@@ -77,14 +75,26 @@ export class PocketbaseService {
 
   public async getPocketBaseData(){
     const records = await this.pocketBase.collection('products')
-      .getFullList(200, {sort: '-created'});
+      .getList(1,9,{filter: 'inventory > 0',sort: '-created'});
+    return records
+  }
+
+  public async getAllProducts(){
+    const records = await this.pocketBase.collection('products')
+    .getFullList(200, {sort: '-created'});
     return records
   }
   
   public async viewPocketBaseData(recordId: string): Promise<any>{
     const record = await this.pocketBase.collection('products')
       .getOne(recordId)
-    return record
+    return record;
+  }
+
+  public async updateProductInventory(productId: string, inventoryUpdate: InventoryProduct){
+    const record = await this.pocketBase.collection('products')
+      .update(productId,inventoryUpdate);
+    return record;
   }
 
   public async viewUserData(userId: string): Promise<any>{
@@ -104,5 +114,53 @@ export class PocketbaseService {
     const record = await this.pocketBase.collection('products')
       .delete(selectedID);
     return !!record;
+  }
+
+  public async addCustomerLog(logData: any){
+    const log = await this.pocketBase.collection('orders')
+      .create(logData);
+    return !!log;
+  }
+
+  public async getCustomerLogs(){
+    const logs = await this.pocketBase.collection('orders')
+    .getFullList();
+  return logs;
+  }
+
+  public async getUserLogs(userId: string){
+    const logs = await this.pocketBase.collection('orders')
+    .getList(1,50, {filter: `user_id = "${userId}"`})
+    return logs;
+  }
+
+
+  public async updateCustomerLog(logId: string, logData: any){
+    const log = await this.pocketBase.collection('orders')
+    .update(logId,logData);
+    return !!log;
+  }
+
+  public async addUserAddress(address: Address){
+    const record = await this.pocketBase.collection('shipping_address')
+    .create(address);
+    return !!record;
+  }
+
+  public async updateUserAddress(userId: string, address: Address){
+    const record = await this.pocketBase.collection('shipping_address')
+    .update(userId, address);
+  }
+
+  public async viewUserAddress(userId: string){
+    const record = await this.pocketBase.collection('shipping_address')
+    .getFirstListItem(`userId="${userId}"`);
+    return record;
+  }
+
+  public async deleteUserAddress(recordId: string){
+    const record = await this.pocketBase.collection('shipping_address')
+    .delete(recordId);
+    return record;
   }
 }

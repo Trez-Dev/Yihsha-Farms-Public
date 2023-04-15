@@ -8,6 +8,7 @@ import { SilasService } from 'src/app/silas.service';
 import { Address } from 'src/app/shared/address.model';
 import { FormControl, Validators } from '@angular/forms';
 import { MyErrorStateMatcher } from 'src/app/login-page/sign-up/sign-up.component';
+import { InventoryProduct } from 'src/app/shared/product.model';
 
 @Component({
   selector: 'app-dialog',
@@ -44,9 +45,12 @@ starNumber: number | undefined;
 productDescription: string ='';
 pocketData: any;
 profileLoad: boolean = true;
+discount: boolean = false;
 
 products: any;
-selectedId: string | undefined;
+selectedId: string = '';
+inventoryAmount: any;
+addressId: string ='';
 
 // for funzies!
 randomNum: any;
@@ -56,7 +60,7 @@ UserFormControl = new FormControl('', [Validators.required, Validators.email]);
 AddressFormControl = new FormControl('', [Validators.required]);
 
 matcher = new MyErrorStateMatcher();
-addressData = new Address('','','','','','','','','');
+addressData = new Address('','','','','','','','','','');
 
 backgroundImages = [
   {
@@ -89,12 +93,13 @@ backgroundImages = [
 ]
 
 
-names = ['Wayne Golden','Alisson Werner', 'Ariel Ochoa', 'Spencer Stevens', 'Royce Wilkinson', 'Triston Hernandez,', 'Kieran Cuevas', 'Cayden Cooper', 'Gabriella Wiggins', 'Bennett Cooke', 'Angie Wilkerson', 'Zaria Powell'];
+names = [this.inputData.name,'Alisson Werner', 'Ariel Ochoa', 'Spencer Stevens', 'Royce Wilkinson', 'Triston Hernandez,', 'Kieran Cuevas', 'Cayden Cooper', 'Gabriella Wiggins', 'Bennett Cooke', 'Angie Wilkerson', 'Zaria Powell'];
 
 
 
 ngOnInit(): void {
-  this.database.getPocketBaseData().then(data => {
+  this.addressData.userId = JSON.parse(localStorage.getItem('userId') || `{"userId":""}`).userId
+  this.database.getAllProducts().then(data => {
     this.products = data;
   })
   if(this.inputData.selected === 'AP'){
@@ -116,6 +121,11 @@ ngOnInit(): void {
     this.profile = true
   }
 
+  this.database.viewUserAddress(this.addressData.userId).then(data => {
+    this.addressId = data.id;
+    this.addressData = data;
+  }).catch(() => console.log("No address Present"))
+
   for(let i = 0; i < this.names.length; i++){
     this.silas.getUserAvatar(this.names[i]).subscribe(avatar => {
       this.createImageFromBlob(avatar);
@@ -126,17 +136,22 @@ ngOnInit(): void {
 
 setBackgroundImage(imageUrl: string){
   localStorage.setItem('background', imageUrl);
-  window.location.reload();
 }
 
 setprofile(image: any){
   localStorage.setItem('profileImage', `{"image":${JSON.stringify(image)}}`);
-  window.location.reload();
 }
 
 addAddress(){
-localStorage.setItem('address', JSON.stringify(this.addressData));
-window.location.reload();
+  this.database.addUserAddress(this.addressData).then(() =>{
+    this.snackbar.open("Address Added!", "Clear");
+});
+}
+clearAddress(){ 
+  this.addressData = new Address('','','','','','','','','','');
+  this.database.deleteUserAddress(this.addressId).then(() =>{
+    this.snackbar.open("Address Deleted", "Clear");
+});
 }
 
 addProductToDatabase(){
@@ -186,12 +201,33 @@ DeleteProductFromDatabase(){
   })
 }
 
+updateInventory(inventoryAmount: string){
+  this.database.viewPocketBaseData(this.selectedId).then(data => {
+    const inventoryUpdate = new InventoryProduct(data.image,data.type,data.star,data.name,data.price,data.description,parseInt(inventoryAmount))
+    console.log(inventoryUpdate)
+    this.database.updateProductInventory(this.selectedId,inventoryUpdate).then(() => {
+      this.snackbar.open('Inventory Updatad', 'Dismiss')
+    }).catch(() => {
+      this.snackbar.open('Opps, Somthing went wrong :(', 'Dismiss')
+    });
+  }).catch(() => console.log("View data Error"));
+}
+
+updatePrice(price: string){
+  this.database.viewPocketBaseData(this.selectedId).then(data => {
+    const inventoryUpdate = new InventoryProduct(data.image,data.type,data.star,data.name,price,data.description,data.inventory)
+    console.log(inventoryUpdate)
+    this.database.updateProductInventory(this.selectedId,inventoryUpdate).then(() => {
+      this.snackbar.open('Price Changed', 'Dismiss')
+    }).catch(() => {
+      this.snackbar.open('Opps, Somthing went wrong :(', 'Dismiss')
+    });
+  }).catch(() => console.log("View data Error"));
+}
+
 logOut(){
   localStorage.clear();
   this.router.navigate(["/home"]);
-  setTimeout(()=>{
-    window.location.reload();
-  }, 1000)
 }
 
 createImageFromBlob(image: Blob) {

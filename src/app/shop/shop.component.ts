@@ -25,9 +25,9 @@ export class ShopComponent implements OnInit{
 
   ngOnInit(): void {
     this.database.getPocketBaseData().then(data =>{
-      this.databaseData = data.sort((a: {name:any}, z: {name: any}) => a.name.localeCompare(z.name));
-      this.products = data.sort((a: {name:any}, z: {name: any}) => a.name.localeCompare(z.name)).slice(0,9);
-      this.leftProducts = data.sort((a: {name:any}, z: {name: any}) => z.name.localeCompare(a.name)).slice(0,3);
+      this.databaseData = data.items.sort((a: {name:any}, z: {name: any}) => a.name.localeCompare(z.name));
+      this.products = data.items.sort((a: {name:any}, z: {name: any}) => a.name.localeCompare(z.name)).slice(0,9);
+      this.leftProducts = data.items.sort((a: {name:any}, z: {name: any}) => z.name.localeCompare(a.name)).slice(0,3);
       this.seasoningNum = this.databaseData.filter(product => product.type === 'Seasonings').length
       this.sauceNum = this.databaseData.filter(product => product.type === 'Pepper Sauces').length
       this.jerkNum = this.databaseData.filter(product => product.type === 'Jerk Seasoning').length

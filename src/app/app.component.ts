@@ -1,12 +1,13 @@
 import { Component, DoCheck, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { SilasService } from './silas.service'; 
-import { ActivatedRoute, ChildrenOutletContexts, Router } from '@angular/router';
+import { ActivatedRoute, ChildrenOutletContexts, NavigationEnd, Router } from '@angular/router';
 import { Product } from './shared/product.model';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { PocketbaseService } from './pocketbase.service';
 import { trigger,state,style,animate,transition } from '@angular/animations';
 import { shopAnimation } from './animations/animations';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -55,11 +56,6 @@ export class AppComponent implements OnInit, DoCheck{
       this.loginStatus = false;
     }else{
       this.loginStatus = true;
-      this.database.viewUserData(this.userLogin['id']).then((data) => {
-        this.silas.getUserAvatar(data['name']).subscribe(avatar => {
-          this.createImageFromBlob(avatar);
-        })
-      })
     }
   } 
 
@@ -67,6 +63,14 @@ export class AppComponent implements OnInit, DoCheck{
     this.currentRoute = this.router.url;
     this.silas.loadCart();
     this.items = this.silas.getItems();
+    this.userLogin = JSON.parse(localStorage.getItem('user-login') || '{"image":"../assets/images/user.png","loginStatus":false}');
+    if (this.userLogin.loginStatus == false){
+      this.loginStatus = false;
+    }else{
+      this.profile = JSON.parse(localStorage.getItem('profileImage') || '{"profile":false}');
+      this.loginStatus = true;
+      this.imageBlobUrl = JSON.parse(localStorage.getItem('user-profile-image')||'{"image":""}').image
+    }
   }
 
   toggle(){
@@ -99,21 +103,6 @@ export class AppComponent implements OnInit, DoCheck{
     // this.items.forEach((item: any, index: any) => this.silas.removeItem(index));
     this.silas.clearCart(items);
     this.items = [...this.silas.getItems()];
-  }
-  
-  createImageFromBlob(image: Blob) {
-    let reader = new FileReader();
-    reader.addEventListener("load", () => {
-      this.profile = JSON.parse(localStorage.getItem('profileImage') || '{"profile":false}');
-      if (this.profile.profile != false){
-        this.imageBlobUrl = this.profile.image;
-      }else{
-        this.imageBlobUrl = reader.result;
-      }
-    }, false);
-  if (image) {
-      reader.readAsDataURL(image);
-    }
   }
 
   logOut(enterAnimationDuration: string, exitAnimationDuration: string){

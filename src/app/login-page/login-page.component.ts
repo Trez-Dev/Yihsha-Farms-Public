@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, DoCheck, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogComponent } from '../components/dialog/dialog.component';
@@ -25,13 +25,13 @@ export class LoginPageComponent implements OnInit{
   dalogDescription: string | undefined;
   imageBlobUrl: any;
   background: string = '';
-  address: any;
+  address = new Address('','','','','','','','','','');
   profile: any;
   adminStatus: boolean | undefined;
   backDropLoad: boolean = true;
   profileLoad: boolean = true;
   userOptions: any = [];
-  userId: string | undefined;
+  userId: string = '';
 
 
   userData: any = new User ('../../assets/images/silas-bg2.jpg','../../assets/images/user.png','Silas Coley','User');
@@ -40,8 +40,12 @@ export class LoginPageComponent implements OnInit{
   ngOnInit(){
     this.activatedRoute.params.subscribe(data => {
       this.userId = data['id'];
+      this.database.viewUserAddress(this.userId).then(data => {
+        this.address = data;
+      }).catch(() => {
+       this.address = new Address('-----------','-----------','-----------','-----------','-----------','-----------','-----------','-----------','-----------','-----------')
+      })
       this.background = localStorage.getItem('background') || 'https://ik.imagekit.io/qb5fs9jxh/Background/leecoy-bg-flowers.jpeg?updatedAt=1678756515397';
-      this.address = JSON.parse(localStorage.getItem('address') || `{"firstName":"User","lastName":"User","address1":"-----------","address2":"-----------","City":"-------------","State":"----------","postalCode":"123"}`);
       if(data['id'] === environment.SILAS_ADMIN_ID){
         this.userData = new User(this.background,'../../assets/images/IMG_0957.jpeg','Silas Coley','SilasColey');
         localStorage.setItem('user-login',`{"image":"../assets/images/IMG_0957.jpeg","id":"${environment.SILAS_ADMIN_ID}"}`);
@@ -54,7 +58,7 @@ export class LoginPageComponent implements OnInit{
         this.profileLoad = false;
       } else {
         this.database.viewUserData(data['id']).then((data) => {
-          localStorage.setItem('userId',`{userId":"${data['id']}"}`)
+          localStorage.setItem('userId',`{"userId":"${data['id']}"}`)
           this.silas.getUserAvatar(data['name']).subscribe(avatar => {
             this.createImageFromBlob(avatar);
             this.userData = new User(this.background,'',data['name'],data['username']);
@@ -72,7 +76,7 @@ export class LoginPageComponent implements OnInit{
       },
       {
         name: "Shipping Address",
-        description: `${this.address.address1}, ${this.address.City}`,
+        description: ""
       },
       {
         name: "Previous Orders",
@@ -87,7 +91,7 @@ export class LoginPageComponent implements OnInit{
         description: "spice, groceries, juice, etc...",
       },
       {
-        name: "Delete Product",
+        name: "Inventory Management",
         description: "spice, groceries, juice, etc...",
       },
       {
@@ -96,7 +100,6 @@ export class LoginPageComponent implements OnInit{
       },
     ]
   }
- 
   createImageFromBlob(image: Blob) {
     let reader = new FileReader();
     reader.addEventListener("load", () => {
@@ -106,6 +109,7 @@ export class LoginPageComponent implements OnInit{
       }else{
         this.imageBlobUrl = reader.result;
       }
+      localStorage.setItem('user-profile-image',`{"image":${JSON.stringify(this.imageBlobUrl)}}`)
     }, false);
       if (image) {
           reader.readAsDataURL(image);
@@ -130,7 +134,7 @@ export class LoginPageComponent implements OnInit{
       this.dialogtitle = 'Add Product'
     }
     if(selectedOption === 'DP'){
-      this.dialogtitle = 'Delete Product'
+      this.dialogtitle = 'Inventory Management'
     }
     if(selectedOption === 'background'){
       this.dialogtitle = 'Select a Background'
@@ -141,7 +145,22 @@ export class LoginPageComponent implements OnInit{
     this.dialogBox.open(DialogComponent,{
       enterAnimationDuration,
       exitAnimationDuration,
-      data: {title: this.dialogtitle, selected: selectedOption}
+      data: {title: this.dialogtitle, selected: selectedOption, name: this.userData.name}
+    }).afterClosed().subscribe(() => {
+      this.userData.bg = localStorage.getItem('background') || 'https://ik.imagekit.io/qb5fs9jxh/Background/leecoy-bg-flowers.jpeg?updatedAt=1678756515397';
+      this.database.viewUserAddress(this.userId).then(data => {
+        this.address = data;
+      }).catch(() => {
+       this.address = new Address('-----------','-----------','-----------','-----------','-----------','-----------','-----------','-----------','-----------','-----------')
+      })
+      this.database.viewUserData(this.userId).then((data) => {
+        this.silas.getUserAvatar(data['name']).subscribe({
+          next: (avatar) => {
+          this.createImageFromBlob(avatar);
+          }, 
+          error: () => {console.log("Error: No User Avatar")}
+      })
+      }).catch(() => console.log("Error: No User Avatar"))
     })
 
   }
@@ -154,6 +173,10 @@ export class LoginPageComponent implements OnInit{
 
   logNav(){
     this.router.navigate([`/logs/${this.userId}`])
+  }
+
+  userLogNav(logType: string){
+    this.router.navigate([`/logs/${logType}/${this.userId}`])
   }
   
 }

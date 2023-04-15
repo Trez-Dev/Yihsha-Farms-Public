@@ -3,7 +3,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { ICreateOrderRequest, IPayPalConfig } from 'ngx-paypal';
 import { orderAcceptAnimation } from 'src/app/animations/animations';
 import { MyErrorStateMatcher } from 'src/app/login-page/sign-up/sign-up.component';
-import { Address } from 'src/app/shared/address.model';
+import { PocketbaseService } from 'src/app/pocketbase.service';
+import { Address, AddressOnly, ProductsPurchased } from 'src/app/shared/address.model';
 import { SilasService } from 'src/app/silas.service';
 import { environment } from 'src/environments/environment';
 
@@ -21,14 +22,15 @@ export class CheckoutComponent implements OnInit{
 
   public payPalConfig ? : IPayPalConfig;
   showSuccess: boolean = false;
-  addressData = new Address('','','','','','','','','');
+  addressData = new Address('','','','','','','','','','');
+  customerLog: any;
 
   UserFormControl = new FormControl('', [Validators.required, Validators.email]);
   AddressFormControl = new FormControl('', [Validators.required]);
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private silas: SilasService){}
+  constructor(private silas: SilasService, private database: PocketbaseService){}
  
   ngOnInit(): void {
     this.silas.loadCart();
@@ -37,11 +39,11 @@ export class CheckoutComponent implements OnInit{
     if(JSON.parse(localStorage.getItem('address')!)){
       this.addressData=JSON.parse(localStorage.getItem('address')!)
     }
-    console.log(localStorage.getItem('userId'))
   }
 
   items: any = [];
   itemsPurchased: any = [];
+  productsPurchased: ProductsPurchased[]= [];
 
 
   //----- calculate total
@@ -68,6 +70,7 @@ export class CheckoutComponent implements OnInit{
     // this.items.forEach((item: any, index: any) => this.silas.removeItem(index));
     this.silas.clearCart(items);
     this.items = [...this.silas.getItems()];
+
   }
 
 
@@ -83,6 +86,8 @@ export class CheckoutComponent implements OnInit{
         },
       }
       this.itemsPurchased.push(cartItem);
+     const purchasedItem = new ProductsPurchased(item.image,item.name,item.price,item.quantity, `$${item.price * item.quantity}`, `$${this.total}`)
+     this.productsPurchased.push(purchasedItem);
     })
     this.payPalConfig = {
     currency: 'USD',
@@ -116,10 +121,27 @@ export class CheckoutComponent implements OnInit{
       console.log('onApprove - transaction was approved', data, actions);
       actions.order.get().then((details: any) => {
         console.log('onApprove - you can get full order details inside onApprove: ', details);
-      });
+        this.customerLog = {
+          email_address: this.addressData.email,
+          first_name: this.addressData.firstName,
+          last_name: this.addressData.lastName,
+          user_id: JSON.parse(localStorage.getItem('userId')!).userId,
+          purchase_time: details.create_time,
+          products_purchased: JSON.stringify(this.productsPurchased),
+          phone_number: this.addressData.phone,
+          shipping_address: JSON.stringify(
+            new AddressOnly(
+              this.addressData.address1,
+              this.addressData.address2,
+              this.addressData.city,
+              this.addressData.state,
+              this.addressData.zipCode))
+        }
+      })
     },
     onClientAuthorization: (data) => {
       console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+      this.database.addCustomerLog(this.customerLog).then(() => console.log("Customer Log Added")).catch(() => console.log("Error Customer log not added :("));
       this.showSuccess = true;
       setTimeout(() => {
         this.showSuccess = false;

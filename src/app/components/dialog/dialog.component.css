@@ -25,8 +25,31 @@
     width: 100%;
 }
 
+.options{
+    justify-content: center;
+    margin-bottom: 4rem;
+}
+.card-items{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+}
+
+.amount-input{
+    margin-right: 2rem;
+}
+
+.card-items img{
+    width: 30% !important;
+    margin: auto;
+}
+
 .card, .logs{
-    margin-top: 1rem;
+    margin: 1rem;
+    width: 100%;
 }
 
 .box-properties{
@@ -72,6 +95,14 @@
 
 .grid-item img {
     border-radius: 5px;
+}
+
+.example-full-width{
+    width: 100%;
+}
+
+.discount{
+    display: flex;
 }
 
 @media only screen and (min-width: 1000px){

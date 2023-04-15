@@ -27,16 +27,10 @@ export class LoginComponent{
     this.database.adminAuth((this.usernameOrEmail).toLowerCase(),this.password).then((data) => {
       this.snackbar.open("Welcome Admin!", "Go Away!");
       this.router.navigate([`/user-page/${data}`]);
-      setTimeout(()=>{
-        window.location.reload();
-      }, 1000)
     }).catch(() => {
       this.database.userAuth((this.usernameOrEmail).toLowerCase(),this.password).then((data) => {
       this.snackbar.open("Welcome User!", "Go Away!");
       this.router.navigate([`/user-page/${data}`])
-      setTimeout(()=>{
-        window.location.reload();
-      }, 1000)
       }).catch(()=>{
         this.snackbar.open("Error!, something must have went Wrong ಠ_ಠ :( (ps: Don't Bother Dev!)", 'Go Away!')
       });

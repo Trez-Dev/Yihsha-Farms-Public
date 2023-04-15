@@ -17,7 +17,7 @@ export class BestSellingProductsComponent{
 
   ngOnInit(): void {
     this.database.getPocketBaseData().then(data =>{
-      this.products = data.slice(0,4)
+      this.products = data.items.slice(0,4)
     })
   }
 

@@ -31,11 +31,11 @@ const routes: Routes = [
 { path: 'user-page/:id', component: LoginPageComponent },
 { path: 'login', component: LoginComponent },
 { path: 'sign-up', component: SignUpComponent },
-{ path: `logs/${environment.SILAS_ADMIN_ID}` || `logs/${environment.LECOY_ADMIN_ID}`, component: LogsComponent},
+{ path: `logs/:id`, component: LogsComponent},
+{ path: `logs/:order-type/:id`, component: LogsComponent},
 {path: '', redirectTo: '/home', pathMatch: 'full'},
 {path: '**', redirectTo: '/home', },
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes,{scrollPositionRestoration: 'top'}),RouterTestingModule],

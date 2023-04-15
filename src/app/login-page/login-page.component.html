@@ -16,7 +16,7 @@
         <h1 class="admin-title desktop" *ngIf="adminStatus">Admin Privilages</h1>
     </div>
     <div [ngClass]="adminStatus? 'admin-options' : 'user-options'">
-        <div class="your-orders grid-item" (click)="openDialog('0ms', '0ms', 'YO')" *ngIf="!adminStatus">
+        <div class="your-orders grid-item" (click)="userLogNav('your-orders')" *ngIf="!adminStatus">
             <div class="icon"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
                 viewBox="0 0 392.598 392.598" xml:space="preserve">
             <rect x="44.089" y="43.184" style="fill:#56ACE0;" width="100%" height="100%"/>
@@ -85,10 +85,10 @@
         </div>
             <div class="description">
                 <h1>{{ userOptions[1].name }}</h1>
-                <p>{{ userOptions[1].description }}</p>
+                <p>{{ this.address.address1 }}, {{ this.address.city }}</p>
             </div>
         </div>
-        <div class="previous-orders grid-item" (click)="openDialog('0ms', '0ms','PO')">
+        <div class="previous-orders grid-item" (click)="userLogNav('previous-orders')">
             <div class="icon"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
                 viewBox="0 0 512 512" xml:space="preserve">
            <circle style="fill:#EA8953;" cx="256" cy="256" r="256"/>
