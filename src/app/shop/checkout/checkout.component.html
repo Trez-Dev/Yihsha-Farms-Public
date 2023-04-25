@@ -15,7 +15,15 @@
             <input matInput [(ngModel)]="addressData.firstName">
             </mat-form-field>
           </td>
-          <td>
+          <td class="desktop-table">
+            <mat-form-field class="example-full-width" color="warn">
+            <mat-label>Last Name</mat-label>
+            <input matInput [(ngModel)]="addressData.lastName">
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr class="mobile-table">
+          <td class="mobile-table">
             <mat-form-field class="example-full-width" color="warn">
             <mat-label>Last Name</mat-label>
             <input matInput [(ngModel)]="addressData.lastName">
@@ -51,10 +59,16 @@
             <mat-label>City</mat-label>
             <input matInput placeholder="Ex. San Francisco" [(ngModel)]="addressData.city">
             </mat-form-field></td>
-            <td><mat-form-field class="example-full-width" color="warn">
+            <td class="desktop-table"><mat-form-field class="example-full-width" color="warn">
             <mat-label>State</mat-label>
             <input matInput placeholder="Ex. California" [(ngModel)]="addressData.state">
             </mat-form-field></td>
+      </tr>
+      <tr class="mobile-table">
+        <td class="mobile-table"><mat-form-field class="example-full-width" color="warn">
+          <mat-label>State</mat-label>
+          <input matInput placeholder="Ex. California" [(ngModel)]="addressData.state">
+          </mat-form-field></td>
       </tr>
       <tr>
         <td>
@@ -64,11 +78,18 @@
             <mat-icon matSuffix>phone</mat-icon>
           </mat-form-field>
         </td>
-        <td><mat-form-field class="example-full-width" color="warn">
+        <td class="desktop-table"><mat-form-field class="example-full-width" color="warn">
             <mat-label>Zip Code</mat-label>
             <input matInput #postalCode maxlength="5" placeholder="Ex. 94105" [(ngModel)]="addressData.zipCode">
             </mat-form-field>
         </td>
+      </tr>
+      <tr class="mobile-table">
+        <td class="mobile-table"><mat-form-field class="example-full-width" color="warn">
+          <mat-label>Zip Code</mat-label>
+          <input matInput #postalCode maxlength="5" placeholder="Ex. 94105" [(ngModel)]="addressData.zipCode">
+          </mat-form-field>
+      </td>
       </tr>
     </table>
     </div>
@@ -92,6 +113,10 @@
                     <tr class="bottom-border" *ngFor="let item of items; let i = index">
                       <td class="bottom-border">{{ item.name }} x {{item.quantity}}</td>
                       <td class="bottom-border" style="text-align: right;">{{item.price * item.quantity | currency}}</td>
+                    </tr>
+                    <tr>
+                      <td class="bottom-border"><b>Shipping Cost:</b></td>
+                      <td class="bottom-border"  style="text-align: right;"><b>$50</b></td>
                     </tr>
                     <tr>
                       <td class="bottom-border"><b>Total:</b></td>

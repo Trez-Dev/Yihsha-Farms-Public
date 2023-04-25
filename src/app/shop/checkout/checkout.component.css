@@ -74,10 +74,19 @@ h1{
     width: 5rem;
 }
 
+.mobile-table{
+    display: none;
+}
+
+.desktop-table{
+    display: block;
+}
+
 @media only screen and (max-width: 1000px){
 
     .background{
         padding: 5rem 0;
+        flex-direction: column;
     }
     .billing-container{
         flex-direction: column;
@@ -89,5 +98,12 @@ h1{
 
     .background h1{
         text-align: center;
+    }
+
+    .mobile-table{
+        display: block;
+    }
+    .desktop-table{
+        display: none;
     }
 }

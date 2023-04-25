@@ -35,6 +35,7 @@ export class CheckoutComponent implements OnInit{
   ngOnInit(): void {
     this.silas.loadCart();
     this.items = this.silas.getItems();
+    console.log(this.items)
     this.initConfig();
     if(JSON.parse(localStorage.getItem('address')!)){
       this.addressData=JSON.parse(localStorage.getItem('address')!)
@@ -48,6 +49,7 @@ export class CheckoutComponent implements OnInit{
 
   //----- calculate total
   get total() {
+    const shippingCost = 50;
     return this.items.reduce((sum: any, x: any) => (
       {
         quantity: 1,
@@ -56,7 +58,7 @@ export class CheckoutComponent implements OnInit{
       { 
       quantity: 1, 
       price: 0
-      }).price;
+      }).price + shippingCost;
   }
 
    //----- remove specific item

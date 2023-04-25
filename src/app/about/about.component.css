@@ -4,8 +4,8 @@
 
 
 .about-us{
-    padding-top: 10rem;
-    height: 30vh;
+    box-sizing: border-box;
+    padding: 10rem 5rem 5rem 5rem;
     background-image: url(../../assets/images/website-bg.svg);
     background-size: cover;
     text-align: center;
@@ -14,6 +14,7 @@
 }
 
 .description-container{
+    box-sizing: border-box;
     width: 100%;
     display: flex;
     box-sizing: border-box;
@@ -34,7 +35,7 @@
 }
 
 .description-container img{
-    width: 50%;
+    width: 100%;
     border-radius: 10px;
     box-shadow: 0px 5px 8px #1818184d;
 }
@@ -46,6 +47,7 @@
 
 .desktop-img{
     display: block;
+    width: 50%;
 }
 
 @media only screen and (max-width: 1000px){
@@ -57,6 +59,7 @@
 
     .mobile-img{
         display: block;
+        margin-top: 2rem;
     }
 
     .description-container{
@@ -74,6 +77,10 @@
     }
     .description h1{
         width: 100%;
+        font-size: 2rem;
+    }
+    .description p{
+        margin: 1rem;
     }
     .desktop-img{
         display: none;
