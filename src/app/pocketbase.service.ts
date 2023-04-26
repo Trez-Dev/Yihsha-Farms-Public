@@ -75,7 +75,7 @@ export class PocketbaseService {
 
   public async getPocketBaseData(){
     const records = await this.pocketBase.collection('products')
-      .getList(1,9,{filter: 'inventory > 0',sort: '-created'});
+      .getList(1,9,{filter: 'inventory > 0',sort: '-created',  '$autoCancel': false });
     return records
   }
 

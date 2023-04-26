@@ -20,6 +20,7 @@ export class ShopComponent implements OnInit{
   seasoningNum: number = 0;
   sauceNum: number = 0;
   jerkNum: number = 0;
+  bundleNum: number = 0;
   searchItem: any;
   constructor(private silasProductService: SilasService, private database: PocketbaseService){}
 
@@ -31,6 +32,7 @@ export class ShopComponent implements OnInit{
       this.seasoningNum = this.databaseData.filter(product => product.type === 'Seasonings').length
       this.sauceNum = this.databaseData.filter(product => product.type === 'Pepper Sauces').length
       this.jerkNum = this.databaseData.filter(product => product.type === 'Jerk Seasoning').length
+      this.bundleNum = this.databaseData.filter(product => product.type === 'Bundles').length
     })
   };
 

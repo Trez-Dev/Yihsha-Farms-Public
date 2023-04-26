@@ -1,11 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PocketbaseService } from 'src/app/pocketbase.service';
 
 @Component({
   selector: 'app-services-card',
   templateUrl: './services-card.component.html',
   styleUrls: ['./services-card.component.css']
 })
-export class ServicesCardComponent {
+export class ServicesCardComponent implements OnInit {
+
+  bundles: any;
+
+  constructor(private database: PocketbaseService){}
+
+  ngOnInit(): void {
+    this.database.getPocketBaseData().then(data => {
+      this.bundles = data.items.filter((product: any) => product.type === 'Seasonings');
+      console.log(this.bundles);
+    });
+  }
 
   services = [ 
     {
@@ -31,5 +43,9 @@ export class ServicesCardComponent {
     },
     
   ];
+
+  starNum(n: number): Array<number> {
+    return Array(n);
+  }
 
 }

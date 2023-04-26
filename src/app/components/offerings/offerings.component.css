@@ -17,7 +17,7 @@
 }
 
 .offering{
-    margin-top: 2rem;
+    margin-top: 4rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -89,12 +89,13 @@ img{
 .deal{
     background-color: black;
     width: 100%;
-    height: 20vh;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding: 1.5rem;
+    gap: 2rem;
+    padding: 2rem;
     margin-top: 5rem;
+    line-height: 4rem;
 }
 
 .deal h1{

@@ -2,19 +2,35 @@
     margin: 0;
 }
 
-.background{
+.background-container{
     background-color:  rgba(0, 0, 0, 0.9);
-    padding: 2rem;
     display: flex;
+    flex-direction: column;
+    gap: 2rem;
     align-items: center;
-    justify-content: space-around;
+    padding: 4rem;
 }
 
-.card{
-    width: 20rem;
-    height: 10rem;
-    border-radius: 5px;
-    background-color: rgb(50, 50, 50);
+.main-title{
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 4rem;
+}
+
+.background{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    overflow: hidden;
+    gap: 2rem;
+    width: 100%;
+}
+
+.bundle{
+    padding: 2rem;
+    border-radius: 20px;
+    background-color:white;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,9 +38,8 @@
     gap: 0.5rem;
 }
 
-.card p{
-    color: white;
-}
+
+
 
 .title{
     display: flex;
@@ -37,6 +52,37 @@
     color: white;
 }
 
+img{
+    height: 15rem;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+.bundle h1{
+    color: #fe5d26;
+    font-size: 1.5rem;
+}
+
+.bundle p{
+    font-size: 0.7rem;
+    margin: 0;
+}
+
+h2{
+    font-size: 1rem;
+}
+
+.bundle .stars{
+    display: flex;
+}
+
 
 @media only screen and (max-width: 1000px){
 
@@ -44,7 +90,7 @@
         height: 30vh;
         padding: 1rem;
         display: grid;
-        grid-template: repeat(2,1fr) / repeat(2,1fr);
+        grid-template: repeat(2,1fr) / 1fr;
         gap: 1rem;
     }
 

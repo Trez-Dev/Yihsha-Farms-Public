@@ -1,9 +1,15 @@
-<div class="background">
-<div class="card" *ngFor="let service of services">
-    <div class="title">
-        <i [ngClass]="service.icon" style='font-size:24px; color: #fe5d26;'></i>
-        <h1>{{ service.name }}</h1>
+<div class="background-container">
+    <h1 class="main-title"><i class="fa fa-seedling" style='font-size:4rem; color: #fe5d26; margin: auto;'></i>Bundles And Combos <i class="fa fa-seedling" style='font-size:4rem; color: #fe5d26;'></i></h1>
+    <div class="background">
+    <div class="bundle" *ngFor="let bundle of bundles">
+            <a [routerLink]="['/product-landing', bundle.id]"><div class="image"><img [src]="bundle.image"></div></a>
+            <p>{{ bundle.type }}</p>
+            <a [routerLink]="['/product-landing', bundle.id]"><h1>{{ bundle.name }}</h1></a>
+            <div class="stars">
+            <p *ngFor="let n of starNum(bundle.star);"><i class='fa fa-star' style='font-size:12px; color: #fe5d26;'></i></p>
+            <p *ngFor="let n of starNum(5-bundle.star);"><i class='fa fa-star' style='font-size:12px'></i></p>
+            </div>
+            <h2>${{ bundle.price }}</h2>
     </div>
-    <p>{{ service.about }}</p>
-</div>
+    </div>
 </div>

@@ -21,6 +21,9 @@
             <div class="juices">
                     <a style="cursor: pointer;" (click)="filterProduct('Jerk Seasoning')"><p>Jerk Seasonings</p></a><p>({{jerkNum}})</p>
             </div>
+            <div class="juices">
+                    <a style="cursor: pointer;" (click)="filterProduct('Jerk Seasoning')"><p>Bundles</p></a><p>({{bundleNum}})</p>
+            </div>
             <div class="left-shopping-gallery">
                 <div class="gallery-item" *ngFor="let product of leftProducts">
                     <a [routerLink]="['/product-landing', product.id]"><div class="image"><img [src]="product.image"></div></a>
