@@ -35,7 +35,6 @@ export class CheckoutComponent implements OnInit{
   ngOnInit(): void {
     this.silas.loadCart();
     this.items = this.silas.getItems();
-    console.log(this.items)
     this.initConfig();
     if(JSON.parse(localStorage.getItem('address')!)){
       this.addressData=JSON.parse(localStorage.getItem('address')!)

@@ -15,7 +15,6 @@ export class ServicesCardComponent implements OnInit {
   ngOnInit(): void {
     this.database.getPocketBaseData().then(data => {
       this.bundles = data.items.filter((product: any) => product.type === 'Seasonings');
-      console.log(this.bundles);
     });
   }
 

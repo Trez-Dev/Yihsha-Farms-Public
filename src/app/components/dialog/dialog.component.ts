@@ -204,7 +204,6 @@ DeleteProductFromDatabase(){
 updateInventory(inventoryAmount: string){
   this.database.viewPocketBaseData(this.selectedId).then(data => {
     const inventoryUpdate = new InventoryProduct(data.image,data.type,data.star,data.name,data.price,data.description,parseInt(inventoryAmount))
-    console.log(inventoryUpdate)
     this.database.updateProductInventory(this.selectedId,inventoryUpdate).then(() => {
       this.snackbar.open('Inventory Updatad', 'Dismiss')
     }).catch(() => {

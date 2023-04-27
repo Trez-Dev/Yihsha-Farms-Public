@@ -38,7 +38,6 @@ export class ProductsPageComponent{
 
     addProductToBrowser(product: string){
         this.products$.subscribe(data => {
-            console.log(data)
             this.products = JSON.stringify(data)
             localStorage.setItem('token', this.products)
         })
@@ -50,7 +49,6 @@ export class ProductsPageComponent{
     }
     
     addProductToState(product: string){
-        console.log(product)
         this.productStore.addProduct({image: '../../../assets/images/Easispice-All-Purpose-Seasoning-14.webp', 
                                        type: 'GROCORIES',
                                        star: 4,
