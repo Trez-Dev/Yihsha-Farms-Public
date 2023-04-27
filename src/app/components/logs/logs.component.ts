@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PocketbaseService } from 'src/app/pocketbase.service';
 import { CustomerLog } from 'src/app/shared/address.model';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { SlicePipe } from '@angular/common';
 import { PageEvent } from '@angular/material/paginator';
 

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Post } from './post';
 import { Router } from '@angular/router';
 import { InventoryProduct, Product } from './shared/product.model';
+import { environment } from 'src/environments/environment.prod';
 
 import PocketBase, { Record } from 'pocketbase';
 import { Address, AddressOnly } from './shared/address.model';
@@ -22,9 +23,9 @@ export class PocketbaseService {
   };
 
   //Important Variables
-  redirectUrl: string = 'http://localhost:4200/redirect';
+  redirectUrl: string = environment.REDIRECT_URL;
 
-  pocketBase: any = new PocketBase('http://127.0.0.1:8090');
+  pocketBase: any = new PocketBase(environment.POCKETBASE_REST_API);
 
 
   public async loginWithGoogle() {

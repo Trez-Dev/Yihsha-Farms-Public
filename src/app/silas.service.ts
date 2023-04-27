@@ -5,7 +5,7 @@ import { Post } from './post';
 import { Router } from '@angular/router';
 import { Product } from './shared/product.model';
 import { PocketbaseService } from './pocketbase.service';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 
 
 @Injectable({

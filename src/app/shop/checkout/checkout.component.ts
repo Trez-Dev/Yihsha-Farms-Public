@@ -6,7 +6,7 @@ import { MyErrorStateMatcher } from 'src/app/login-page/sign-up/sign-up.componen
 import { PocketbaseService } from 'src/app/pocketbase.service';
 import { Address, AddressOnly, ProductsPurchased } from 'src/app/shared/address.model';
 import { SilasService } from 'src/app/silas.service';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-checkout',

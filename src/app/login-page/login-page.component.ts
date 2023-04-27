@@ -6,7 +6,7 @@ import { PocketbaseService } from '../pocketbase.service';
 import { Address } from '../shared/address.model';
 import { User } from '../shared/user.model';
 import { SilasService } from '../silas.service';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-login-page',

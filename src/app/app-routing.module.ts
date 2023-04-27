@@ -15,7 +15,7 @@ import { SignUpComponent } from './login-page/sign-up/sign-up.component';
 import { CartComponent } from './shop/cart/cart.component';
 import { CheckoutComponent } from './shop/checkout/checkout.component';
 import { LogsComponent } from './components/logs/logs.component';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 
 const routes: Routes = [
 { path: 'home', component: HomeComponent},
