@@ -84,7 +84,7 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
-              "src/favicon.ico",
+              "src/assets/images/logo-white.png",
               "src/assets"
             ],
             "styles": [
