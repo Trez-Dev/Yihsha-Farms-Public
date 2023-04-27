@@ -1,4 +1,4 @@
-import { Component, DoCheck, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, DoCheck, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { SilasService } from './silas.service'; 
 import { ActivatedRoute, ChildrenOutletContexts, NavigationEnd, Router } from '@angular/router';
 import { Product } from './shared/product.model';
@@ -23,6 +23,8 @@ export class AppComponent implements OnInit, DoCheck{
   @ViewChildren("subTotalWrap")
   subTotalItems!: QueryList<ElementRef>;
   @ViewChildren("subTotalWrap_existing")subTotalItems_existing!: QueryList<ElementRef>;
+  @ViewChild("menuToggle", {static: false}) menuToggle!: ElementRef <HTMLInputElement>;
+  @ViewChild("menuBg", {static: false}) menuBg!: ElementRef;
   title = 'Yihsha Farms';
 
   cartState: boolean = false;
@@ -37,6 +39,7 @@ export class AppComponent implements OnInit, DoCheck{
   userId: any;
   currentRoute: string = '';
   quantity: number = 0;
+  isDisplayed: boolean = false;
 
   items: any = [];
 
@@ -79,6 +82,21 @@ export class AppComponent implements OnInit, DoCheck{
 
   getRouteAnimationData() {
     return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
+  }
+
+  menuCheckToggle(isChecked: boolean){
+    if(isChecked == true){
+      this.menuBg.nativeElement.style.display = 'block';
+    }else{
+      this.menuBg.nativeElement.style.display = 'none';
+    }
+  }
+  menuBgToggle(isChecked: boolean){
+    this.isDisplayed = isChecked; 
+    if(isChecked){
+      this.menuToggle.nativeElement.checked = !this.menuToggle.nativeElement.checked;
+      this.menuBg.nativeElement.style.display = 'none';
+    }
   }
 
   //----- calculate total

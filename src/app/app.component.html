@@ -29,7 +29,7 @@
         <div class="container">
                 <nav role="navigation">
                   <div id="menuToggle">
-                    <input type="checkbox" />
+                    <input type="checkbox" #menuToggle (click)="menuCheckToggle(menuToggle.checked)"/>
                       <span></span>
                       <span></span>
                       <span></span>
@@ -43,6 +43,7 @@
                     <li *ngIf="!loginStatus"><a routerLink="/login">Login</a></li>
                     <li *ngIf="loginStatus"><a (click)="logOut('0ms','0ms')">Log Out</a></li>
                     <li *ngIf="!loginStatus"><a routerLink="/sign-up">Sign Up</a></li>
+                    <div class="nav-blurred-bg" (click)="menuBgToggle(menuToggle.checked)" #menuBg></div>
                   </ul>
                  </div>
                  <a routerLink="/home"><img class="logo" src="../assets/images/logo-black.png" alt="logo"></a>
