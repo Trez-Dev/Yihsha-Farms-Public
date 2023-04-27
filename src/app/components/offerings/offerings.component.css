@@ -87,6 +87,7 @@ img{
 }
 
 .deal{
+    box-sizing: border-box;
     background-color: black;
     width: 100%;
     display: flex;
@@ -107,6 +108,11 @@ img{
 }
 
 @media only screen and (max-width: 1000px){
+
+    .deal{
+        line-height: 2rem;
+    }
+
     .offering{
         flex-direction: column;
         margin-top: 1rem;
