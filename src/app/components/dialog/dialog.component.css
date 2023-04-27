@@ -27,7 +27,7 @@
 
 .options{
     justify-content: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 .card-items{
     display: grid;
@@ -114,11 +114,13 @@
 @media only screen and (max-width: 1000px){
     .background{
         background-color: white;
-        padding: 2rem 4rem;
+        min-width: auto;
+        padding: 0 2rem;
         width: auto;
         border-radius: 8px;
         display: flex; 
         align-items: center;
+        justify-content: center;
         flex-direction: column;
     }
 }
