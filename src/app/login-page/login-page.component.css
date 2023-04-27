@@ -182,6 +182,19 @@
     display: block;
 }
 
+@media only screen and (max-width: 670px){
+    .backdrop-img{
+        display: flex;
+        align-items: flex-end;
+    }
+
+
+    .backdrop-img img{
+        width: auto;
+        height: 100%;
+    }
+}
+
 @media only screen and (max-width: 1000px){
 
     .mobile{
@@ -203,12 +216,6 @@
 
     .background-container{
         height: 100%;
-    }
-
-
-    .backdrop-img img{
-        width: 100%;
-        margin-top: -15vh;
     }
 
     .admin-options{
