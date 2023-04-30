@@ -48,7 +48,6 @@
 }
 
 .card, .logs{
-    margin: 1rem;
     width: 100%;
 }
 
@@ -122,5 +121,24 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
+    }
+
+    .input-div{
+        width: 8rem !important;
+        margin: auto;
+    }
+
+    .card-items{
+        gap: 0.5rem;
+        padding: 0;
+        grid-template: repeat(3, 1fr) / repeat(2,1fr);
+    }
+
+    .card-items img{
+        width: 20% !important;
+    }
+
+    .radio-btn{
+        grid-column: span 2;
     }
 }

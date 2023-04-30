@@ -5,5 +5,5 @@ export const environment = {
     SILAS_ADMIN_ID: '00ifxtvzg3sb5kj',
     PAYPAL_CLIENT_ID: 'AU_gR6MotvbdS2NNxiJu7PlNu_5Rz2KIWV18upJWvxNzPEud-EQHFxoDxFgAy_SIK3vOZSVbS5vMpRBa',
     REDIRECT_URL: 'http://localhost:4200/redirect',
-    POCKETBASE_REST_API: 'http://127.0.0.1:8090'
+    POCKETBASE_REST_API: 'https://yihsha-farms.pockethost.io'
 };

@@ -1,4 +1,5 @@
 <div class="background-container">
+    <mat-progress-bar mode="indeterminate" class="backdrop-loader" color="warn" *ngIf="productLoad"></mat-progress-bar>
     <div class="background" *ngIf="selectedProduct">
         <div class="itemAdded" *ngIf="itemAdded">
             <p><i class="fa fa-check-circle" style="font-size:24px;color:#fe5d26"></i> “{{selectedProduct.name}}” has been added to your cart. </p> <button routerLink="/cart">VIEW CART</button>
@@ -13,7 +14,7 @@
                 <p>{{selectedProduct.description}}</p>
                 <div class="add-product">
                 <input type="number" max="20" value="1" min="1" [(ngModel)]="quantity" >
-                <button (click)="addToCart(selectedProduct)">ADD TO CART <i class='fas fa-cart-arrow-down' style='font-size:24px'></i></button>
+                <button (click)="addToCart(selectedProduct)">ADD TO CART <i class='fa fa-cart-arrow-down' style='font-size:24px'></i></button>
                 <h2 *ngIf="lowStock" class="low-stock-warn">Only {{selectedProduct.inventory}} left in stock!</h2>
                 </div>
                <p>Type: {{selectedProduct.type}}</p>

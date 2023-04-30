@@ -311,7 +311,7 @@
 .store-description{
     display: flex;
     flex-direction: column;
-    padding: 5% 0 0 5%;
+    padding: 5%;
     gap: 2rem;
     color: white;
     box-sizing: border-box;
@@ -328,17 +328,19 @@
 
 .background{
     display: flex;
+    justify-content: space-around;
 }
 
 .footer-table{
-    height: 90vh;
+    display: flex;
+    gap: 5rem;
+    padding: 5%;
 }
 
 
 .link{
     color: white;
     text-align: left;
-    padding: 5% 5% 0 0 ;
 }
 
 .link ul, .link2 ul{

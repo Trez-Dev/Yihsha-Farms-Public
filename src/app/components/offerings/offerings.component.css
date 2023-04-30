@@ -110,6 +110,7 @@ img{
 @media only screen and (max-width: 1000px){
 
     .deal{
+        flex-direction: column;
         line-height: 2rem;
     }
 
@@ -120,7 +121,7 @@ img{
 
     .deal h1{
         font-size: 1.5rem;
-        width: 50%;
+        width: 100%;
     }
     button{
         padding: 0.8rem 0.8rem;

@@ -6,7 +6,7 @@ import { PocketbaseService } from '../pocketbase.service';
 import { Address } from '../shared/address.model';
 import { User } from '../shared/user.model';
 import { SilasService } from '../silas.service';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login-page',
@@ -34,7 +34,8 @@ export class LoginPageComponent implements OnInit{
   userId: string = '';
 
 
-  userData: any = new User ('../../assets/images/silas-bg2.jpg','../../assets/images/user.png','Silas Coley','User');
+  userData: any = new User ('../../assets/images/silas-bg2.jpg','../../assets/images/user.png','Guest User','User');
+  name = '';
 
 
   ngOnInit(){

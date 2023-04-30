@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Post } from './post';
 import { Router } from '@angular/router';
 import { InventoryProduct, Product } from './shared/product.model';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 
 import PocketBase, { Record } from 'pocketbase';
 import { Address, AddressOnly } from './shared/address.model';
@@ -28,6 +28,7 @@ export class PocketbaseService {
   pocketBase: any = new PocketBase(environment.POCKETBASE_REST_API);
 
 
+
   public async loginWithGoogle() {
     const result = await this.pocketBase.collection('users').listAuthMethods();
     const authProvider = result.authProviders.find((x: { name: string; }) => x.name === 'google') || {
@@ -49,10 +50,10 @@ export class PocketbaseService {
   public async confirmGoogleLogin() {
     const params = new URL(window.location as unknown as URL | string).searchParams;
     const provider = JSON.parse(localStorage.getItem('provider') || '{}');
-    const authData = await this.pocketBase
-      .collection('users')
+    const authData = await this.pocketBase.collection('users')
       .authWithOAuth2(provider.name, params.get('code'), provider.codeVerifier, this.redirectUrl);
       if (authData.token) {
+        this.pocketBase.collection('users').update(authData.record.id, {name: authData.meta.name})
         this.router.navigate([`/user-page/${this.pocketBase.authStore.model.id}`])
       }
   }

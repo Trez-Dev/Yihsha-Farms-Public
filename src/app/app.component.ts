@@ -7,7 +7,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { PocketbaseService } from './pocketbase.service';
 import { trigger,state,style,animate,transition } from '@angular/animations';
 import { shopAnimation } from './animations/animations';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',

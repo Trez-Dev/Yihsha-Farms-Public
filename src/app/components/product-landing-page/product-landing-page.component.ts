@@ -16,6 +16,7 @@ import { Product } from '../../shared/product.model';
 export class ProductLandingPageComponent implements OnInit{
 
   selection: boolean = true;
+  productLoad: boolean = true;
   selectedProduct: any;
   itemAdded: boolean | undefined;
   lowStock: boolean = false;
@@ -39,6 +40,7 @@ export class ProductLandingPageComponent implements OnInit{
       // this.productId = data['id']
       this.database.viewPocketBaseData(data['id']).then(info =>{
         this.selectedProduct = info;
+        this.productLoad = false;
         if(this.selectedProduct.inventory > 1 && this.selectedProduct.inventory < 10){
           this.lowStock = true;
         }else{
@@ -47,7 +49,7 @@ export class ProductLandingPageComponent implements OnInit{
       })
     })
     this.database.getPocketBaseData().then(data=>{
-      this.relatedProducts=data.slice(0,3);
+      this.relatedProducts=data.items.slice(0,3);
     })
     this.silas.loadCart();
     this.items = this.silas.getItems();

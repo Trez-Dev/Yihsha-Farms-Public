@@ -35,6 +35,7 @@ import { CheckoutComponent } from './shop/checkout/checkout.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { CustomFilterPipe } from './filterPipe/custom-filter-pipe.pipe';
 import { LogsComponent } from './components/logs/logs.component';
+import { LAZYLOAD_IMAGE_HOOKS, LazyLoadImageModule, ScrollHooks } from 'ng-lazyload-image';
 
 
 
@@ -69,7 +70,7 @@ import { LogsComponent } from './components/logs/logs.component';
     CartComponent,
     CheckoutComponent,
     CustomFilterPipe,
-    LogsComponent
+    LogsComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,9 +83,11 @@ import { LogsComponent } from './components/logs/logs.component';
     MatNativeDateModule,
     ScrollingModule,
     NgxPayPalModule,
+    LazyLoadImageModule
   ],
   providers: [
     SilasService,
+    { provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks }
   ],
   bootstrap: [AppComponent]
 })

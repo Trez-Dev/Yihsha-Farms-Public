@@ -1,12 +1,14 @@
 .background-container{
     background-image: url(../../../assets/images/website-bg.svg);
     background-size: cover;
+    padding-top: 5rem;
+    height: 200vh;
 }
 
 .background{
     background-color: rgba(255, 255, 255,0.4);
-    padding: 8rem;
-    /* height: 200vh; */
+    padding: 5rem 8rem;
+    height: 200vh;
 }
 /* {
     border: 1px solid black;
@@ -234,8 +236,12 @@ hr{
         width: 100%;
     }
 
+    .background-container{
+        padding-top: 4.5rem;
+    }
+
     .background{
-        padding: 8rem 2rem 2rem 2rem;
+        padding: 4.5rem 2rem 2rem 2rem;
     }
 
     .landing-product-description{
@@ -255,6 +261,12 @@ hr{
     .related-items-gallery{
         gap: 2rem;
         grid-template: 1fr / 1fr;
+    }
+
+    .low-stock-warn{
+        margin: auto;
+        text-align: center;
+        font-size: 0.8rem;
     }
 
 }

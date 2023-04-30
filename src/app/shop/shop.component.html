@@ -26,7 +26,7 @@
             </div>
             <div class="left-shopping-gallery">
                 <div class="gallery-item" *ngFor="let product of leftProducts">
-                    <a [routerLink]="['/product-landing', product.id]"><div class="image"><img [src]="product.image"></div></a>
+                    <a [routerLink]="['/product-landing', product.id]"><div class="image"><img [defaultImage]="image" [lazyLoad]="product.image"></div></a>
                     <p>{{ product.type }}</p>
                     <a [routerLink]="['/product-landing', product.id]"><h1>{{ product.name }}</h1></a>
                     <div class="stars">
