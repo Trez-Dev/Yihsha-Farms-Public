@@ -1,6 +1,7 @@
 .background{
     background-color: #f9e4a44d;
     padding: 8rem 0;
+    min-height: 100vh;
 }
 
 .log-header{
@@ -83,4 +84,33 @@
 
 .chip-option{
     margin: auto;
+}
+
+@media only screen and (max-width: 1000px){
+
+    .log-headers h2{
+      font-size: 0.5rem;  
+    }
+
+    .user-log, .log-header{
+        margin: 1rem;
+    }
+
+    .log-content{
+        align-items: center;
+        gap: 0.5rem
+    }
+
+    .log-content p, .address-log p, .product-log p{
+    font-size: 0.4rem;  
+    }
+
+    .chip-option{
+       font-size: 0.4rem;
+       height: 1rem;
+    }
+
+    .mat-mdc-paginator-container {
+        flex-wrap: nowrap;
+    }
 }

@@ -47,7 +47,7 @@ export class PocketbaseService {
       window.location.href = authProvider.authUrl + this.redirectUrl;
   }
 
-  public async confirmGoogleLogin() {
+  public async confirmLogin() {
     const params = new URL(window.location as unknown as URL | string).searchParams;
     const provider = JSON.parse(localStorage.getItem('provider') || '{}');
     const authData = await this.pocketBase.collection('users')

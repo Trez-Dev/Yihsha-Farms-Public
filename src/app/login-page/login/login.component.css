@@ -82,12 +82,14 @@ margin-top: 2rem;
     margin-top: 2rem;
 }
 
-.login-with-google-container{
+.login-with-google-container, .fb-login-button{
     width: 100%;
     display: flex;
     justify-content: center;
     margin-bottom: 1rem;
+    cursor: pointer;
 }
+
 
 .login-with-google{
     width: 60%;

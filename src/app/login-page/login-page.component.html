@@ -12,7 +12,7 @@
         <img [src]="userData.avatar" alt="profile-image" *ngIf="!imageBlobUrl && !profileLoad" (load)="onProfileLoad()">
     </div>
     <div class="title-container">
-        <h1 class="user-title">Hello, <span>{{name}}</span></h1>
+        <h1 class="user-title">Hello, <span>{{userData.name}}</span></h1>
         <h1 class="admin-title desktop" *ngIf="adminStatus">Admin Privilages</h1>
     </div>
     <div [ngClass]="adminStatus? 'admin-options' : 'user-options'">

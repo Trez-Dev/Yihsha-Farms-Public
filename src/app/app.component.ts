@@ -136,7 +136,7 @@ export class AppComponent implements OnInit, DoCheck{
     const provider = localStorage.getItem('provider');
 
     if(params.get('code') && provider){
-      await this.database.confirmGoogleLogin();
+      await this.database.confirmLogin();
     }
   }
 }

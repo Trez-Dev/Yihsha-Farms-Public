@@ -84,4 +84,8 @@ ngOnInit(){
   googleLogin(){
     this.database.loginWithGoogle();
   }
+
+  facebookLogin(){
+    this.database.loginWithFacebook();
+  }
 }
