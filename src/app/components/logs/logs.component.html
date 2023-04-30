@@ -5,7 +5,7 @@
               aria-label="Select page" #paginator>
     </mat-paginator>
     <mat-card class="log-header">
-        <mat-card-content>
+        <mat-card-content class="card-content">
            <div class="log-headers">
             <h2>First Name</h2>
             <h2>Last Name</h2>
@@ -18,7 +18,7 @@
     </mat-card>
     <div class="user-log" *ngFor="let customerLog of customerLogs | slice:(paginator.pageIndex * paginator.pageSize):(paginator.pageIndex + 1) * paginator.pageSize">
         <mat-card class="user">
-            <mat-card-content>
+            <mat-card-content  class="card-content">
                     <div class="log-content">
                         <p>{{customerLog.firstName}}</p>
                         <p>{{customerLog.lastName}}</p>
@@ -34,7 +34,6 @@
         <mat-accordion class="accordion">
             <mat-expansion-panel hideToggle>
               <mat-expansion-panel-header>
-                <mat-panel-description>
                     <div class="address-log">
                         <p><strong>Address</strong></p>
                         <p><strong>Address 2</strong></p>
@@ -42,7 +41,6 @@
                         <p><strong>State</strong></p>
                         <p><strong>Zip Code</strong></p>
                     </div>
-                </mat-panel-description>
               </mat-expansion-panel-header>
               <div class="address-log">
                 <p>{{customerLog.shippingAddress.adress}}</p>
@@ -54,7 +52,6 @@
             </mat-expansion-panel>
             <mat-expansion-panel hideToggle>
                 <mat-expansion-panel-header>
-                  <mat-panel-description>
                     <div class="product-log">
                         <p><strong>Image</strong></p>
                         <p><strong>Product</strong></p>
@@ -62,7 +59,6 @@
                         <p><strong>Quantity</strong></p>
                         <p><strong>Subtotal</strong></p>
                     </div>
-                  </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="product-log" *ngFor="let product of customerLog.productPurchased">
                     <div class="product-img">

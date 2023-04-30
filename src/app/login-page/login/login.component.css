@@ -100,4 +100,8 @@ margin-top: 2rem;
     .login-container{
         width: 90%;
     } 
+
+    .login-with-google-container, .fb-login-button{
+        margin: 0;
+    }
 }
