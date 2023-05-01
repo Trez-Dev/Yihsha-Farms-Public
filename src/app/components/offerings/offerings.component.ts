@@ -10,10 +10,7 @@ import { InventoryProduct } from 'src/app/shared/product.model';
 })
 export class OfferingsComponent implements OnInit{
 
-  offerings: any;
-
-  constructor(private database: PocketbaseService){}
-
+constructor(private database: PocketbaseService){}
 
   ngOnInit(): void {
     // this.database.getPocketBaseData().then(data => {
