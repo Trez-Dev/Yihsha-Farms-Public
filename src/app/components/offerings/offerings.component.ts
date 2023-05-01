@@ -10,49 +10,29 @@ import { InventoryProduct } from 'src/app/shared/product.model';
 })
 export class OfferingsComponent implements OnInit{
 
-  offerings: InventoryProduct[] = [];
-
-  constructor(private router: Router, private database: PocketbaseService){}
+constructor(private database: PocketbaseService){}
 
   ngOnInit(): void {
     // this.database.getPocketBaseData().then(data => {
-    //       this.offerings = data.items.filter((product: any) => product.type === 'Bundles');
-    //     });
+    //   this.offerings = data.items.filter((product: any) => product.type === 'Bundles');
+    // });
     this.offerings = [
       {
         name: "Farm Fresh Vegetables",
         description: "Ut sollicitudin quam vel purus tempus, vel eleifend felis varius.",
         image: "../../../assets/images/Onion-PNG.png",
-        type: '', 
-        star: 0, 
-        price: '', 
-        inventory: 0
       },
       {
         name: "Farm Fresh Peppers",
         description: "Aliquam porta justo nibh, id laoreet sapien sodales vitae justo.",
         image: "../../../assets/images/Pepper.png",
-        type: '', 
-        star: 0, 
-        price: '', 
-        inventory: 0
       },
       {
         name: "Farm Fresh Spices",
         description: "Phasellus sed urna mattis, viverra libero sed, aliquam est.",
         image: "../../../assets/images/all-spice-Pimento-whole.png",
-        type: '', 
-        star: 0, 
-        price: '', 
-        inventory: 0
       },
     ]
-  }
-
-  
-
-  navigateToShop(){
-    this.router.navigate(['/shop'])
   }
 
 

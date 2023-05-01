@@ -27,7 +27,7 @@
 
 .options{
     justify-content: center;
-    margin-bottom: 2rem;
+    padding-bottom: 2rem;
 }
 .card-items{
     display: grid;
@@ -140,5 +140,9 @@
 
     .radio-btn{
         grid-column: span 2;
+    }
+
+    .box-properties{
+        max-height: 30rem;
     }
 }

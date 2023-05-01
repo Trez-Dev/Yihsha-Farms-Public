@@ -116,7 +116,8 @@
                     </tr>
                     <tr>
                       <td class="bottom-border"><b>Shipping Cost:</b></td>
-                      <td class="bottom-border"  style="text-align: right;"><b>$50</b></td>
+                      <td class="bottom-border" *ngIf="!freeShipping" style="text-align: right;"><b>$50</b></td>
+                      <td class="bottom-border" *ngIf="freeShipping" style="text-align: right;"><b><s style="color: darkgray; margin-right: 0.5rem;">$50</s>$0</b></td>
                     </tr>
                     <tr>
                       <td class="bottom-border"><b>Total:</b></td>

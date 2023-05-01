@@ -12,12 +12,6 @@ export class ServicesCardComponent {
 
   constructor(private database: PocketbaseService){}
 
-  // ngOnInit(): void {
-  //   this.database.getPocketBaseData().then(data => {
-  //     this.bundles = data.items.filter((product: any) => product.type === 'Seasonings');
-  //   });
-  // }
-
   services = [ 
     {
       name: "Free Shipping",

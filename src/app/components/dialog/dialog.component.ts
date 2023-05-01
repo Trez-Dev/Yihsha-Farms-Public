@@ -43,6 +43,8 @@ productName: string ='';
 productPrice: number | undefined;
 starNumber: number | undefined;
 productDescription: string ='';
+productnventory: number = 1;
+
 pocketData: any;
 profileLoad: boolean = true;
 discount: boolean = false;
@@ -161,7 +163,8 @@ this.pocketData = {
   name: this.productName,
   price: this.productPrice,
   star: this.starNumber,
-  description: this.productDescription
+  description: this.productDescription,
+  inventory: this.productnventory
 }
 
 this.database.publishPocketBaseData(this.pocketData,)
