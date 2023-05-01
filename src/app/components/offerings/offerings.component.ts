@@ -12,6 +12,8 @@ export class OfferingsComponent implements OnInit{
 
 constructor(private database: PocketbaseService){}
 
+offerings: any;
+
   ngOnInit(): void {
     // this.database.getPocketBaseData().then(data => {
     //   this.offerings = data.items.filter((product: any) => product.type === 'Bundles');
