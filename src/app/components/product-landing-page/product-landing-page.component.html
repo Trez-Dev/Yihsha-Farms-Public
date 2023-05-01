@@ -27,17 +27,18 @@
             </div>
         </div>
         <p *ngIf="selection">Neque porro quisquam est, qui dolore ipsum quia dolor sit amet, consectetur adipisci velit, sed quia non incidunt lores ta porro ame. numquam eius modi tempora incidunt lores ta porro ame.</p>
-        <p *ngIf="!selection">There are no reviews yet.</p>
         <div class="reviews" *ngIf="!selection">
-            <h2>Be the first to review “{{selectedProduct.name}}”</h2>
+            <!-- yihshafarms@outlook.com -->
+            <form action="mailto:silascoley3@gmail.com" method="post" enctype="text/plain">
+            <h2><b>{{selectedProduct.name}}</b></h2>
             <p class="details">Your email address will not be published. Required fields are marked *</p>
-            <div class="your-rating"><p class="details">Your rating *</p><p *ngFor="let n of starNum(5);"><i class='fas fa-star' style='font-size:20px;'></i></p></div>
-            <textarea name="review" id="review"></textarea>
             <div class="user-info">
-                <label for="name">Name*<input type="text" id="name"></label>
-                <label for="name">Email*<input type="email" id="name"></label>
+                <label for="name">Name*<input type="text" id="name" required></label>
+                <label for="name">Email*<input type="email" id="name" required></label>
             </div>
-            <button>SUBMIT</button>
+            <label> Message: <textarea name="review" id="review"></textarea></label>
+            <button type="submit" value="Send">SUBMIT</button>
+            </form>
         </div>
         <div class="related-products">
             <h1>Related products</h1>

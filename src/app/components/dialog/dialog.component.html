@@ -9,11 +9,11 @@
             <mat-label>Product Type</mat-label>
             <mat-select [(ngModel)]="productType">
               <mat-option value="Seasonings">Seasonings</mat-option>
-              <mat-option value="Pepper Sauce">Pepper Sauce</mat-option>
+              <mat-option value="Sauces">Sauces</mat-option>
               <mat-option value="Jerk Seasoning">Jerk Seasoning</mat-option>
-              <mat-option value="Pre-Selected Boxes">Bundles</mat-option>
-              <mat-option value="Soup">Soup</mat-option>
-              <mat-option value="Other">Other</mat-option>
+              <mat-option value="Bundles">Bundles</mat-option>
+              <mat-option value="Snacks">Snacks</mat-option>
+              <mat-option value="Teas">Other</mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field appearance="fill" color="warn">
@@ -32,6 +32,10 @@
             <mat-label> Product Description</mat-label>
             <textarea matInput [(ngModel)]="productDescription" placeholder="Write Something about the product..."></textarea>
         </mat-form-field>
+        <mat-form-field appearance="fill" color="warn">
+          <mat-label> Product Inventory</mat-label>
+          <input matInput type="number" [(ngModel)]="productnventory">
+      </mat-form-field>
     <div mat-dialog-actions class="options">
         <button mat-raised-button mat-dialog-close>Cancel</button>
         <button mat-raised-button style="background-color: #fe5d26; color: white;" mat-dialog-close cdkFocusInitial (click)="addProductToDatabase()">Add</button>
@@ -106,7 +110,7 @@
         </table>
     <div mat-dialog-actions class="options">
         <button mat-raised-button mat-dialog-close>Cancel</button>
-        <button mat-raised-button (click)="clearAddress()" color="warn">Clear Address</button>
+        <button mat-raised-button (click)="clearAddress()" color="warn">Clear</button>
         <button mat-raised-button style="background-color: #fe5d26; color: white;" mat-dialog-close cdkFocusInitial (click)="addAddress()">Add</button>
     </div>
     </div>

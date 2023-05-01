@@ -21,6 +21,8 @@ export class ShopComponent implements OnInit{
   sauceNum: number = 0;
   jerkNum: number = 0;
   bundleNum: number = 0;
+  snackNum: number = 0;
+  teaNum: number = 0;
   searchItem: any;
   image = '../../assets/images/Plant.gif';
   constructor(private silasProductService: SilasService, private database: PocketbaseService){}
@@ -31,9 +33,11 @@ export class ShopComponent implements OnInit{
       this.products = data.items.sort((a: {name:any}, z: {name: any}) => a.name.localeCompare(z.name)).slice(0,9);
       this.leftProducts = data.items.sort((a: {name:any}, z: {name: any}) => z.name.localeCompare(a.name)).slice(0,3);
       this.seasoningNum = this.databaseData.filter(product => product.type === 'Seasonings').length;
-      this.sauceNum = this.databaseData.filter(product => product.type === 'Pepper Sauces').length;
+      this.sauceNum = this.databaseData.filter(product => product.type === 'Sauces').length;
       this.jerkNum = this.databaseData.filter(product => product.type === 'Jerk Seasoning').length;
       this.bundleNum = this.databaseData.filter(product => product.type === 'Bundles').length;
+      this.bundleNum = this.databaseData.filter(product => product.type === 'Snacks').length;
+      this.bundleNum = this.databaseData.filter(product => product.type === 'Teas').length;
     })
   };
 

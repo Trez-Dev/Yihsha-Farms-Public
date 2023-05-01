@@ -24,6 +24,8 @@ export class CheckoutComponent implements OnInit{
   showSuccess: boolean = false;
   addressData = new Address('','','','','','','','','','');
   customerLog: any;
+  shippingCost: number = 50;
+  freeShipping: boolean = false;
 
   UserFormControl = new FormControl('', [Validators.required, Validators.email]);
   AddressFormControl = new FormControl('', [Validators.required]);
@@ -35,6 +37,11 @@ export class CheckoutComponent implements OnInit{
   ngOnInit(): void {
     this.silas.loadCart();
     this.items = this.silas.getItems();
+    const bundlesCount = this.items.filter((item: any) => item.type.includes('Bundles').length)
+    if(bundlesCount === 1){
+      this.shippingCost = 0;
+      this.freeShipping = true;
+    }
     this.initConfig();
     if(JSON.parse(localStorage.getItem('address')!)){
       this.addressData=JSON.parse(localStorage.getItem('address')!)
@@ -48,7 +55,6 @@ export class CheckoutComponent implements OnInit{
 
   //----- calculate total
   get total() {
-    const shippingCost = 50;
     return this.items.reduce((sum: any, x: any) => (
       {
         quantity: 1,
@@ -57,7 +63,7 @@ export class CheckoutComponent implements OnInit{
       { 
       quantity: 1, 
       price: 0
-      }).price + shippingCost;
+      }).price + this.shippingCost;
   }
 
    //----- remove specific item
@@ -90,6 +96,16 @@ export class CheckoutComponent implements OnInit{
      const purchasedItem = new ProductsPurchased(item.image,item.name,item.price,item.quantity, `$${item.price * item.quantity}`, `$${this.total}`)
      this.productsPurchased.push(purchasedItem);
     })
+    const shippingCost = {
+      name: 'Shipping Cost',
+      quantity: 1,
+      category: 'PHYSICAL_GOODS',
+      unit_amount: {
+        currency_code: 'USD',
+        value: `${this.shippingCost}`,
+      }
+    }
+    this.itemsPurchased.push(shippingCost);
     this.payPalConfig = {
     currency: 'USD',
     clientId: environment.PAYPAL_CLIENT_ID,

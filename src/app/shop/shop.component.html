@@ -16,13 +16,19 @@
                     <a style="cursor: pointer;" (click)="filterProduct('Seasonings')"><p>Seasonings</p></a><p>({{seasoningNum}})</p>
             </div>
             <div class="juices">
-                    <a style="cursor: pointer;" (click)="filterProduct('Pepper Sauces')"><p>Pepper Sauces</p></a><p>({{sauceNum}})</p>
+                    <a style="cursor: pointer;" (click)="filterProduct('Sauces')"><p>Sauces</p></a><p>({{sauceNum}})</p>
             </div>
             <div class="juices">
                     <a style="cursor: pointer;" (click)="filterProduct('Jerk Seasoning')"><p>Jerk Seasonings</p></a><p>({{jerkNum}})</p>
             </div>
             <div class="juices">
-                    <a style="cursor: pointer;" (click)="filterProduct('Jerk Seasoning')"><p>Bundles</p></a><p>({{bundleNum}})</p>
+                    <a style="cursor: pointer;" (click)="filterProduct('Bundles')"><p>Bundles</p></a><p>({{bundleNum}})</p>
+            </div>
+            <div class="juices">
+                    <a style="cursor: pointer;" (click)="filterProduct('Snacks')"><p>Snacks</p></a><p>({{snackNum}})</p>
+            </div>
+            <div class="juices">
+                    <a style="cursor: pointer;" (click)="filterProduct('Teas')"><p>Teas</p></a><p>({{teaNum}})</p>
             </div>
             <div class="left-shopping-gallery">
                 <div class="gallery-item" *ngFor="let product of leftProducts">
@@ -40,7 +46,7 @@
         <div class="shop">
             <p>Home / shop</p>
             <h1>Shop</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dignissim, velit et luctus interdum, est quam scelerisque tellus, eget luctus mi diam vitae erat. Praesent porttitor lacus vitae dictum posuere. Suspendisse elementum metus ac dolor tincidunt, eu imperdiet nisi dictum. <br><br></p>
+            <p>Welcome to Yihsha Farms, your ultimate destination for all things Jamaican food and grocery! Whether you're a Jamaican living abroad or simply a lover of Jamaican cuisine, we're here to bring the authentic taste of Jamaica right to your doorstep.<br><br></p>
             <div class="items-showing">
                 <p>Showing 1-{{products?.length}} of {{sauceNum + seasoningNum + jerkNum}} results</p>
                 <select name="sorting" id="sorting" (change)="sort($event)" p>
