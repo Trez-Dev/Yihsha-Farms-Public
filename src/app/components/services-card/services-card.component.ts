@@ -6,17 +6,17 @@ import { PocketbaseService } from 'src/app/pocketbase.service';
   templateUrl: './services-card.component.html',
   styleUrls: ['./services-card.component.css']
 })
-export class ServicesCardComponent implements OnInit {
+export class ServicesCardComponent {
 
   bundles: any;
 
   constructor(private database: PocketbaseService){}
 
-  ngOnInit(): void {
-    this.database.getPocketBaseData().then(data => {
-      this.bundles = data.items.filter((product: any) => product.type === 'Seasonings');
-    });
-  }
+  // ngOnInit(): void {
+  //   this.database.getPocketBaseData().then(data => {
+  //     this.bundles = data.items.filter((product: any) => product.type === 'Seasonings');
+  //   });
+  // }
 
   services = [ 
     {
