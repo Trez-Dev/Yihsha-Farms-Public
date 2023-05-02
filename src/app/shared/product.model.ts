@@ -15,6 +15,7 @@ export class InventoryProduct{
       public price: string,
       public description: string,
       public inventory: number,
+      public discount: number
   ){
 
   }

@@ -155,6 +155,11 @@ export class CheckoutComponent implements OnInit{
               this.addressData.zipCode))
         }
       })
+      this.items.forEach((item: any) => {
+        this.database.viewPocketBaseData(item.id).then(data => {
+          this.database.updateProductInventory(item.id, {inventory: (data.inventory - parseInt(item.quantity))})
+        })
+      })
     },
     onClientAuthorization: (data) => {
       console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);

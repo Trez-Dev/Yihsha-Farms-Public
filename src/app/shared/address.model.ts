@@ -44,6 +44,7 @@ export class CustomerLog{
       public purchaseTime: string,
       public productPurchased: ProductsPurchased[],
       public total: string,
-      public orderStatus: boolean
+      public orderStatus: boolean,
+      public trackingNumber: string
     ){}
 }

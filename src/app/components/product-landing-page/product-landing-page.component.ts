@@ -20,11 +20,13 @@ export class ProductLandingPageComponent implements OnInit{
   selectedProduct: any;
   itemAdded: boolean | undefined;
   lowStock: boolean = false;
+  discounted: boolean = false;
   // productId: string = '';
 
   landingProduct: any;
   relatedProducts: any;
   quantity: number = 1;
+  previousPrice: any;
 
   constructor(private activatedRoute: ActivatedRoute, 
     private cartStore: CartStore,
@@ -45,6 +47,12 @@ export class ProductLandingPageComponent implements OnInit{
           this.lowStock = true;
         }else{
           this.lowStock = false;
+        }
+
+        if(this.selectedProduct.discount > 0){
+          this.discounted = true;
+          this.previousPrice = this.selectedProduct.price;
+          this.selectedProduct.price = (this.selectedProduct.price - (this.selectedProduct.price * (this.selectedProduct.discount / 100))).toFixed(2);
         }
       })
     })

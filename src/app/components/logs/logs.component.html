@@ -7,12 +7,12 @@
     <mat-card class="log-header">
         <mat-card-content class="card-content">
            <div class="log-headers">
-            <h2>First Name</h2>
-            <h2>Last Name</h2>
+            <h2>Name</h2>
             <h2>Phone Number</h2>
             <h2>Purchase Time</h2>
             <h2>Email Address</h2>
             <h2>Order Status</h2>
+            <h2>Tracking Number</h2>
            </div>
         </mat-card-content>
     </mat-card>
@@ -20,14 +20,18 @@
         <mat-card class="user">
             <mat-card-content  class="card-content">
                     <div class="log-content">
-                        <p>{{customerLog.firstName}}</p>
-                        <p>{{customerLog.lastName}}</p>
+                        <p>{{customerLog.firstName}} {{customerLog.lastName}}</p>
                         <p>{{customerLog.phone}}</p>
                         <p>{{customerLog.purchaseTime}}</p>
                         <p>{{customerLog.email}}</p>
                         <mat-chip-option *ngIf="admin" class="chip-option" color="accent" [selected]="customerLog.orderStatus" (click)="updateOrders(customerLog.log,customerLog.id,chip.selected)" #chip>Order Completed</mat-chip-option>
                         <p *ngIf="!customerLog.orderStatus && !admin">Pending</p>
                         <p *ngIf="customerLog.orderStatus && !admin">Completed</p>
+                        <mat-form-field appearance="fill" color="warn" class="amount-input"  *ngIf="admin"> 
+                            <mat-label>Tracking Number</mat-label>
+                            <input matInput type="text" [value]="customerLog.trackingNumber" (change)="updateTrackingNumber(customerLog.log,customerLog.id,trackingNumber.value)" #trackingNumber>
+                          </mat-form-field>
+                        <p *ngIf="!admin">{{customerLog.trackingNumber}}</p>
                     </div>
             </mat-card-content>
         </mat-card>

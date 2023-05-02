@@ -133,12 +133,12 @@
                     <input matInput type="number" placeholder="0" [value]="product.inventory" (change)="updateInventory(inventory.value)" #inventory>
                   </mat-form-field>
                 </div>
-                <!-- <mat-form-field appearance="fill" color="warn" class="amount-input"> 
+                <mat-form-field appearance="fill" color="warn" class="amount-input"> 
                   <mat-label>Discount</mat-label>
-                  <span matTextPrefix>$&nbsp;</span>
-                  <input matInput type="number" placeholder="0" [disabled]="!check.checked" [value]="product.price" (change)="updateInventory(inventory.value)" #inventory>
-                </mat-form-field> -->
-                <!-- <mat-checkbox color="warn" #check></mat-checkbox> -->
+                  <span matTextPrefix>%&nbsp;</span>
+                  <input matInput type="number" placeholder="0" [disabled]="!check.checked" [value]="product.discount" (change)="updateDiscount(discount.value)" #discount>
+                </mat-form-field>
+                <mat-checkbox color="warn" #check></mat-checkbox>
                 <mat-radio-button color="warn" [value]="product.id" class="radio-btn"></mat-radio-button>
             </mat-card-content>
         </mat-card>

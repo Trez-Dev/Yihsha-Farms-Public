@@ -10,7 +10,8 @@
             </div>
             <div class="landing-product-description">
                 <h1>{{selectedProduct.name}}</h1>
-                <h2>${{selectedProduct.price}}</h2>
+                <h2 *ngIf="!discounted">${{selectedProduct.price}}</h2>
+                <h2 *ngIf="discounted"><span class="discount-percentage">-{{selectedProduct.discount}}%</span>{{selectedProduct.price}} <br> <span class="previous-discount">list price: <s>${{previousPrice}}</s></span></h2>
                 <p>{{selectedProduct.description}}</p>
                 <div class="add-product">
                 <input type="number" max="20" value="1" min="1" [(ngModel)]="quantity" >

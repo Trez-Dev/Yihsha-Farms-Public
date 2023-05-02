@@ -93,7 +93,7 @@ export class PocketbaseService {
     return record;
   }
 
-  public async updateProductInventory(productId: string, inventoryUpdate: InventoryProduct){
+  public async updateProductInventory(productId: string, inventoryUpdate: any){
     const record = await this.pocketBase.collection('products')
       .update(productId,inventoryUpdate);
     return record;

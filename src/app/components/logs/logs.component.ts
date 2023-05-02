@@ -5,6 +5,7 @@ import { CustomerLog } from 'src/app/shared/address.model';
 import { environment } from 'src/environments/environment.prod';
 import { SlicePipe } from '@angular/common';
 import { PageEvent } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-logs',
@@ -20,7 +21,7 @@ export class LogsComponent implements OnInit{
   pageSize: any;
   displayedItems: any;
 
-  constructor(private database: PocketbaseService, private activatedRoute: ActivatedRoute){}
+  constructor(private database: PocketbaseService, private activatedRoute: ActivatedRoute, private snackbar: MatSnackBar){}
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(data => {
@@ -40,7 +41,8 @@ export class LogsComponent implements OnInit{
               data.purchase_time,
               data.products_purchased,
               data.products_purchased[0].total,
-              data.order_status)
+              data.order_status,
+              data.tracking_number)
             this.customerLogs.push(customerData);
           });
         })
@@ -60,7 +62,8 @@ export class LogsComponent implements OnInit{
                 data.purchase_time,
                 data.products_purchased,
                 data.products_purchased[0].total,
-                data.order_status)
+                data.order_status,
+                data.tracking_number)
                 this.customerLogs.push(customerData);
             }else if (this.params['order-type'] == 'previous-orders' && data.order_status == true){
               const customerData = new CustomerLog(
@@ -74,7 +77,8 @@ export class LogsComponent implements OnInit{
                 data.purchase_time,
                 data.products_purchased,
                 data.products_purchased[0].total,
-                data.order_status)
+                data.order_status,
+                data.tracking_number)
                 this.customerLogs.push(customerData);
             }
           });
@@ -92,5 +96,14 @@ export class LogsComponent implements OnInit{
   updateOrders(log:any, id: string, orderStatus: any){
     log.order_status = orderStatus;
     this.database.updateCustomerLog(id,log);
+  }
+
+  updateTrackingNumber(log:any, id: string, trackingNumber: any){
+    log.tracking_number = trackingNumber
+    this.database.updateCustomerLog(id, log).then(() => {
+      this.snackbar.open('Tracking Number Added', 'Dismiss')
+    }).catch(() => {
+      this.snackbar.open('Opps, Somthing went wrong :(', 'Dismiss')
+    });
   }
 }

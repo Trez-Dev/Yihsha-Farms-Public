@@ -44,6 +44,8 @@ productPrice: number | undefined;
 starNumber: number | undefined;
 productDescription: string ='';
 productnventory: number = 1;
+inventoryAmount: any;
+discountPercentage: number = 0
 
 pocketData: any;
 profileLoad: boolean = true;
@@ -51,7 +53,6 @@ discount: boolean = false;
 
 products: any;
 selectedId: string = '';
-inventoryAmount: any;
 addressId: string ='';
 
 // for funzies!
@@ -103,6 +104,7 @@ ngOnInit(): void {
   this.addressData.userId = JSON.parse(localStorage.getItem('userId') || `{"userId":""}`).userId
   this.database.getAllProducts().then(data => {
     this.products = data;
+    console.log(data)
   })
   if(this.inputData.selected === 'AP'){
     this.addProduct = true;
@@ -206,7 +208,7 @@ DeleteProductFromDatabase(){
 
 updateInventory(inventoryAmount: string){
   this.database.viewPocketBaseData(this.selectedId).then(data => {
-    const inventoryUpdate = new InventoryProduct(data.image,data.type,data.star,data.name,data.price,data.description,parseInt(inventoryAmount))
+    const inventoryUpdate = new InventoryProduct(data.image,data.type,data.star,data.name,data.price,data.description,parseInt(inventoryAmount), data.discount)
     this.database.updateProductInventory(this.selectedId,inventoryUpdate).then(() => {
       this.snackbar.open('Inventory Updatad', 'Dismiss')
     }).catch(() => {
@@ -215,9 +217,20 @@ updateInventory(inventoryAmount: string){
   }).catch(() => console.log("View data Error"));
 }
 
+updateDiscount(discountPercentage: string){
+  this.database.viewPocketBaseData(this.selectedId).then(data => {
+    const inventoryUpdate = new InventoryProduct(data.image,data.type,data.star,data.name,data.price,data.description,data.inventory, parseInt(discountPercentage))
+    this.database.updateProductInventory(this.selectedId,inventoryUpdate).then(() => {
+      this.snackbar.open('Discount Updated', 'Dismiss')
+    }).catch(() => {
+      this.snackbar.open('Opps, Somthing went wrong :(', 'Dismiss')
+    });
+  }).catch(() => console.log("View data Error"));
+}
+
 updatePrice(price: string){
   this.database.viewPocketBaseData(this.selectedId).then(data => {
-    const inventoryUpdate = new InventoryProduct(data.image,data.type,data.star,data.name,price,data.description,data.inventory)
+    const inventoryUpdate = new InventoryProduct(data.image,data.type,data.star,data.name,price,data.description,data.inventory, data.discount)
     console.log(inventoryUpdate)
     this.database.updateProductInventory(this.selectedId,inventoryUpdate).then(() => {
       this.snackbar.open('Price Changed', 'Dismiss')
