@@ -38,7 +38,7 @@ export class ShopComponent implements OnInit{
       this.bundleNum = this.databaseData.filter(product => product.type === 'Bundles').length;
       this.bundleNum = this.databaseData.filter(product => product.type === 'Snacks').length;
       this.bundleNum = this.databaseData.filter(product => product.type === 'Teas').length;
-    })
+    });
   };
 
 

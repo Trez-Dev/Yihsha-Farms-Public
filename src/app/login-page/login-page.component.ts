@@ -61,7 +61,6 @@ export class LoginPageComponent implements OnInit{
         this.database.viewUserData(data['id']).then((data) => {
           localStorage.setItem('userId',`{"userId":"${data['id']}"}`)
           this.silas.getUserAvatar(data['name']).subscribe(avatar => {
-            this.createImageFromBlob(avatar);
             this.userData = new User(this.background,'',data['name'],data['username']);
             localStorage.setItem('user-login',`{"id":"${data['id']}"}`);
             this.adminStatus = false;

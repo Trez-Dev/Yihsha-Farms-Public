@@ -162,10 +162,11 @@ font-size: 1.8rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden !important;
 }
 
 .image img{
-    height: 100%;
+    width: 100%;
 }
 
 .shop a,.left-shopping-gallery a{
@@ -213,6 +214,22 @@ font-size: 1.8rem;
 .navs button:hover{
     background-color: #fe5d26;
     color: white;
+}
+
+.discount-percentage{
+    color: #ff5015;
+    font-weight: 300;
+    margin-right: 0.5rem;
+}
+
+.discount{
+    text-align: center;
+}
+
+.previous-discount{
+    color: rgb(125, 123, 123);
+    font-weight: 300;
+    font-size: 1rem;
 }
 
 @media only screen and (min-width: 1000px){
