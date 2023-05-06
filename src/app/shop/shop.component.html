@@ -116,6 +116,15 @@
             <div class="juices">
                     <a style="cursor: pointer;" (click)="filterProduct('Jerk Seasoning')"><p>Jerk Seasonings</p></a><p>({{jerkNum}})</p>
             </div>
+            <div class="juices">
+                <a style="cursor: pointer;" (click)="filterProduct('Bundles')"><p>Bundles</p></a><p>({{bundleNum}})</p>
+            </div>
+            <div class="juices">
+                    <a style="cursor: pointer;" (click)="filterProduct('Snacks')"><p>Snacks</p></a><p>({{snackNum}})</p>
+            </div>
+            <div class="juices">
+                    <a style="cursor: pointer;" (click)="filterProduct('Teas')"><p>Teas</p></a><p>({{teaNum}})</p>
+            </div>
         </div>
             <div class="items-showing">
                 <p>Showing 1-{{products?.length}} of {{sauceNum + seasoningNum + jerkNum}} results</p>

@@ -57,7 +57,8 @@ export class ProductLandingPageComponent implements OnInit{
       })
     })
     this.database.getPocketBaseData().then(data=>{
-      this.relatedProducts=data.items.slice(0,3);
+      this.relatedProducts=data.items.filter((product: any) => product.type === this.selectedProduct.type &&  product.id !== this.selectedProduct.id).slice(0,3);
+      console.log(this.selectedProduct.type)
     })
     this.silas.loadCart();
     this.items = this.silas.getItems();

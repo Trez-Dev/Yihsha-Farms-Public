@@ -2,13 +2,13 @@
     background-image: url(../../../assets/images/website-bg.svg);
     background-size: cover;
     padding-top: 5rem;
-    height: 200vh;
+    min-height: 180vh;
 }
 
 .background{
     background-color: rgba(255, 255, 255,0.4);
     padding: 5rem 8rem;
-    height: 200vh;
+    min-height: 180vh;
 }
 /* {
     border: 1px solid black;
@@ -156,7 +156,7 @@ hr{
 .related-items-gallery{
     display: grid;
     gap: 2rem;
-    grid-template-columns: repeat(4,1fr);
+    grid-template: 1fr / repeat(3, 1fr);
 }
 
 
@@ -176,7 +176,7 @@ hr{
 }
 
 .gallery-item img{
-    height: 15rem;
+    width: 100%;
 }
 
 .gallery-item a{
@@ -259,6 +259,7 @@ hr{
     .landing-product-description{
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 1rem;
     }
 

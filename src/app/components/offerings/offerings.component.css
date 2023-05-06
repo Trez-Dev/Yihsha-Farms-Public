@@ -17,28 +17,26 @@
 }
 
 .offering{
-    margin-top: 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin: 4rem 4rem 0 4rem ;
+    display: grid;
+    grid-template: 1fr /repeat(4,1fr);
     gap: 2rem;
 }
 
 .offering-card{
     background-color: white;
-    height: 20rem;
-    width: 20rem;
+    /* width: 20rem; */
     border-radius: 10px;
     padding: 2rem;
 }
 
 .offering-card h1{
-    width: 80%;
+    margin-bottom: 1rem;
+    font-size: 1.7rem;
 }
 
 button{
     background-color: #fe5d26;
-    margin-top: 2rem;
     color: white;
     border: none;
     border-radius: 2px;
@@ -68,8 +66,8 @@ button:hover i{
 
 .grid{
     display: grid;
-    grid-template: repeat(10, 1fr) / repeat(10, 1fr);
-    height: 15rem;
+    grid-template: repeat(6, 1fr) / repeat(10, 1fr);
+    height: 10rem;
 }
 
 .grid img{
@@ -77,13 +75,13 @@ button:hover i{
 }
 
 img{
-    grid-column: 4 / -2;
-    grid-row: 2 / -2;
+    grid-column: 4 / -1;
+    grid-row: 3 / -1;
 }
 
 .grid button{
     grid-row: 2 / span 2;
-    grid-column: 1 / span 5;
+    grid-column: 1 / span 6;
 }
 
 .deal{
@@ -131,5 +129,9 @@ img{
     .try{
         font-size: 1.5rem;
         text-align: center;
+    }
+
+    .offering{
+        grid-template: repeat(2,1fr)/repeat(2,1fr);
     }
 }
