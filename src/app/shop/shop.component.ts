@@ -36,9 +36,11 @@ export class ShopComponent implements OnInit{
       this.sauceNum = this.databaseData.filter(product => product.type === 'Sauces').length;
       this.jerkNum = this.databaseData.filter(product => product.type === 'Jerk Seasoning').length;
       this.bundleNum = this.databaseData.filter(product => product.type === 'Bundles').length;
-      this.bundleNum = this.databaseData.filter(product => product.type === 'Snacks').length;
-      this.bundleNum = this.databaseData.filter(product => product.type === 'Teas').length;
+      this.snackNum = this.databaseData.filter(product => product.type === 'Snacks').length;
+      this.teaNum = this.databaseData.filter(product => product.type === 'Teas').length;
     });
+
+    console.log(this.bundleNum)
   };
 
 

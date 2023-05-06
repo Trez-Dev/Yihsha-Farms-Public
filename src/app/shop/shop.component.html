@@ -53,7 +53,7 @@
             <h1>Shop</h1>
             <p>Welcome to Yihsha Farms, your ultimate destination for all things Jamaican food and grocery! Whether you're a Jamaican living abroad or simply a lover of Jamaican cuisine, we're here to bring the authentic taste of Jamaica right to your doorstep.<br><br></p>
             <div class="items-showing">
-                <p>Showing 1-{{products?.length}} of {{sauceNum + seasoningNum + jerkNum}} results</p>
+                <p>Showing 1-{{products?.length}} of {{sauceNum + seasoningNum + jerkNum + bundleNum + snackNum + teaNum}} results</p>
                 <select name="sorting" id="sorting" (change)="sort($event)" p>
                     <option value="0">Default Sorting</option>
                     <option value="1">Sort by price: low to high</option>
@@ -127,7 +127,7 @@
             </div>
         </div>
             <div class="items-showing">
-                <p>Showing 1-{{products?.length}} of {{sauceNum + seasoningNum + jerkNum}} results</p>
+                <p>Showing 1-{{products?.length}} of {{sauceNum + seasoningNum + jerkNum + bundleNum + snackNum + teaNum}} results</p>
                 <select name="sorting" id="sorting" (change)="sort($event)">
                     <option value="0">Default Sorting</option>
                     <option value="1">Sort by price: low to high</option>
