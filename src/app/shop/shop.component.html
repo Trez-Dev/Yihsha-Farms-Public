@@ -19,17 +19,14 @@
                     <a style="cursor: pointer;" (click)="filterProduct('Sauces')"><p>Sauces</p></a><p>({{sauceNum}})</p>
             </div>
             <div class="juices">
-                    <a style="cursor: pointer;" (click)="filterProduct('Jerk Seasoning')"><p>Jerk Seasonings</p></a><p>({{jerkNum}})</p>
-            </div>
-            <div class="juices">
-                    <a style="cursor: pointer;" (click)="filterProduct('Bundles')"><p>Bundles</p></a><p>({{bundleNum}})</p>
-            </div>
-            <div class="juices">
                     <a style="cursor: pointer;" (click)="filterProduct('Snacks')"><p>Snacks</p></a><p>({{snackNum}})</p>
             </div>
             <div class="juices">
                     <a style="cursor: pointer;" (click)="filterProduct('Teas')"><p>Teas</p></a><p>({{teaNum}})</p>
             </div>
+            <div class="juices">
+                <a style="cursor: pointer;" (click)="filterProduct('Bundles')"><p>Bundles</p></a><p>({{bundleNum}})</p>
+        </div>
             <div class="left-shopping-gallery">
                 <div class="gallery-item" *ngFor="let product of leftProducts">
                     <a [routerLink]="['/product-landing', product.id]"><div class="image"><img [defaultImage]="image" [lazyLoad]="product.image"></div></a>
@@ -39,11 +36,11 @@
                     <p *ngFor="let n of starNum(product.star);"><i class='fa fa-star' style='font-size:12px; color: #fe5d26;'></i></p>
                     <p *ngFor="let n of starNum(5-product.star);"><i class='fa fa-star' style='font-size:12px'></i></p>
                     </div>
-                    <h2 *ngIf="!(product.discount > 0)">${{product.price}}</h2>
+                    <h2 *ngIf="!(product.discount > 0)">{{product.price | currency}}</h2>
                     <h2 class="discount" *ngIf="product.discount > 0">
                         <span class="discount-percentage">-{{product.discount}}%</span>
-                        {{(this.product.price - (this.product.price * (this.product.discount / 100))).toFixed(2)}}<br> 
-                        <span class="previous-discount">list price: <s>${{product.price}}</s></span>
+                        {{ ((this.product.price - (this.product.price * (this.product.discount / 100))).toFixed(2)) | currency}}<br> 
+                        <span class="previous-discount">list price: <s>{{ product.price | currency}}</s></span>
                     </h2>
                 </div>
             </div>
@@ -53,7 +50,7 @@
             <h1>Shop</h1>
             <p>Welcome to Yihsha Farms, your ultimate destination for all things Jamaican food and grocery! Whether you're a Jamaican living abroad or simply a lover of Jamaican cuisine, we're here to bring the authentic taste of Jamaica right to your doorstep.<br><br></p>
             <div class="items-showing">
-                <p>Showing 1-{{products?.length}} of {{sauceNum + seasoningNum + jerkNum + bundleNum + snackNum + teaNum}} results</p>
+                <p>Showing 1-{{products?.length}} of {{sauceNum + seasoningNum + bundleNum + snackNum + teaNum}} results</p>
                 <select name="sorting" id="sorting" (change)="sort($event)" p>
                     <option value="0">Default Sorting</option>
                     <option value="1">Sort by price: low to high</option>
@@ -72,11 +69,11 @@
                     <p *ngFor="let n of starNum(product.star);"><i class='fa fa-star' style='font-size:12px; color: #fe5d26;'></i></p>
                     <p *ngFor="let n of starNum(5-product.star);"><i class='fa fa-star' style='font-size:12px'></i></p>
                     </div>
-                    <h2 *ngIf="!(product.discount > 0)">${{product.price}}</h2>
+                    <h2 *ngIf="!(product.discount > 0)">{{ product.price | currency}}</h2>
                     <h2 class="discount" *ngIf="product.discount > 0">
                         <span class="discount-percentage">-{{product.discount}}%</span>
-                        {{(this.product.price - (this.product.price * (this.product.discount / 100))).toFixed(2)}}<br>
-                        <span class="previous-discount">list price: <s>${{product.price}}</s></span>
+                        {{ ((this.product.price - (this.product.price * (this.product.discount / 100))).toFixed(2)) | currency}}<br>
+                        <span class="previous-discount">list price: <s>{{product.price | currency}}</s></span>
                     </h2>
                 </div>
             </div>
@@ -114,20 +111,17 @@
                     <a style="cursor: pointer;" (click)="filterProduct('Pepper Sauces')"><p>Pepper Sauces</p></a><p>({{sauceNum}})</p>
             </div>
             <div class="juices">
-                    <a style="cursor: pointer;" (click)="filterProduct('Jerk Seasoning')"><p>Jerk Seasonings</p></a><p>({{jerkNum}})</p>
-            </div>
-            <div class="juices">
-                <a style="cursor: pointer;" (click)="filterProduct('Bundles')"><p>Bundles</p></a><p>({{bundleNum}})</p>
-            </div>
-            <div class="juices">
                     <a style="cursor: pointer;" (click)="filterProduct('Snacks')"><p>Snacks</p></a><p>({{snackNum}})</p>
             </div>
             <div class="juices">
                     <a style="cursor: pointer;" (click)="filterProduct('Teas')"><p>Teas</p></a><p>({{teaNum}})</p>
             </div>
+            <div class="juices">
+                <a style="cursor: pointer;" (click)="filterProduct('Bundles')"><p>Bundles</p></a><p>({{bundleNum}})</p>
+            </div>
         </div>
             <div class="items-showing">
-                <p>Showing 1-{{products?.length}} of {{sauceNum + seasoningNum + jerkNum + bundleNum + snackNum + teaNum}} results</p>
+                <p>Showing 1-{{products?.length}} of {{sauceNum + seasoningNum + bundleNum + snackNum + teaNum}} results</p>
                 <select name="sorting" id="sorting" (change)="sort($event)">
                     <option value="0">Default Sorting</option>
                     <option value="1">Sort by price: low to high</option>
@@ -146,7 +140,12 @@
                     <p *ngFor="let n of starNum(product.star);"><i class='fa fa-star' style='font-size:12px; color: #fe5d26;'></i></p>
                     <p *ngFor="let n of starNum(5-product.star);"><i class='fa fa-star' style='font-size:12px'></i></p>
                     </div>
-                    <h2>${{ product.price }}</h2>
+                    <h2 *ngIf="!(product.discount > 0)">{{ product.price | currency}}</h2>
+                    <h2 class="discount" *ngIf="product.discount > 0">
+                        <span class="discount-percentage">-{{product.discount}}%</span>
+                        {{ ((this.product.price - (this.product.price * (this.product.discount / 100))).toFixed(2)) | currency}}<br>
+                        <span class="previous-discount">list price: <s>{{product.price | currency}}</s></span>
+                    </h2>
                 </div>
             </div>
             

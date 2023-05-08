@@ -240,6 +240,18 @@ updatePrice(price: string){
   }).catch(() => console.log("View data Error"));
 }
 
+updateDetails(image: string, name: string, star: string, description: string){
+  this.database.viewPocketBaseData(this.selectedId).then(data => {
+    const inventoryUpdate = new InventoryProduct(image,data.type,parseInt(star),name,data.price,description,data.inventory, data.discount)
+    console.log(inventoryUpdate)
+    this.database.updateProductInventory(this.selectedId,inventoryUpdate).then(() => {
+      this.snackbar.open('Details Changed', 'Dismiss')
+    }).catch(() => {
+      this.snackbar.open('Opps, Somthing went wrong :(', 'Dismiss')
+    });
+  }).catch(() => console.log("View data Error"));
+}
+
 logOut(){
   localStorage.clear();
   this.router.navigate(["/home"]);

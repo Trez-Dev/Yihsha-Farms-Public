@@ -38,12 +38,13 @@
     padding: 0;
 }
 
-.amount-input{
-    margin-right: 2rem;
+.card-items-more{
+    grid-template-columns: repeat(4, 1fr);
 }
 
+
 .card-items img{
-    width: 30% !important;
+    width: 80% !important;
     margin: auto;
 }
 
@@ -103,6 +104,17 @@
 .discount{
     display: flex;
 }
+
+.inventory-items{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+.input-div{
+    width: 8rem !important;
+}
+
 
 @media only screen and (min-width: 1000px){
 

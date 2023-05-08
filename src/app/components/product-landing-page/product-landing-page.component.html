@@ -10,8 +10,8 @@
             </div>
             <div class="landing-product-description">
                 <h1>{{selectedProduct.name}}</h1>
-                <h2 *ngIf="!discounted">${{selectedProduct.price}}</h2>
-                <h2 *ngIf="discounted"><span class="discount-percentage">-{{selectedProduct.discount}}%</span>{{selectedProduct.price}} <br> <span class="previous-discount">list price: <s>${{previousPrice}}</s></span></h2>
+                <h2 *ngIf="!discounted">{{selectedProduct.price | currency}}</h2>
+                <h2 *ngIf="discounted"><span class="discount-percentage">-{{selectedProduct.discount}}%</span>{{selectedProduct.price | currency}} <br> <span class="previous-discount">list price: <s>{{previousPrice | currency}}</s></span></h2>
                 <p>{{selectedProduct.description}}</p>
                 <div class="add-product">
                 <input type="number" max="20" value="1" min="1" [(ngModel)]="quantity" >
@@ -52,7 +52,7 @@
                     <p *ngFor="let n of starNum(product.star);"><i class='fas fa-star' style='font-size:12px; color: #fe5d26;'></i></p>
                     <p *ngFor="let n of starNum(5-product.star);"><i class='fas fa-star' style='font-size:12px'></i></p>
                     </div>
-                    <h2>{{ product.price }}</h2>
+                    <h2>{{ product.price | currency}}</h2>
                 </div>
             </div>
         </div>

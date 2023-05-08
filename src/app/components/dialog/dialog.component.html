@@ -10,10 +10,9 @@
             <mat-select [(ngModel)]="productType">
               <mat-option value="Seasonings">Seasonings</mat-option>
               <mat-option value="Sauces">Sauces</mat-option>
-              <mat-option value="Jerk Seasoning">Jerk Seasoning</mat-option>
-              <mat-option value="Bundles">Bundles</mat-option>
               <mat-option value="Snacks">Snacks</mat-option>
-              <mat-option value="Teas">Other</mat-option>
+              <mat-option value="Teas">Teas</mat-option>
+              <mat-option value="Bundles">Bundles</mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field appearance="fill" color="warn">
@@ -116,32 +115,59 @@
     </div>
     <div class="delete-product box-properties" *ngIf="deleteProduct">
         <mat-radio-group [(ngModel)]="selectedId" class="example-full-width">
-        <mat-card *ngFor="let product of products" class="card">
+        <div class="inventory-items" *ngFor="let product of products">
+        <mat-card  class="card">
             <mat-card-content class="card-items"> 
-                <img [src]="product.image" alt="product image">
+                <img [src]="product.image" alt="product image" class="product-img">
                 <p>{{product.name}}</p>
                 <div class="input-div">
-                  <mat-form-field appearance="fill" color="warn" class="amount-input"> 
+                  <mat-form-field appearance="fill" color="warn"> 
                     <mat-label>Price</mat-label>
                     <span matTextPrefix>$&nbsp;</span>
                     <input matInput type="number" placeholder="0" [value]="product.price" (change)="updatePrice(price.value)" #price>
                   </mat-form-field>
                 </div>
                 <div class="input-div">
-                  <mat-form-field appearance="fill" color="warn" class="amount-input"> 
+                  <mat-form-field appearance="fill" color="warn"> 
                     <mat-label>Quantity</mat-label>
                     <input matInput type="number" placeholder="0" [value]="product.inventory" (change)="updateInventory(inventory.value)" #inventory>
                   </mat-form-field>
                 </div>
-                <mat-form-field appearance="fill" color="warn" class="amount-input"> 
+                <div class="input-div">
+                <mat-form-field appearance="fill" color="warn"> 
                   <mat-label>Discount</mat-label>
                   <span matTextPrefix>%&nbsp;</span>
                   <input matInput type="number" placeholder="0" [disabled]="!check.checked" [value]="product.discount" (change)="updateDiscount(discount.value)" #discount>
                 </mat-form-field>
+                </div>
                 <mat-checkbox color="warn" #check></mat-checkbox>
                 <mat-radio-button color="warn" [value]="product.id" class="radio-btn"></mat-radio-button>
             </mat-card-content>
         </mat-card>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+                Edit More:
+          </mat-expansion-panel-header>
+          <div class="card-items card-items-more">
+            <mat-form-field appearance="fill" color="warn" class="amount-input"> 
+              <mat-label>Image Url</mat-label>
+              <input matInput type="text" [value]="product.image" (change)="updateDetails(image.value, name.value, star.value, description.value)"  #image>
+            </mat-form-field>
+            <mat-form-field appearance="fill" color="warn">
+              <mat-label> Product Name</mat-label>
+              <input matInput [value]="product.name" (change)="updateDetails(image.value, name.value, star.value, description.value)" #name>
+          </mat-form-field>
+          <mat-form-field appearance="fill" color="warn">
+            <mat-label>Star Number</mat-label>
+            <input matInput type="number" [value]="product.star" min="1" max="5" (change)="updateDetails(image.value, name.value, star.value, description.value)" #star>
+          </mat-form-field>
+          <mat-form-field appearance="fill" color="warn">
+              <mat-label> Product Description</mat-label>
+              <textarea matInput [value]="product.description" placeholder="Write Something about the product..." (change)="updateDetails(image.value, name.value, star.value, description.value)" #description></textarea>
+          </mat-form-field>
+          </div>
+        </mat-expansion-panel>
+      </div>
         <div mat-dialog-actions class="options">
           <button mat-raised-button mat-dialog-close>Cancel</button>
           <button mat-raised-button color="warn" cdkFocusInitial (click)="DeleteProductFromDatabase()">Delete</button>

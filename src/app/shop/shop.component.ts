@@ -19,7 +19,6 @@ export class ShopComponent implements OnInit{
   databaseData: Product[] = [];
   seasoningNum: number = 0;
   sauceNum: number = 0;
-  jerkNum: number = 0;
   bundleNum: number = 0;
   snackNum: number = 0;
   teaNum: number = 0;
@@ -34,7 +33,6 @@ export class ShopComponent implements OnInit{
       this.leftProducts = data.items.sort((a: {name:any}, z: {name: any}) => z.name.localeCompare(a.name)).slice(0,3);
       this.seasoningNum = this.databaseData.filter(product => product.type === 'Seasonings').length;
       this.sauceNum = this.databaseData.filter(product => product.type === 'Sauces').length;
-      this.jerkNum = this.databaseData.filter(product => product.type === 'Jerk Seasoning').length;
       this.bundleNum = this.databaseData.filter(product => product.type === 'Bundles').length;
       this.snackNum = this.databaseData.filter(product => product.type === 'Snacks').length;
       this.teaNum = this.databaseData.filter(product => product.type === 'Teas').length;
